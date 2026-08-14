@@ -46,7 +46,7 @@ export function SplitLines({
 }: {
   lines: string[];
   className?: string;
-  as?: "h1" | "h2" | "p";
+  as?: "h1" | "h2" | "h3" | "p";
   startDelay?: number;
   once?: boolean;
 }) {
