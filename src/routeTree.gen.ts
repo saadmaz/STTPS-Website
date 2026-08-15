@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as CompaniesRouteImport } from './routes/companies'
+import { Route as VenturesRouteImport } from './routes/ventures'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const CompaniesRoute = CompaniesRouteImport.update({
   path: '/companies',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VenturesRoute = VenturesRouteImport.update({
+  id: '/ventures',
+  path: '/ventures',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/companies': typeof CompaniesRoute
+  '/ventures': typeof VenturesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/companies': typeof CompaniesRoute
+  '/ventures': typeof VenturesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/companies': typeof CompaniesRoute
+  '/ventures': typeof VenturesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/companies'
+  fullPaths: '/' | '/about' | '/companies' | '/ventures'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/companies'
-  id: '__root__' | '/' | '/about' | '/companies'
+  to: '/' | '/about' | '/companies' | '/ventures'
+  id: '__root__' | '/' | '/about' | '/companies' | '/ventures'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CompaniesRoute: typeof CompaniesRoute
+  VenturesRoute: typeof VenturesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompaniesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ventures': {
+      id: '/ventures'
+      path: '/ventures'
+      fullPath: '/ventures'
+      preLoaderRoute: typeof VenturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CompaniesRoute: CompaniesRoute,
+  VenturesRoute: VenturesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
