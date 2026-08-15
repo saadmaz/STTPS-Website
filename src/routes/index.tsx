@@ -332,9 +332,8 @@ function Careers() {
           <p className="max-w-xl text-lg text-muted-foreground">
             We're building companies, teams and systems from the ground up.
           </p>
-          <Link to="/careers" className="label-xs" data-cursor="OPEN →">
-            <ArrowLink href="/careers">View Opportunities</ArrowLink>
-          </Link>
+          <ArrowLink href="/careers">View Opportunities</ArrowLink>
+
         </div>
         <div className="mt-16 flex flex-wrap gap-x-10 gap-y-4 border-t border-foreground/10 pt-8">
           {CAREER_TRACKS.map((t) => (
