@@ -68,15 +68,22 @@ export function CompanySection({ company, index }: { company: Company; index: nu
             className="group relative aspect-[4/3] overflow-hidden"
             data-cursor="VIEW"
           >
-            <motion.img
-              src={company.image}
-              alt={`${company.name} — ${company.category}`}
-              loading="lazy"
-              width={1400}
-              height={1000}
-              style={{ y: reduce ? 0 : imageY, scale: reduce ? 1 : imageScale }}
-              className="h-full w-full object-cover"
-            />
+            <picture className="block h-full w-full">
+              <source
+                type="image/webp"
+                srcSet={company.imageSrcSet}
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+              <motion.img
+                src={company.image}
+                alt={`${company.name} — ${company.category}`}
+                loading="lazy"
+                width={1400}
+                height={1000}
+                style={{ y: reduce ? 0 : imageY, scale: reduce ? 1 : imageScale }}
+                className="h-full w-full object-cover"
+              />
+            </picture>
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             {company.motion === "reflective" && (
               <motion.div

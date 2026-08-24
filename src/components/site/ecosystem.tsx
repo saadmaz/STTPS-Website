@@ -18,7 +18,11 @@ export function EcosystemDiagram() {
   return (
     <div className="relative">
       <div className="relative aspect-[4/3] w-full sm:aspect-[16/9]">
-        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
+        <svg
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          className="absolute inset-0 h-full w-full"
+        >
           {NODES.map((n, i) => (
             <g key={i}>
               <motion.line

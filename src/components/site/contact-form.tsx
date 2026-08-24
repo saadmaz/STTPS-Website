@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { Magnetic } from "./primitives";
+import { CONTACT } from "@/data/sttps";
 
 const FIELDS = [
   { name: "name", label: "Name", type: "text" },
@@ -16,10 +17,15 @@ export function ContactForm() {
       className="w-full"
       onSubmit={(e) => {
         e.preventDefault();
-        toast.success("Message ready to send", {
-          description: "Connect a backend to deliver messages to your inbox.",
+        // No backend exists yet — hand off to the visitor's own email client
+        // instead of pretending the message was sent somewhere.
+        const subject = `Message from ${values.name}${values.company ? ` (${values.company})` : ""}`;
+        const body = `${values.message}\n\n— ${values.name}\n${values.email}`;
+        const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailto;
+        toast.success("Opening your email app…", {
+          description: `This message will go to ${CONTACT.email}.`,
         });
-        setValues({ name: "", email: "", company: "", message: "" });
       }}
     >
       <div className="grid gap-6 sm:grid-cols-3">

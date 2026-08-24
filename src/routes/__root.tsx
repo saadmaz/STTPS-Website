@@ -16,9 +16,7 @@ import { SiteFooter } from "@/components/site/footer";
 const CustomCursor = lazy(() =>
   import("@/components/site/cursor").then((m) => ({ default: m.CustomCursor })),
 );
-const Toaster = lazy(() =>
-  import("@/components/ui/sonner").then((m) => ({ default: m.Toaster })),
-);
+const Toaster = lazy(() => import("@/components/ui/sonner").then((m) => ({ default: m.Toaster })));
 
 function NotFoundComponent() {
   return (
@@ -81,6 +79,23 @@ const SITE_TITLE = "STTPS — The Group Building Service Companies";
 const SITE_DESC =
   "STTPS is a Sri Lankan group building and operating service brands: Tank Sudda, Team Sudda, Polish Station and STOPWASH.";
 
+// Meta-tag CSP is a defense-in-depth copy of the header set in src/server.ts.
+// frame-ancestors, X-Frame-Options and X-Content-Type-Options are ignored by
+// browsers when delivered via <meta> — they only take effect through the
+// real HTTP response headers in src/server.ts, which requires this app to
+// actually be served through that handler once a deployment target exists.
+const META_CSP = [
+  "default-src 'self'",
+  "script-src 'self'",
+  "style-src 'self' 'unsafe-inline'",
+  "style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' https://fonts.gstatic.com",
+  "img-src 'self' data:",
+  "connect-src 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+].join("; ");
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -94,6 +109,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "STTPS" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "referrer", content: "strict-origin-when-cross-origin" },
+      { httpEquiv: "Content-Security-Policy", content: META_CSP },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

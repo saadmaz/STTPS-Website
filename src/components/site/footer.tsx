@@ -38,12 +38,6 @@ export function SiteFooter() {
 
           <FooterCol title="Connect">
             <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
-            <a href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}>{CONTACT.phone}</a>
-            {CONTACT.socials.map((s) => (
-              <a key={s.label} href={s.href}>
-                {s.label}
-              </a>
-            ))}
           </FooterCol>
         </div>
 

@@ -39,22 +39,7 @@ function ContactPage() {
         <div className="shell grid gap-16 lg:grid-cols-[1fr_1.4fr]">
           <Reveal className="flex flex-col gap-8 text-sm">
             <Detail label="Email" value={CONTACT.email} href={`mailto:${CONTACT.email}`} />
-            <Detail
-              label="Phone"
-              value={CONTACT.phone}
-              href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}
-            />
             <Detail label="Location" value={CONTACT.location} />
-            <div>
-              <div className="label-xs text-muted-foreground">Social</div>
-              <div className="mt-3 flex gap-5">
-                {CONTACT.socials.map((s) => (
-                  <a key={s.label} href={s.href} className="underline-offset-4 hover:underline">
-                    {s.label}
-                  </a>
-                ))}
-              </div>
-            </div>
           </Reveal>
           <ContactForm />
         </div>

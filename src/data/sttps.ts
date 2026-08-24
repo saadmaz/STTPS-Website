@@ -1,7 +1,22 @@
 import tankSuddaImg from "@/assets/tank-sudda.jpg";
+import tankSudda640 from "@/assets/tank-sudda-640.webp";
+import tankSudda1024 from "@/assets/tank-sudda-1024.webp";
+import tankSudda1400 from "@/assets/tank-sudda-1400.webp";
 import teamSuddaImg from "@/assets/team-sudda.jpg";
+import teamSudda640 from "@/assets/team-sudda-640.webp";
+import teamSudda1024 from "@/assets/team-sudda-1024.webp";
+import teamSudda1400 from "@/assets/team-sudda-1400.webp";
 import polishStationImg from "@/assets/polish-station.jpg";
+import polishStation640 from "@/assets/polish-station-640.webp";
+import polishStation1024 from "@/assets/polish-station-1024.webp";
+import polishStation1400 from "@/assets/polish-station-1400.webp";
 import stopwashImg from "@/assets/stopwash.jpg";
+import stopwash640 from "@/assets/stopwash-640.webp";
+import stopwash1024 from "@/assets/stopwash-1024.webp";
+import stopwash1400 from "@/assets/stopwash-1400.webp";
+
+const srcSet = (w640: string, w1024: string, w1400: string) =>
+  `${w640} 640w, ${w1024} 1024w, ${w1400} 1400w`;
 
 export type Company = {
   id: string;
@@ -11,7 +26,10 @@ export type Company = {
   description: string;
   services: string[];
   cta: string;
+  /** JPG fallback for browsers without WebP support */
   image: string;
+  /** WebP srcset (640/1024/1400w) for the <picture><source> element */
+  imageSrcSet: string;
   motion: "fluid" | "human" | "reflective" | "velocity";
   /** oklch values, applied to --brand within the section */
   brand: string;
@@ -36,6 +54,7 @@ export const COMPANIES: Company[] = [
     ],
     cta: "Explore Tank Sudda",
     image: tankSuddaImg,
+    imageSrcSet: srcSet(tankSudda640, tankSudda1024, tankSudda1400),
     motion: "fluid",
     brand: "oklch(0.72 0.13 225)",
     brandInk: "oklch(0.14 0.03 240)",
@@ -57,6 +76,7 @@ export const COMPANIES: Company[] = [
     ],
     cta: "Meet Team Sudda",
     image: teamSuddaImg,
+    imageSrcSet: srcSet(teamSudda640, teamSudda1024, teamSudda1400),
     motion: "human",
     brand: "oklch(0.78 0.15 55)",
     brandInk: "oklch(0.15 0.02 60)",
@@ -78,6 +98,7 @@ export const COMPANIES: Company[] = [
     ],
     cta: "Explore Polish Station",
     image: polishStationImg,
+    imageSrcSet: srcSet(polishStation640, polishStation1024, polishStation1400),
     motion: "reflective",
     brand: "oklch(0.86 0.02 250)",
     brandInk: "oklch(0.12 0.004 250)",
@@ -99,6 +120,7 @@ export const COMPANIES: Company[] = [
     ],
     cta: "Explore STOPWASH",
     image: stopwashImg,
+    imageSrcSet: srcSet(stopwash640, stopwash1024, stopwash1400),
     motion: "velocity",
     brand: "oklch(0.88 0.21 130)",
     brandInk: "oklch(0.18 0.08 255)",
@@ -148,15 +170,14 @@ export const CAREER_TRACKS = [
   { title: "Leadership", copy: "Company builders and operators." },
 ];
 
+/**
+ * Phone number and social links are intentionally omitted until real values
+ * exist. Do not add placeholder tel: numbers or "#" social hrefs — a fake
+ * but clickable contact detail is worse than none.
+ */
 export const CONTACT = {
   email: "hello@sttps.lk",
-  phone: "+94 77 000 0000",
   location: "Colombo, Sri Lanka",
-  socials: [
-    { label: "Instagram", href: "#" },
-    { label: "Facebook", href: "#" },
-    { label: "LinkedIn", href: "#" },
-  ],
 };
 
 export const NAV_LINKS = [

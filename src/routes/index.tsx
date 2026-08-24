@@ -2,14 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { lazy, Suspense, useRef } from "react";
 import heroImg from "@/assets/hero.jpg";
-import {
-  COMPANIES,
-  PRINCIPLES,
-  METRICS,
-  LAYERS,
-  CAREER_TRACKS,
-  CONTACT,
-} from "@/data/sttps";
+import hero640 from "@/assets/hero-640.webp";
+import hero1024 from "@/assets/hero-1024.webp";
+import hero1920 from "@/assets/hero-1920.webp";
+import { COMPANIES, PRINCIPLES, METRICS, LAYERS, CAREER_TRACKS, CONTACT } from "@/data/sttps";
 import { ArrowLink, Counter, EASE, Label, Reveal, SplitLines } from "@/components/site/primitives";
 import { CompanySection } from "@/components/site/company-section";
 import { ModelTimeline } from "@/components/site/model-timeline";
@@ -84,18 +80,28 @@ function Hero() {
   const fade = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   return (
-    <section ref={ref} className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-ink text-warm">
+    <section
+      ref={ref}
+      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-ink text-warm"
+    >
       <motion.div style={{ y: reduce ? 0 : y }} className="absolute inset-0">
-        <motion.img
-          src={heroImg}
-          alt="Water, vehicles and service operations across the STTPS group of companies"
-          width={1920}
-          height={1200}
-          initial={reduce ? false : { scale: 1.18, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.55 }}
-          transition={{ duration: 2.2, delay: 0.4, ease: EASE }}
-          className="h-full w-full object-cover"
-        />
+        <picture className="block h-full w-full">
+          <source
+            type="image/webp"
+            srcSet={`${hero640} 640w, ${hero1024} 1024w, ${hero1920} 1920w`}
+            sizes="100vw"
+          />
+          <motion.img
+            src={heroImg}
+            alt="Water, vehicles and service operations across the STTPS group of companies"
+            width={1920}
+            height={1200}
+            initial={reduce ? false : { scale: 1.18, opacity: 0 }}
+            animate={{ scale: 1, opacity: 0.55 }}
+            transition={{ duration: 2.2, delay: 0.4, ease: EASE }}
+            className="h-full w-full object-cover"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/40" />
       </motion.div>
 
@@ -108,7 +114,10 @@ function Hero() {
         <span className="font-display text-2xl font-bold uppercase tracking-[0.3em]">STTPS</span>
       </motion.div>
 
-      <motion.div style={{ opacity: reduce ? 1 : fade }} className="shell relative z-10 pb-16 pt-40 md:pb-24">
+      <motion.div
+        style={{ opacity: reduce ? 1 : fade }}
+        className="shell relative z-10 pb-16 pt-40 md:pb-24"
+      >
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -170,7 +179,10 @@ function Intro() {
             </p>
           </Reveal>
           <Reveal delay={0.1} className="flex items-end gap-6">
-            <Counter value="04" className="font-display text-8xl font-bold leading-none tracking-[-0.06em] md:text-9xl" />
+            <Counter
+              value="04"
+              className="font-display text-8xl font-bold leading-none tracking-[-0.06em] md:text-9xl"
+            />
             <span className="label-xs pb-3 text-muted-foreground">
               Operating
               <br />
@@ -204,13 +216,22 @@ function Connects() {
     <section className="bg-warm py-28 md:py-40">
       <div className="shell">
         <Label>What connects us</Label>
-        <SplitLines lines={["Different Businesses.", "One Standard."]} className="display-xl mt-8" />
+        <SplitLines
+          lines={["Different Businesses.", "One Standard."]}
+          className="display-xl mt-8"
+        />
         <div className="mt-20 grid gap-px border border-foreground/10 bg-foreground/10 sm:grid-cols-2 lg:grid-cols-4">
           {PRINCIPLES.map((p, i) => (
-            <Reveal key={p.title} delay={i * 0.08} className="group bg-warm p-8 transition-colors duration-500 hover:bg-ink hover:text-warm md:p-10">
+            <Reveal
+              key={p.title}
+              delay={i * 0.08}
+              className="group bg-warm p-8 transition-colors duration-500 hover:bg-ink hover:text-warm md:p-10"
+            >
               <div className="label-xs opacity-40">{String(i + 1).padStart(2, "0")}</div>
               <h3 className="display-lg mt-10 text-3xl md:text-4xl">{p.title}</h3>
-              <p className="mt-4 text-sm text-muted-foreground group-hover:text-warm/60">{p.copy}</p>
+              <p className="mt-4 text-sm text-muted-foreground group-hover:text-warm/60">
+                {p.copy}
+              </p>
             </Reveal>
           ))}
         </div>
@@ -338,11 +359,13 @@ function Careers() {
             We're building companies, teams and systems from the ground up.
           </p>
           <ArrowLink href="/careers">View Opportunities</ArrowLink>
-
         </div>
         <div className="mt-16 flex flex-wrap gap-x-10 gap-y-4 border-t border-foreground/10 pt-8">
           {CAREER_TRACKS.map((t) => (
-            <div key={t.title} className="display-lg text-2xl text-graphite transition-colors duration-300 hover:text-foreground md:text-3xl">
+            <div
+              key={t.title}
+              className="display-lg text-2xl text-graphite transition-colors duration-300 hover:text-foreground md:text-3xl"
+            >
               {t.title}
             </div>
           ))}
@@ -361,22 +384,7 @@ function Contact() {
         <div className="mt-20 grid gap-16 lg:grid-cols-[1fr_1.4fr]">
           <div className="flex flex-col gap-6 text-sm">
             <ContactDetail label="Email" value={CONTACT.email} href={`mailto:${CONTACT.email}`} />
-            <ContactDetail
-              label="Phone"
-              value={CONTACT.phone}
-              href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}
-            />
             <ContactDetail label="Location" value={CONTACT.location} />
-            <div>
-              <div className="label-xs text-muted-foreground">Social</div>
-              <div className="mt-2 flex gap-5">
-                {CONTACT.socials.map((s) => (
-                  <a key={s.label} href={s.href} className="underline-offset-4 hover:underline">
-                    {s.label}
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
           <ContactForm />
         </div>

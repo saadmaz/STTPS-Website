@@ -46,7 +46,10 @@ function AboutPage() {
         <div className="shell grid gap-16 lg:grid-cols-2">
           <div>
             <Label>Why we exist</Label>
-            <SplitLines lines={["Everyday Services,", "Done Properly."]} className="display-xl mt-8" />
+            <SplitLines
+              lines={["Everyday Services,", "Done Properly."]}
+              className="display-xl mt-8"
+            />
           </div>
           <Reveal className="flex flex-col gap-6 self-end text-lg leading-relaxed text-muted-foreground">
             <p>
@@ -73,7 +76,7 @@ function AboutPage() {
                 className="group bg-warm p-8 transition-colors duration-500 hover:bg-ink hover:text-warm md:p-10"
               >
                 <div className="label-xs opacity-40">{String(i + 1).padStart(2, "0")}</div>
-                <h2 className="display-lg mt-10 text-3xl md:text-4xl">{p.title}</h2>
+                <h3 className="display-lg mt-10 text-3xl md:text-4xl">{p.title}</h3>
                 <p className="mt-4 text-sm text-muted-foreground group-hover:text-warm/60">
                   {p.copy}
                 </p>

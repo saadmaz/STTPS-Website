@@ -26,11 +26,7 @@ function CareersPage() {
       <section className="bg-ink pb-24 pt-40 text-warm md:pb-32 md:pt-52">
         <div className="shell">
           <Label className="text-warm">Careers</Label>
-          <SplitLines
-            as="h1"
-            lines={["Build With Us."]}
-            className="display-hero mt-8 text-warm"
-          />
+          <SplitLines as="h1" lines={["Build With Us."]} className="display-hero mt-8 text-warm" />
           <Reveal delay={0.15}>
             <p className="mt-10 max-w-2xl text-lg leading-relaxed text-warm/60">
               We're building companies, teams and systems from the ground up. If you care about
