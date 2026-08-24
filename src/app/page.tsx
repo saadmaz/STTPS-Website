@@ -139,12 +139,8 @@ function Model() {
 function Metrics() {
   const shown = METRICS.filter((m) => m.value);
   return (
-    <section className="border-t border-steel/30 bg-charcoal py-24 text-warm">
+    <section className="border-t border-steel/15 bg-charcoal py-24">
       <div className="shell">
-        <div className="mb-14 flex items-center gap-3">
-          <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-gauge-amber" />
-          <span className="panel-tag text-warm/60">Readout — Live</span>
-        </div>
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {shown.map((m, i) => (
             <Reveal key={m.label} delay={i * 0.08} className="border-l border-steel/25 pl-6">
@@ -152,7 +148,7 @@ function Metrics() {
                 value={m.value as string}
                 className="text-6xl font-medium leading-none tracking-[-0.02em] md:text-7xl"
               />
-              <div className="label-xs mt-4 text-warm/50">{m.label}</div>
+              <div className="label-xs mt-4 text-muted-foreground">{m.label}</div>
             </Reveal>
           ))}
         </div>

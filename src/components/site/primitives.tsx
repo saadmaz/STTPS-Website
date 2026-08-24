@@ -180,9 +180,8 @@ export function ArrowLink({
 }
 
 /**
- * Corner label mimicking real equipment/panel signage — e.g. "UNIT 01",
- * "READOUT". Replaces decorative 01/02/03 numbering with numbering that has
- * an actual reason to exist in the instrument-panel concept.
+ * Bare zero-padded index — the International Typographic Style numbering
+ * convention (01 / 02 / 03) used to order a grid without decoration.
  */
 export function UnitTag({
   index,
@@ -194,9 +193,9 @@ export function UnitTag({
   className?: string;
 }) {
   return (
-    <span className={cn("panel-tag inline-flex items-center gap-2 text-steel", className)}>
-      {typeof index === "number" && <span>UNIT {String(index).padStart(2, "0")}</span>}
-      {typeof index === "number" && detail && <span aria-hidden>—</span>}
+    <span className={cn("panel-tag inline-flex items-center gap-2 text-graphite", className)}>
+      {typeof index === "number" && <span>{String(index).padStart(2, "0")}</span>}
+      {typeof index === "number" && detail && <span aria-hidden>·</span>}
       {detail && <span>{detail}</span>}
     </span>
   );

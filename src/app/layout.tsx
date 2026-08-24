@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, IBM_Plex_Mono, Inter } from "next/font/google";
+import { IBM_Plex_Mono, Inter } from "next/font/google";
 import { Suspense, type ReactNode } from "react";
 import "./globals.css";
 import { SiteNav } from "@/components/site/nav";
@@ -7,22 +7,15 @@ import { SiteFooter } from "@/components/site/footer";
 import { Toaster } from "@/components/ui/sonner";
 
 /**
- * Google Fonts has no separate "Archivo Expanded" family — Archivo ships as
- * one variable font with a wdth axis (62-125). The panel-signage look comes
- * from pairing this variable weight with `font-stretch: 125%` in globals.css
- * rather than from a static expanded cut.
+ * One neutral grotesque for both display and body — the International
+ * Typographic Style convention (a single Helvetica-like face throughout,
+ * not a display/body pairing) is what makes this read as formal rather
+ * than "startup." Inter does display duty at 600/700 and body duty at
+ * 400/500.
  */
-const archivo = Archivo({
-  subsets: ["latin"],
-  weight: "variable",
-  axes: ["wdth"],
-  variable: "--font-display-family",
-  display: "swap",
-});
-
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-sans-family",
   display: "swap",
 });
@@ -56,10 +49,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${archivo.variable} ${inter.variable} ${plexMono.variable}`}
-    >
+    <html lang="en" className={`${inter.variable} ${plexMono.variable}`}>
       <body>
         <SiteNav />
         {children}

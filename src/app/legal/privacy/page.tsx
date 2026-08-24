@@ -14,16 +14,16 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <main className="bg-warm">
-      <section className="bg-ink pb-20 pt-40 text-warm md:pb-24 md:pt-52">
+      <section className="border-b border-steel/15 pb-20 pt-40 md:pb-24 md:pt-52">
         <div className="shell">
-          <Label className="text-warm">Legal</Label>
-          <SplitLines as="h1" trigger="mount" lines={["Privacy Policy"]} className="display-xl mt-8 text-warm" />
+          <Label>Legal</Label>
+          <SplitLines as="h1" trigger="mount" lines={["Privacy Policy"]} className="display-xl mt-8" />
         </div>
       </section>
 
       <section className="py-20 md:py-28">
         <div className="shell max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          <p className="rounded-md border border-steel/30 bg-card p-4 text-foreground">
+          <p className="border border-steel/30 bg-card p-4 text-foreground">
             This page is a structural placeholder. The privacy policy has not yet been drafted or
             reviewed by counsel — do not treat this page as STTPS&apos;s actual data-handling
             commitments until that review is complete.

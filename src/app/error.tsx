@@ -24,13 +24,13 @@ export default function Error({
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <button
             onClick={() => reset()}
-            className="label-xs rounded-full border border-steel/40 px-6 py-4 transition-colors hover:bg-warm hover:text-ink"
+            className="label-xs border border-steel/40 px-6 py-4 transition-colors hover:bg-warm hover:text-ink"
           >
             Try again
           </button>
           <Link
             href="/"
-            className="label-xs rounded-full border border-steel/40 px-6 py-4 transition-colors hover:bg-warm hover:text-ink"
+            className="label-xs border border-steel/40 px-6 py-4 transition-colors hover:bg-warm hover:text-ink"
           >
             Go home
           </Link>

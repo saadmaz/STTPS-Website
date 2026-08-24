@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { COMPANIES } from "@/data/sttps";
 import { Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives";
-import { InstrumentStrip } from "@/components/site/instrument-strip";
 
 const TITLE = "Companies — Tank Sudda, Team Sudda, Polish Station, STOPWASH";
 const DESCRIPTION =
@@ -37,27 +36,21 @@ export default function CompaniesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
       />
 
-      <section className="bg-ink pb-20 pt-40 text-warm md:pb-28 md:pt-52">
+      <section className="border-b border-steel/15 pb-20 pt-40 md:pb-28 md:pt-52">
         <div className="shell">
-          <Label className="text-warm">Our companies</Label>
+          <Label>Our companies</Label>
           <SplitLines
             as="h1"
             trigger="mount"
             lines={["Four Brands.", "One Standard."]}
-            className="display-hero mt-8 text-warm"
+            className="display-hero mt-8"
           />
           <Reveal delay={0.15} trigger="mount">
-            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-warm/60">
+            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Every company in the group serves a different world — water, property, vehicles,
               people — and shares the same operating discipline.
             </p>
           </Reveal>
-        </div>
-      </section>
-
-      <section className="bg-ink pb-24 text-warm md:pb-32">
-        <div className="shell max-w-xl">
-          <InstrumentStrip />
         </div>
       </section>
 

@@ -5,10 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * STTPS design system — THE INSTRUMENT PANEL.
- * The visual language of service instrumentation: gauges, dials, panel
- * labeling. Graphite/concrete/steel base, gauge-amber as the sparing needle
- * accent. Brand colors are only introduced inside each company's own section.
+ * STTPS design system — SWISS MINIMAL.
+ * Black, white, one grey. No accent color on the shell — restraint is the
+ * signature. Huge whitespace, thin black rules, a single neutral grotesque.
+ * Brand colors are only introduced inside each company's own section.
  */
 
 @theme inline {
@@ -17,10 +17,10 @@
   --radius-lg: calc(var(--radius) + 2px);
   --radius-xl: calc(var(--radius) + 6px);
 
-  /* --font-display-family / --font-sans-family / --font-mono-family come
-     from next/font/google in app/layout.tsx (self-hosted, no external
-     Google Fonts request at runtime). */
-  --font-display: var(--font-display-family), ui-sans-serif, system-ui, sans-serif;
+  /* --font-sans-family / --font-mono-family come from next/font/google in
+     app/layout.tsx (self-hosted, no external Google Fonts request at
+     runtime). One grotesque does both display and body duty. */
+  --font-display: var(--font-sans-family), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-sans-family), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono-family), ui-monospace, "SFMono-Regular", monospace;
 
@@ -58,38 +58,38 @@
 }
 
 :root {
-  --radius: 0.25rem;
+  --radius: 0px;
 
-  /* Instrument-panel base */
-  --ink: #1b1d1f; /* primary dark bg — "graphite" surface, used as bg-ink */
-  --charcoal: #232b32; /* secondary dark bg — steel-tinted, panel variety */
-  --graphite: oklch(0.45 0.006 250); /* muted display text, unrelated to bg-ink */
-  --fog: oklch(0.86 0.004 250);
-  --warm: #ede9e1; /* primary light bg + light text-on-dark, warm grey not cream */
-  --concrete: #e8e5dd; /* explicit concrete surface for panel cards */
-  --paper: #fafaf7; /* card/panel bg on dark sections */
-  --steel: #44586a; /* structural accent — panel dividers, unit labels */
-  --gauge-amber: #d98e32; /* sparing secondary accent — the warning needle */
+  /* Swiss minimal base — black, white, one grey. */
+  --ink: #0a0a0a; /* primary dark bg, used as bg-ink */
+  --charcoal: #f2f2f2; /* light-grey section variant, used as bg-charcoal */
+  --graphite: #6b6b6b; /* the one grey — muted text everywhere */
+  --fog: #d8d8d8;
+  --warm: #ffffff; /* primary light bg + light text-on-dark, used as bg-warm/text-warm */
+  --concrete: #f2f2f2;
+  --paper: #ffffff;
+  --steel: #0a0a0a; /* structural rule color — thin black hairlines, unit labels */
+  --gauge-amber: #6b6b6b; /* no accent color on the shell — resolves to the one grey */
 
-  --background: #ede9e1;
-  --foreground: #0f1112;
-  --card: #fafaf7;
-  --card-foreground: #0f1112;
-  --popover: #fafaf7;
-  --popover-foreground: #0f1112;
-  --primary: #0f1112;
-  --primary-foreground: #ede9e1;
-  --secondary: #e0dcd2;
-  --secondary-foreground: #0f1112;
-  --muted: #e0dcd2;
-  --muted-foreground: oklch(0.5 0.006 250);
-  --accent: #ded9cd;
-  --accent-foreground: #0f1112;
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0a;
+  --primary: #0a0a0a;
+  --primary-foreground: #ffffff;
+  --secondary: #f2f2f2;
+  --secondary-foreground: #0a0a0a;
+  --muted: #f2f2f2;
+  --muted-foreground: #6b6b6b;
+  --accent: #ededed;
+  --accent-foreground: #0a0a0a;
   --destructive: oklch(0.58 0.22 27);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.88 0.004 250);
-  --input: oklch(0.88 0.004 250);
-  --ring: #44586a;
+  --border: #e0e0e0;
+  --input: #e0e0e0;
+  --ring: #0a0a0a;
 
   /* live brand accent, swapped per company section */
   --brand: oklch(0.75 0.02 250);
@@ -132,42 +132,34 @@
 
 @utility display-hero {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-stretch: 125%;
+  font-weight: 600;
   letter-spacing: -0.03em;
-  line-height: 0.86;
-  text-transform: uppercase;
-  font-size: clamp(2.75rem, 11vw, 10.5rem);
+  line-height: 0.98;
+  font-size: clamp(2.5rem, 8.5vw, 7.5rem);
 }
 
 @utility display-xl {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-stretch: 125%;
+  font-weight: 600;
   letter-spacing: -0.025em;
-  line-height: 0.9;
-  text-transform: uppercase;
-  font-size: clamp(2.25rem, 7vw, 6.5rem);
+  line-height: 1;
+  font-size: clamp(2rem, 5.5vw, 4.75rem);
 }
 
 @utility display-lg {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-stretch: 125%;
+  font-weight: 600;
   letter-spacing: -0.02em;
-  line-height: 0.94;
-  text-transform: uppercase;
-  font-size: clamp(1.75rem, 4.2vw, 4rem);
+  line-height: 1.04;
+  font-size: clamp(1.5rem, 3.4vw, 2.75rem);
 }
 
 @utility display-md {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-stretch: 125%;
+  font-weight: 600;
   letter-spacing: -0.015em;
-  line-height: 0.98;
-  text-transform: uppercase;
-  font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+  line-height: 1.08;
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
 }
 
 @utility panel-tag {

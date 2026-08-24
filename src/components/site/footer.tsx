@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { COMPANIES, CONTACT } from "@/data/sttps";
-import { InstrumentStrip } from "./instrument-strip";
 
 export function SiteFooter() {
   return (
@@ -8,13 +7,8 @@ export function SiteFooter() {
       <div className="shell py-16 md:py-24">
         <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <div className="font-display text-5xl font-bold uppercase tracking-[-0.05em] md:text-7xl">
-              STTPS
-            </div>
+            <div className="display-lg">STTPS</div>
             <div className="label-xs mt-3 opacity-50">The Group</div>
-            <div className="mt-8 max-w-xs">
-              <InstrumentStrip compact />
-            </div>
           </div>
 
           <FooterCol title="Navigate">

@@ -33,12 +33,12 @@ export default function CareersPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
       />
 
-      <section className="bg-ink pb-24 pt-40 text-warm md:pb-32 md:pt-52">
+      <section className="border-b border-steel/15 pb-24 pt-40 md:pb-32 md:pt-52">
         <div className="shell">
-          <Label className="text-warm">Careers</Label>
-          <SplitLines as="h1" trigger="mount" lines={["Build With Us."]} className="display-hero mt-8 text-warm" />
+          <Label>Careers</Label>
+          <SplitLines as="h1" trigger="mount" lines={["Build With Us."]} className="display-hero mt-8" />
           <Reveal delay={0.15} trigger="mount">
-            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-warm/60">
+            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               We&apos;re building companies, teams and systems from the ground up. If you care about
               doing work properly, there is room here.
             </p>
@@ -66,16 +66,14 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <section className="bg-charcoal py-24 text-warm md:py-36">
+      <section className="bg-charcoal py-24 md:py-36">
         <div className="shell">
-          <SplitLines lines={["No Open Role", "That Fits?"]} className="display-xl text-warm" />
-          <p className="mt-8 max-w-xl text-lg text-warm/60">
+          <SplitLines lines={["No Open Role", "That Fits?"]} className="display-xl" />
+          <p className="mt-8 max-w-xl text-lg text-muted-foreground">
             Send us who you are and what you&apos;re good at. We hire people before we hire titles.
           </p>
           <div className="mt-10">
-            <ArrowLink href={`mailto:${CONTACT.email}`} tone="light">
-              {CONTACT.email}
-            </ArrowLink>
+            <ArrowLink href={`mailto:${CONTACT.email}`}>{CONTACT.email}</ArrowLink>
           </div>
         </div>
       </section>

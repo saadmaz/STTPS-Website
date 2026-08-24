@@ -37,14 +37,14 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
       />
 
-      <section className="bg-ink pb-24 pt-40 text-warm md:pb-32 md:pt-52">
+      <section className="border-b border-steel/15 pb-24 pt-40 md:pb-32 md:pt-52">
         <div className="shell">
-          <Label className="text-warm">Contact</Label>
+          <Label>Contact</Label>
           <SplitLines
             as="h1"
             trigger="mount"
             lines={["Have an Idea?", "Let's Talk."]}
-            className="display-hero mt-8 text-warm"
+            className="display-hero mt-8"
           />
         </div>
       </section>

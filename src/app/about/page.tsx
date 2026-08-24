@@ -32,17 +32,17 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
       />
 
-      <section className="bg-ink pb-24 pt-40 text-warm md:pb-32 md:pt-52">
+      <section className="border-b border-steel/15 pb-24 pt-40 md:pb-32 md:pt-52">
         <div className="shell">
-          <Label className="text-warm">About</Label>
+          <Label>About</Label>
           <SplitLines
             as="h1"
             trigger="mount"
             lines={["A Group That", "Builds Companies."]}
-            className="display-hero mt-8 text-warm"
+            className="display-hero mt-8"
           />
           <Reveal delay={0.15} trigger="mount">
-            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-warm/60">
+            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               STTPS is not a holding company that collects businesses. We start them, brand them,
               staff them and operate them — with the same standard applied across every venture.
             </p>

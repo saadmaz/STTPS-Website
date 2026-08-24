@@ -2,16 +2,8 @@ import { Label, Reveal, SplitLines } from "@/components/site/primitives";
 
 export function HomeMotionSection() {
   return (
-    <section className="relative overflow-hidden border-y border-steel/25 bg-ink py-32 text-warm md:py-48">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(90deg, currentColor 0, currentColor 1px, transparent 1px, transparent 64px)",
-        }}
-      />
-      <div className="shell relative">
+    <section className="border-y border-steel/15 bg-ink py-32 text-warm md:py-48">
+      <div className="shell">
         <Label className="text-warm">Vision</Label>
         <SplitLines
           lines={["And We're", "Just Getting Started."]}

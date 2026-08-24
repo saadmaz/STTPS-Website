@@ -30,17 +30,17 @@ export default function VenturesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
       />
 
-      <section className="bg-ink pb-24 pt-40 text-warm md:pb-32 md:pt-52">
+      <section className="border-b border-steel/15 pb-24 pt-40 md:pb-32 md:pt-52">
         <div className="shell">
-          <Label className="text-warm">Ventures</Label>
+          <Label>Ventures</Label>
           <SplitLines
             as="h1"
             trigger="mount"
             lines={["New Companies,", "In Progress."]}
-            className="display-hero mt-8 text-warm"
+            className="display-hero mt-8"
           />
           <Reveal delay={0.15} trigger="mount">
-            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-warm/60">
+            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               The group is built to keep launching. Every new venture goes through the same four
               stages before it earns a name and a team.
             </p>
