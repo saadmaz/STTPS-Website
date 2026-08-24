@@ -5,9 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * STTPS design system — neutral, industrial, editorial.
- * Base palette: deep black, charcoal, off-white, warm white, soft grey.
- * Brand colors are only introduced inside company sections.
+ * STTPS design system — THE INSTRUMENT PANEL.
+ * The visual language of service instrumentation: gauges, dials, panel
+ * labeling. Graphite/concrete/steel base, gauge-amber as the sparing needle
+ * accent. Brand colors are only introduced inside each company's own section.
  */
 
 @theme inline {
@@ -16,10 +17,12 @@
   --radius-lg: calc(var(--radius) + 2px);
   --radius-xl: calc(var(--radius) + 6px);
 
-  /* --font-display-family / --font-sans-family come from next/font/google in
-     app/layout.tsx (self-hosted, no external Google Fonts request at runtime). */
+  /* --font-display-family / --font-sans-family / --font-mono-family come
+     from next/font/google in app/layout.tsx (self-hosted, no external
+     Google Fonts request at runtime). */
   --font-display: var(--font-display-family), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-sans-family), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-family), ui-monospace, "SFMono-Regular", monospace;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -46,6 +49,10 @@
   --color-graphite: var(--graphite);
   --color-fog: var(--fog);
   --color-warm: var(--warm);
+  --color-concrete: var(--concrete);
+  --color-paper: var(--paper);
+  --color-steel: var(--steel);
+  --color-gauge-amber: var(--gauge-amber);
   --color-brand: var(--brand);
   --color-brand-ink: var(--brand-ink);
 }
@@ -53,31 +60,36 @@
 :root {
   --radius: 0.25rem;
 
-  --ink: oklch(0.13 0.004 250);
-  --charcoal: oklch(0.22 0.005 250);
-  --graphite: oklch(0.45 0.006 250);
+  /* Instrument-panel base */
+  --ink: #1b1d1f; /* primary dark bg — "graphite" surface, used as bg-ink */
+  --charcoal: #232b32; /* secondary dark bg — steel-tinted, panel variety */
+  --graphite: oklch(0.45 0.006 250); /* muted display text, unrelated to bg-ink */
   --fog: oklch(0.86 0.004 250);
-  --warm: oklch(0.97 0.005 90);
+  --warm: #ede9e1; /* primary light bg + light text-on-dark, warm grey not cream */
+  --concrete: #e8e5dd; /* explicit concrete surface for panel cards */
+  --paper: #fafaf7; /* card/panel bg on dark sections */
+  --steel: #44586a; /* structural accent — panel dividers, unit labels */
+  --gauge-amber: #d98e32; /* sparing secondary accent — the warning needle */
 
-  --background: oklch(0.97 0.005 90);
-  --foreground: oklch(0.13 0.004 250);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.13 0.004 250);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.13 0.004 250);
-  --primary: oklch(0.13 0.004 250);
-  --primary-foreground: oklch(0.97 0.005 90);
-  --secondary: oklch(0.93 0.004 90);
-  --secondary-foreground: oklch(0.13 0.004 250);
-  --muted: oklch(0.93 0.004 90);
+  --background: #ede9e1;
+  --foreground: #0f1112;
+  --card: #fafaf7;
+  --card-foreground: #0f1112;
+  --popover: #fafaf7;
+  --popover-foreground: #0f1112;
+  --primary: #0f1112;
+  --primary-foreground: #ede9e1;
+  --secondary: #e0dcd2;
+  --secondary-foreground: #0f1112;
+  --muted: #e0dcd2;
   --muted-foreground: oklch(0.5 0.006 250);
-  --accent: oklch(0.9 0.004 90);
-  --accent-foreground: oklch(0.13 0.004 250);
+  --accent: #ded9cd;
+  --accent-foreground: #0f1112;
   --destructive: oklch(0.58 0.22 27);
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(0.88 0.004 250);
   --input: oklch(0.88 0.004 250);
-  --ring: oklch(0.45 0.006 250);
+  --ring: #44586a;
 
   /* live brand accent, swapped per company section */
   --brand: oklch(0.75 0.02 250);
@@ -105,38 +117,65 @@
 }
 
 @utility label-xs {
-  font-family: var(--font-sans);
-  font-size: 0.6875rem;
-  letter-spacing: 0.22em;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 500;
+}
+
+@utility readout {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
 }
 
 @utility display-hero {
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.045em;
+  font-stretch: 125%;
+  letter-spacing: -0.03em;
   line-height: 0.86;
   text-transform: uppercase;
-  font-size: clamp(2.75rem, 11vw, 12rem);
+  font-size: clamp(2.75rem, 11vw, 10.5rem);
 }
 
 @utility display-xl {
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.04em;
+  font-stretch: 125%;
+  letter-spacing: -0.025em;
   line-height: 0.9;
   text-transform: uppercase;
-  font-size: clamp(2.25rem, 7vw, 7rem);
+  font-size: clamp(2.25rem, 7vw, 6.5rem);
 }
 
 @utility display-lg {
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.035em;
+  font-stretch: 125%;
+  letter-spacing: -0.02em;
   line-height: 0.94;
   text-transform: uppercase;
   font-size: clamp(1.75rem, 4.2vw, 4rem);
+}
+
+@utility display-md {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-stretch: 125%;
+  letter-spacing: -0.015em;
+  line-height: 0.98;
+  text-transform: uppercase;
+  font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+}
+
+@utility panel-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
 @utility shell {

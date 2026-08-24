@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { COMPANIES, CONTACT } from "@/data/sttps";
+import { InstrumentStrip } from "./instrument-strip";
 
 export function SiteFooter() {
   return (
@@ -11,6 +12,9 @@ export function SiteFooter() {
               STTPS
             </div>
             <div className="label-xs mt-3 opacity-50">The Group</div>
+            <div className="mt-8 max-w-xs">
+              <InstrumentStrip compact />
+            </div>
           </div>
 
           <FooterCol title="Navigate">
@@ -44,7 +48,7 @@ export function SiteFooter() {
           </FooterCol>
         </div>
 
-        <div className="label-xs mt-16 flex flex-col justify-between gap-3 border-t border-warm/10 pt-6 opacity-50 sm:flex-row">
+        <div className="label-xs mt-16 flex flex-col justify-between gap-3 border-t border-steel/25 pt-6 opacity-50 sm:flex-row">
           <span>© {new Date().getFullYear()} STTPS. All rights reserved.</span>
           <div className="flex gap-6">
             <Link href="/legal/privacy" className="hover:opacity-100">

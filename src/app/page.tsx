@@ -3,7 +3,14 @@ import { COMPANIES, PRINCIPLES, METRICS, CONTACT } from "@/data/sttps";
 import { HeroSection } from "./_home/hero-section";
 import { CompaniesTeaser } from "./_home/companies-teaser";
 import { ModelTimeline } from "@/components/site/model-timeline";
-import { ArrowLink, Counter, Label, Reveal, SplitLines } from "@/components/site/primitives";
+import {
+  ArrowLink,
+  Counter,
+  Label,
+  Reveal,
+  SplitLines,
+  UnitTag,
+} from "@/components/site/primitives";
 import { HomeMotionSection } from "./_home/motion-section";
 
 const TITLE = "STTPS — The Group Building Service Companies in Sri Lanka";
@@ -59,7 +66,7 @@ function Intro() {
         <SplitLines lines={["More Than a Group."]} className="display-xl mt-8 text-graphite" />
         <SplitLines lines={["An Ecosystem", "Of Businesses."]} className="display-xl" />
 
-        <div className="mt-16 grid gap-14 border-t border-foreground/10 pt-12 md:grid-cols-[1.2fr_1fr]">
+        <div className="mt-16 grid gap-14 border-t border-steel/25 pt-12 md:grid-cols-[1.2fr_1fr]">
           <Reveal>
             <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
               STTPS brings together companies focused on improving the way people care for their
@@ -69,7 +76,7 @@ function Intro() {
           <Reveal delay={0.1} className="flex items-end gap-6">
             <Counter
               value="04"
-              className="font-display text-8xl font-bold leading-none tracking-[-0.06em] md:text-9xl"
+              className="text-7xl font-medium leading-none tracking-[-0.02em] md:text-8xl"
             />
             <span className="label-xs pb-3 text-muted-foreground">
               Operating
@@ -92,14 +99,14 @@ function Connects() {
           lines={["Different Businesses.", "One Standard."]}
           className="display-xl mt-8"
         />
-        <div className="mt-20 grid gap-px border border-foreground/10 bg-foreground/10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-20 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-4">
           {PRINCIPLES.map((p, i) => (
             <Reveal
               key={p.title}
               delay={i * 0.08}
               className="group bg-warm p-8 transition-colors duration-500 hover:bg-ink hover:text-warm md:p-10"
             >
-              <div className="label-xs opacity-40">{String(i + 1).padStart(2, "0")}</div>
+              <UnitTag index={i + 1} />
               <h3 className="display-lg mt-10 text-3xl md:text-4xl">{p.title}</h3>
               <p className="mt-4 text-sm text-muted-foreground group-hover:text-warm/60">
                 {p.copy}
@@ -114,7 +121,7 @@ function Connects() {
 
 function Model() {
   return (
-    <section className="border-t border-foreground/10 bg-warm py-28 md:py-40">
+    <section className="border-t border-steel/25 bg-warm py-28 md:py-40">
       <div className="shell">
         <Label>The STTPS model</Label>
         <SplitLines lines={["From Idea", "To Operation."]} className="display-xl mt-8" />
@@ -132,17 +139,23 @@ function Model() {
 function Metrics() {
   const shown = METRICS.filter((m) => m.value);
   return (
-    <section className="bg-charcoal py-24 text-warm">
-      <div className="shell grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-        {shown.map((m, i) => (
-          <Reveal key={m.label} delay={i * 0.08}>
-            <Counter
-              value={m.value as string}
-              className="font-display text-7xl font-bold leading-none tracking-[-0.06em] md:text-8xl"
-            />
-            <div className="label-xs mt-4 text-warm/50">{m.label}</div>
-          </Reveal>
-        ))}
+    <section className="border-t border-steel/30 bg-charcoal py-24 text-warm">
+      <div className="shell">
+        <div className="mb-14 flex items-center gap-3">
+          <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-gauge-amber" />
+          <span className="panel-tag text-warm/60">Readout — Live</span>
+        </div>
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+          {shown.map((m, i) => (
+            <Reveal key={m.label} delay={i * 0.08} className="border-l border-steel/25 pl-6">
+              <Counter
+                value={m.value as string}
+                className="text-6xl font-medium leading-none tracking-[-0.02em] md:text-7xl"
+              />
+              <div className="label-xs mt-4 text-warm/50">{m.label}</div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -150,7 +163,7 @@ function Metrics() {
 
 function CareersAndContactTeaser() {
   return (
-    <section className="border-t border-foreground/10 bg-warm py-20 md:py-28">
+    <section className="border-t border-steel/25 bg-warm py-20 md:py-28">
       <div className="shell grid gap-16 md:grid-cols-2">
         <div>
           <Label>Careers</Label>

@@ -1,16 +1,15 @@
-"use client";
-
-import { motion } from "motion/react";
 import { Label, Reveal, SplitLines } from "@/components/site/primitives";
 
 export function HomeMotionSection() {
   return (
-    <section className="relative overflow-hidden bg-ink py-32 text-warm md:py-48">
-      <motion.div
+    <section className="relative overflow-hidden border-y border-steel/25 bg-ink py-32 text-warm md:py-48">
+      <div
         aria-hidden
-        animate={{ opacity: [0.15, 0.35, 0.15], scale: [1, 1.1, 1] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[60vw] w-[60vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-warm/10 blur-[160px]"
+        className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(90deg, currentColor 0, currentColor 1px, transparent 1px, transparent 64px)",
+        }}
       />
       <div className="shell relative">
         <Label className="text-warm">Vision</Label>

@@ -69,6 +69,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ brand:
           <Label className="text-brand">{company.category}</Label>
           <SplitLines
             as="h1"
+            trigger="mount"
             lines={company.name.split(" ")}
             className="display-hero mt-8 text-warm"
           />
@@ -77,7 +78,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ brand:
 
       <CompanySection company={company} index={0} headingLevel="h2" ctaHref="/contact" />
 
-      <section className="border-t border-foreground/10 bg-warm py-20 md:py-28">
+      <section className="border-t border-steel/25 bg-warm py-20 md:py-28">
         <div className="shell grid gap-14 lg:grid-cols-[1fr_1fr]">
           <div>
             <Label>Where we work</Label>

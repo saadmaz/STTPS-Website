@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LAYERS, PRINCIPLES } from "@/data/sttps";
-import { Label, Reveal, SplitLines } from "@/components/site/primitives";
+import { Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives";
 import { ModelTimeline } from "@/components/site/model-timeline";
 import { LayerStack } from "@/components/site/layer-stack";
 
@@ -37,10 +37,11 @@ export default function AboutPage() {
           <Label className="text-warm">About</Label>
           <SplitLines
             as="h1"
+            trigger="mount"
             lines={["A Group That", "Builds Companies."]}
             className="display-hero mt-8 text-warm"
           />
-          <Reveal delay={0.15}>
+          <Reveal delay={0.15} trigger="mount">
             <p className="mt-10 max-w-2xl text-lg leading-relaxed text-warm/60">
               STTPS is not a holding company that collects businesses. We start them, brand them,
               staff them and operate them — with the same standard applied across every venture.
@@ -78,18 +79,18 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-foreground/10 py-24 md:py-36">
+      <section className="border-t border-steel/25 py-24 md:py-36">
         <div className="shell">
           <Label>Principles</Label>
           <SplitLines lines={["What Connects Us."]} className="display-xl mt-8" />
-          <div className="mt-16 grid gap-px border border-foreground/10 bg-foreground/10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-4">
             {PRINCIPLES.map((p, i) => (
               <Reveal
                 key={p.title}
                 delay={i * 0.08}
                 className="group bg-warm p-8 transition-colors duration-500 hover:bg-ink hover:text-warm md:p-10"
               >
-                <div className="label-xs opacity-40">{String(i + 1).padStart(2, "0")}</div>
+                <UnitTag index={i + 1} />
                 <h3 className="display-lg mt-10 text-3xl md:text-4xl">{p.title}</h3>
                 <p className="mt-4 text-sm text-muted-foreground group-hover:text-warm/60">
                   {p.copy}
@@ -100,7 +101,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-foreground/10 py-24 md:py-36">
+      <section className="border-t border-steel/25 py-24 md:py-36">
         <div className="shell">
           <Label>The model</Label>
           <SplitLines lines={["From Idea", "To Operation."]} className="display-xl mt-8" />
@@ -110,7 +111,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-foreground/10 py-24 md:py-36">
+      <section className="border-t border-steel/25 py-24 md:py-36">
         <div className="shell grid gap-16 lg:grid-cols-2 lg:items-center">
           <div>
             <Label>What we build</Label>

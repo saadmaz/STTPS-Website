@@ -17,13 +17,13 @@ export default function PrivacyPage() {
       <section className="bg-ink pb-20 pt-40 text-warm md:pb-24 md:pt-52">
         <div className="shell">
           <Label className="text-warm">Legal</Label>
-          <SplitLines as="h1" lines={["Privacy Policy"]} className="display-xl mt-8 text-warm" />
+          <SplitLines as="h1" trigger="mount" lines={["Privacy Policy"]} className="display-xl mt-8 text-warm" />
         </div>
       </section>
 
       <section className="py-20 md:py-28">
         <div className="shell max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          <p className="rounded-md border border-foreground/15 bg-card p-4 text-foreground">
+          <p className="rounded-md border border-steel/30 bg-card p-4 text-foreground">
             This page is a structural placeholder. The privacy policy has not yet been drafted or
             reviewed by counsel — do not treat this page as STTPS&apos;s actual data-handling
             commitments until that review is complete.

@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Archivo, IBM_Plex_Mono, Inter } from "next/font/google";
 import { Suspense, type ReactNode } from "react";
 import "./globals.css";
 import { SiteNav } from "@/components/site/nav";
 import { SiteFooter } from "@/components/site/footer";
 import { Toaster } from "@/components/ui/sonner";
 
-const spaceGrotesk = Space_Grotesk({
+/**
+ * Google Fonts has no separate "Archivo Expanded" family — Archivo ships as
+ * one variable font with a wdth axis (62-125). The panel-signage look comes
+ * from pairing this variable weight with `font-stretch: 125%` in globals.css
+ * rather than from a static expanded cut.
+ */
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["500", "700"],
+  weight: "variable",
+  axes: ["wdth"],
   variable: "--font-display-family",
   display: "swap",
 });
@@ -17,6 +24,13 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-sans-family",
+  display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono-family",
   display: "swap",
 });
 
@@ -42,7 +56,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+    <html
+      lang="en"
+      className={`${archivo.variable} ${inter.variable} ${plexMono.variable}`}
+    >
       <body>
         <SiteNav />
         {children}

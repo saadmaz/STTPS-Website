@@ -12,7 +12,7 @@ export default function NotFound() {
         <div className="mt-8">
           <Link
             href="/"
-            className="label-xs inline-flex items-center gap-2 rounded-full border border-warm/25 px-6 py-4 transition-colors hover:bg-warm hover:text-ink"
+            className="label-xs inline-flex items-center gap-2 rounded-full border border-steel/40 px-6 py-4 transition-colors hover:bg-warm hover:text-ink"
           >
             Back Home →
           </Link>

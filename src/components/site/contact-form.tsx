@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
-import { Magnetic } from "./primitives";
 import { CONTACT } from "@/data/sttps";
 
 const FIELDS = [
@@ -40,7 +39,7 @@ export function ContactForm() {
               type={f.type}
               value={values[f.name]}
               onChange={(e) => setValues((v) => ({ ...v, [f.name]: e.target.value }))}
-              className="mt-3 w-full border-b border-foreground/20 bg-transparent pb-3 text-lg outline-none transition-colors focus:border-foreground"
+              className="mt-3 w-full border-b border-steel/35 bg-transparent pb-3 text-lg outline-none transition-colors focus:border-foreground"
             />
           </label>
         ))}
@@ -53,20 +52,18 @@ export function ContactForm() {
           rows={3}
           value={values.message}
           onChange={(e) => setValues((v) => ({ ...v, message: e.target.value }))}
-          className="mt-3 w-full resize-none border-b border-foreground/20 bg-transparent pb-3 text-lg outline-none transition-colors focus:border-foreground"
+          className="mt-3 w-full resize-none border-b border-steel/35 bg-transparent pb-3 text-lg outline-none transition-colors focus:border-foreground"
         />
       </label>
 
       <div className="mt-10">
-        <Magnetic>
-          <button
-            type="submit"
-            className="label-xs group inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 text-background transition-opacity hover:opacity-85"
-          >
-            Send Message
-            <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
-          </button>
-        </Magnetic>
+        <button
+          type="submit"
+          className="label-xs group inline-flex items-center gap-3 bg-foreground px-8 py-4 text-background transition-opacity hover:opacity-85"
+        >
+          Send Message
+          <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </button>
       </div>
     </form>
   );

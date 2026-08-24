@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import type { Company } from "@/data/sttps";
-import { EASE, Label, SplitLines, ArrowLink } from "./primitives";
+import { EASE, SplitLines, ArrowLink, UnitTag } from "./primitives";
 
 const MOTION_LABEL: Record<Company["motion"], string> = {
   fluid: "Fluid",
@@ -129,9 +129,7 @@ export function CompanySection({
           </motion.div>
 
           <div>
-            <Label className="text-brand opacity-100">
-              {String(index + 1).padStart(2, "0")} — {MOTION_LABEL[company.motion]}
-            </Label>
+            <UnitTag index={index + 1} detail={MOTION_LABEL[company.motion]} className="text-brand" />
             <SplitLines
               as={headingLevel}
               lines={company.name.split(" ")}

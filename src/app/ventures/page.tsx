@@ -35,10 +35,11 @@ export default function VenturesPage() {
           <Label className="text-warm">Ventures</Label>
           <SplitLines
             as="h1"
+            trigger="mount"
             lines={["New Companies,", "In Progress."]}
             className="display-hero mt-8 text-warm"
           />
-          <Reveal delay={0.15}>
+          <Reveal delay={0.15} trigger="mount">
             <p className="mt-10 max-w-2xl text-lg leading-relaxed text-warm/60">
               The group is built to keep launching. Every new venture goes through the same four
               stages before it earns a name and a team.
@@ -48,10 +49,10 @@ export default function VenturesPage() {
       </section>
 
       <section className="py-24 md:py-36">
-        <div className="shell grid gap-px border border-foreground/10 bg-foreground/10 md:grid-cols-2">
+        <div className="shell grid gap-px border border-steel/25 bg-steel/25 md:grid-cols-2">
           {MODEL_STEPS.map((s, i) => (
             <Reveal key={s.no} delay={i * 0.08} className="bg-warm p-10 md:p-14">
-              <div className="label-xs text-muted-foreground">{s.no}</div>
+              <div className="readout text-3xl font-medium text-steel">{s.no}</div>
               <h2 className="display-lg mt-8">{s.title}</h2>
               <p className="mt-4 max-w-sm text-muted-foreground">{s.copy}</p>
             </Reveal>
@@ -59,11 +60,11 @@ export default function VenturesPage() {
         </div>
       </section>
 
-      <section className="border-t border-foreground/10 py-24 md:py-36">
+      <section className="border-t border-steel/25 py-24 md:py-36">
         <div className="shell">
           <Label>Capabilities we bring</Label>
           <SplitLines lines={["A Company", "In a Box."]} className="display-xl mt-8" />
-          <div className="mt-14 flex flex-wrap gap-x-10 gap-y-4 border-t border-foreground/10 pt-8">
+          <div className="mt-14 flex flex-wrap gap-x-10 gap-y-4 border-t border-steel/25 pt-8">
             {LAYERS.map((l) => (
               <span
                 key={l}

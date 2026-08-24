@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "motion/react";
 import { NAV_LINKS } from "@/data/sttps";
-import { EASE, Magnetic } from "./primitives";
+import { EASE } from "./primitives";
 import { cn } from "@/lib/utils";
 
 export function SiteNav() {
@@ -32,7 +32,7 @@ export function SiteNav() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-500",
           scrolled
-            ? "border-b border-warm/10 bg-ink/70 backdrop-blur-xl"
+            ? "border-b border-steel/25 bg-ink/70 backdrop-blur-xl"
             : "border-b border-transparent",
         )}
       >
@@ -63,17 +63,13 @@ export function SiteNav() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <Magnetic className="hidden md:inline-block">
-              <Link
-                href="/contact"
-                className="label-xs group inline-flex items-center gap-2 rounded-full border border-warm/25 px-5 py-3 text-warm transition-colors duration-500 hover:bg-warm hover:text-ink"
-              >
-                Talk to Us
-                <span className="transition-transform duration-500 group-hover:translate-x-1">
-                  →
-                </span>
-              </Link>
-            </Magnetic>
+            <Link
+              href="/contact"
+              className="label-xs group hidden items-center gap-2 border border-steel/40 px-5 py-3 text-warm transition-colors duration-300 hover:bg-warm hover:text-ink md:inline-flex"
+            >
+              Talk to Us
+              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </Link>
             <button
               onClick={() => setOpen((o) => !o)}
               aria-label={open ? "Close menu" : "Open menu"}

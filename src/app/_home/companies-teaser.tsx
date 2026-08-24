@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { COMPANIES } from "@/data/sttps";
-import { ArrowLink, Label, SplitLines } from "@/components/site/primitives";
+import { ArrowLink, Label, SplitLines, UnitTag } from "@/components/site/primitives";
 
 export function CompaniesTeaser() {
   return (
@@ -13,7 +13,7 @@ export function CompaniesTeaser() {
           <ArrowLink href="/companies">See All Companies</ArrowLink>
         </div>
 
-        <div className="mt-16 grid gap-px border border-foreground/10 bg-foreground/10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-4">
           {COMPANIES.map((c, i) => (
             <Link
               key={c.id}
@@ -36,7 +36,7 @@ export function CompaniesTeaser() {
               </picture>
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
               <div className="relative">
-                <div className="label-xs text-brand">{String(i + 1).padStart(2, "0")}</div>
+                <UnitTag index={i + 1} className="text-brand" />
                 <div className="display-lg mt-2 text-xl">{c.name}</div>
                 <div className="label-xs mt-2 text-warm/50">{c.category}</div>
               </div>

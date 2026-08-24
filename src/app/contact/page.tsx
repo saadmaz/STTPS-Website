@@ -42,6 +42,7 @@ export default function ContactPage() {
           <Label className="text-warm">Contact</Label>
           <SplitLines
             as="h1"
+            trigger="mount"
             lines={["Have an Idea?", "Let's Talk."]}
             className="display-hero mt-8 text-warm"
           />

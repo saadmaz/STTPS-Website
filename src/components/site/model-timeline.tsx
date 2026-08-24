@@ -16,7 +16,7 @@ export function ModelTimeline() {
 
   return (
     <div ref={ref} className="relative">
-      <div className="relative mb-12 hidden h-px w-full bg-foreground/10 md:block">
+      <div className="relative mb-12 hidden h-px w-full bg-steel/25 md:block">
         <motion.div
           style={{ scaleX: reduce ? 1 : scaleX, transformOrigin: "left" }}
           className="absolute inset-0 bg-foreground"
@@ -31,11 +31,9 @@ export function ModelTimeline() {
             whileInView={reduce ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15% 0px" }}
             transition={{ duration: 0.8, delay: i * 0.12, ease: EASE }}
-            className="relative border-t border-foreground/15 pt-6 md:border-t-0 md:pt-0"
+            className="relative border-t border-steel/30 pt-6 md:border-t-0 md:pt-0"
           >
-            <div className="font-display text-5xl font-bold tracking-[-0.05em] md:text-6xl">
-              {s.no}
-            </div>
+            <div className="readout text-4xl font-medium text-steel md:text-5xl">{s.no}</div>
             <h3 className="display-lg mt-5 text-2xl md:text-3xl">{s.title}</h3>
             <p className="mt-3 max-w-[24ch] text-sm leading-relaxed text-muted-foreground">
               {s.copy}
