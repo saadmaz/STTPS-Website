@@ -32,7 +32,7 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
       />
 
-      <section className="border-b border-steel/15 pb-24 pt-40 md:pb-32 md:pt-52">
+      <section className="border-b border-steel/15 pb-14 pt-32 md:pb-16 md:pt-40">
         <div className="shell">
           <Label>About</Label>
           <SplitLines
@@ -57,7 +57,7 @@ export default function AboutPage() {
         this space with generic venture-studio boilerplate.
       */}
 
-      <section className="py-24 md:py-36">
+      <section className="py-16 md:py-24">
         <div className="shell grid gap-16 lg:grid-cols-2">
           <div>
             <Label>Why we exist</Label>
@@ -79,7 +79,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-steel/25 py-24 md:py-36">
+      <section className="border-t border-steel/25 py-16 md:py-24">
         <div className="shell">
           <Label>Principles</Label>
           <SplitLines lines={["What Connects Us."]} className="display-xl mt-8" />
@@ -101,7 +101,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-steel/25 py-24 md:py-36">
+      <section className="border-t border-steel/25 py-16 md:py-24">
         <div className="shell">
           <Label>The model</Label>
           <SplitLines lines={["From Idea", "To Operation."]} className="display-xl mt-8" />
@@ -111,7 +111,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-steel/25 py-24 md:py-36">
+      <section className="border-t border-steel/25 py-16 md:py-24">
         <div className="shell grid gap-16 lg:grid-cols-2 lg:items-center">
           <div>
             <Label>What we build</Label>

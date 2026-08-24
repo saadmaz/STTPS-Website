@@ -2,7 +2,7 @@ import { Label, Reveal, SplitLines } from "@/components/site/primitives";
 
 export function HomeMotionSection() {
   return (
-    <section className="border-y border-steel/15 bg-ink py-32 text-warm md:py-48">
+    <section className="border-y border-steel/15 bg-ink py-20 text-warm md:py-28">
       <div className="shell">
         <Label className="text-warm">Vision</Label>
         <SplitLines

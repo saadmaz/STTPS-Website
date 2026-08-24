@@ -14,14 +14,14 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <main className="bg-warm">
-      <section className="border-b border-steel/15 pb-20 pt-40 md:pb-24 md:pt-52">
+      <section className="border-b border-steel/15 pb-10 pt-32 md:pb-12 md:pt-40">
         <div className="shell">
           <Label>Legal</Label>
           <SplitLines as="h1" trigger="mount" lines={["Privacy Policy"]} className="display-xl mt-8" />
         </div>
       </section>
 
-      <section className="py-20 md:py-28">
+      <section className="py-14 md:py-20">
         <div className="shell max-w-2xl text-sm leading-relaxed text-muted-foreground">
           <p className="border border-steel/30 bg-card p-4 text-foreground">
             This page is a structural placeholder. The privacy policy has not yet been drafted or

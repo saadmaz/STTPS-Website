@@ -36,7 +36,7 @@ export default function CompaniesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
       />
 
-      <section className="border-b border-steel/15 pb-20 pt-40 md:pb-28 md:pt-52">
+      <section className="border-b border-steel/15 pb-12 pt-32 md:pb-14 md:pt-40">
         <div className="shell">
           <Label>Our companies</Label>
           <SplitLines
@@ -59,7 +59,7 @@ export default function CompaniesPage() {
         (STOPWASH included, despite being the most consumer-recognizable)
         gets a larger or more prominent treatment than the others here.
       */}
-      <section className="bg-warm py-20 md:py-28">
+      <section className="bg-warm py-14 md:py-20">
         <div className="shell grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-4">
           {COMPANIES.map((c, i) => (
             <Link

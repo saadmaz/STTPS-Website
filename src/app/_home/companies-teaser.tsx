@@ -5,7 +5,7 @@ import { ArrowLink, Label, SplitLines, UnitTag } from "@/components/site/primiti
 
 export function CompaniesTeaser() {
   return (
-    <section id="companies" className="bg-warm py-28 md:py-40">
+    <section id="companies" className="bg-warm py-14 md:py-20">
       <div className="shell">
         <Label>Our companies</Label>
         <div className="mt-8 flex flex-wrap items-end justify-between gap-8">

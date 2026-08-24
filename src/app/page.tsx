@@ -60,7 +60,7 @@ export default function Home() {
 
 function Intro() {
   return (
-    <section className="bg-warm py-28 md:py-40">
+    <section className="bg-warm py-14 md:py-20">
       <div className="shell">
         <Label>What we believe</Label>
         <SplitLines lines={["More Than a Group."]} className="display-xl mt-8 text-graphite" />
@@ -92,7 +92,7 @@ function Intro() {
 
 function Connects() {
   return (
-    <section className="bg-warm py-28 md:py-40">
+    <section className="bg-warm py-14 md:py-20">
       <div className="shell">
         <Label>What connects us</Label>
         <SplitLines
@@ -121,7 +121,7 @@ function Connects() {
 
 function Model() {
   return (
-    <section className="border-t border-steel/25 bg-warm py-28 md:py-40">
+    <section className="border-t border-steel/25 bg-warm py-14 md:py-20">
       <div className="shell">
         <Label>The STTPS model</Label>
         <SplitLines lines={["From Idea", "To Operation."]} className="display-xl mt-8" />
@@ -139,7 +139,7 @@ function Model() {
 function Metrics() {
   const shown = METRICS.filter((m) => m.value);
   return (
-    <section className="border-t border-steel/15 bg-charcoal py-24">
+    <section className="border-t border-steel/15 bg-charcoal py-16 md:py-20">
       <div className="shell">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {shown.map((m, i) => (
@@ -159,7 +159,7 @@ function Metrics() {
 
 function CareersAndContactTeaser() {
   return (
-    <section className="border-t border-steel/25 bg-warm py-20 md:py-28">
+    <section className="border-t border-steel/25 bg-warm py-14 md:py-20">
       <div className="shell grid gap-16 md:grid-cols-2">
         <div>
           <Label>Careers</Label>
@@ -188,7 +188,7 @@ function CareersAndContactTeaser() {
 
 function FinalCta() {
   return (
-    <section className="relative overflow-hidden bg-ink py-32 text-warm md:py-44">
+    <section className="relative overflow-hidden bg-ink py-20 text-warm md:py-28">
       <div className="shell relative text-center">
         <SplitLines lines={["Building", "Better."]} className="display-hero text-warm" />
         <div className="label-xs mt-8 text-warm/50">STTPS — The Group</div>

@@ -46,7 +46,7 @@ export function CompanySection({
     <section
       ref={ref}
       id={company.id}
-      className="relative overflow-hidden py-24 md:py-36"
+      className="relative overflow-hidden py-16 md:py-24"
       style={
         {
           "--brand": company.brand,

@@ -30,7 +30,7 @@ export default function VenturesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
       />
 
-      <section className="border-b border-steel/15 pb-24 pt-40 md:pb-32 md:pt-52">
+      <section className="border-b border-steel/15 pb-14 pt-32 md:pb-16 md:pt-40">
         <div className="shell">
           <Label>Ventures</Label>
           <SplitLines
@@ -48,7 +48,7 @@ export default function VenturesPage() {
         </div>
       </section>
 
-      <section className="py-24 md:py-36">
+      <section className="py-16 md:py-24">
         <div className="shell grid gap-px border border-steel/25 bg-steel/25 md:grid-cols-2">
           {MODEL_STEPS.map((s, i) => (
             <Reveal key={s.no} delay={i * 0.08} className="bg-warm p-10 md:p-14">
@@ -60,7 +60,7 @@ export default function VenturesPage() {
         </div>
       </section>
 
-      <section className="border-t border-steel/25 py-24 md:py-36">
+      <section className="border-t border-steel/25 py-16 md:py-24">
         <div className="shell">
           <Label>Capabilities we bring</Label>
           <SplitLines lines={["A Company", "In a Box."]} className="display-xl mt-8" />
@@ -77,7 +77,7 @@ export default function VenturesPage() {
         </div>
       </section>
 
-      <section className="bg-ink py-28 text-warm md:py-40">
+      <section className="bg-ink py-20 text-warm md:py-28">
         <div className="shell">
           <SplitLines
             lines={["Got a Venture", "Worth Building?"]}

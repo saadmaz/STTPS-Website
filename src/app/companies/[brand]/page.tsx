@@ -55,7 +55,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ brand:
       />
 
       <section
-        className="pb-0 pt-40 md:pt-52"
+        className="pb-0 pt-32 md:pt-40"
         style={
           {
             "--brand": company.brand,
@@ -78,7 +78,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ brand:
 
       <CompanySection company={company} index={0} headingLevel="h2" ctaHref="/contact" />
 
-      <section className="border-t border-steel/25 bg-warm py-20 md:py-28">
+      <section className="border-t border-steel/25 bg-warm py-14 md:py-20">
         <div className="shell grid gap-14 lg:grid-cols-[1fr_1fr]">
           <div>
             <Label>Where we work</Label>

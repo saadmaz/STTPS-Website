@@ -37,7 +37,7 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
       />
 
-      <section className="border-b border-steel/15 pb-24 pt-40 md:pb-32 md:pt-52">
+      <section className="border-b border-steel/15 pb-14 pt-32 md:pb-16 md:pt-40">
         <div className="shell">
           <Label>Contact</Label>
           <SplitLines
@@ -49,7 +49,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="py-24 md:py-36">
+      <section className="py-16 md:py-24">
         <div className="shell grid gap-16 lg:grid-cols-[1fr_1.4fr]">
           <Reveal className="flex flex-col gap-8 text-sm">
             <Detail label="Email" value={CONTACT.email} href={`mailto:${CONTACT.email}`} />
