@@ -84,9 +84,13 @@ const SITE_DESC =
 // browsers when delivered via <meta> — they only take effect through the
 // real HTTP response headers in src/server.ts, which requires this app to
 // actually be served through that handler once a deployment target exists.
+// script-src needs 'unsafe-inline': TanStack Start's SSR hydration bootstrap
+// (window.$_TSR) ships as an inline <script>; blocking it left the app
+// unable to hydrate at all (white screen) in every environment, including
+// `vite dev`, since this meta tag is the only CSP source outside src/server.ts.
 const META_CSP = [
   "default-src 'self'",
-  "script-src 'self'",
+  "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
   "style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",

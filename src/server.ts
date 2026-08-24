@@ -47,10 +47,18 @@ function isH3SwallowedErrorBody(body: string): boolean {
 // CSP mirrors the meta-tag copy in src/routes/__root.tsx, plus the directives
 // that only work as a real HTTP header (frame-ancestors). Style-src needs
 // 'unsafe-inline' because motion (framer-motion) animates via inline style
-// attributes, not stylesheet classes.
+// attributes, not stylesheet classes. script-src needs 'unsafe-inline' because
+// TanStack Start's SSR hydration bootstrap (window.$_TSR) is an inline
+// <script> the framework injects — without it the app never hydrates (white
+// screen). Proper fix is a per-request nonce via router.options.ssr.nonce,
+// but that requires threading a nonce through createStartHandler's internal
+// request context; not done here. This still blocks all *remote* script
+// injection (the more common XSS vector), just not inline-script injection —
+// an acceptable tradeoff since this app has no user-generated-content
+// rendering path (no dangerouslySetInnerHTML fed by user input anywhere).
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "script-src 'self'",
+  "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
   "style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
