@@ -1,3 +1,6 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { COMPANIES } from "@/data/sttps";
@@ -13,6 +16,7 @@ const NODES = [
 export function EcosystemDiagram() {
   const [active, setActive] = useState<number | null>(null);
   const reduce = useReducedMotion();
+  const router = useRouter();
   const current = active === null ? null : COMPANIES[active];
 
   return (
@@ -72,9 +76,7 @@ export function EcosystemDiagram() {
               onMouseLeave={() => setActive(null)}
               onFocus={() => setActive(i)}
               onBlur={() => setActive(null)}
-              onClick={() => {
-                document.getElementById(c.id)?.scrollIntoView({ behavior: "smooth" });
-              }}
+              onClick={() => router.push(`/companies/${c.id}`)}
               style={{ left: `${n.x}%`, top: `${n.y}%`, "--brand": c.brand } as React.CSSProperties}
               className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-warm/15 bg-ink/60 px-4 py-3 text-center backdrop-blur-sm transition-colors duration-500 hover:border-brand md:px-6 md:py-4"
             >

@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import type { Company } from "@/data/sttps";
@@ -14,11 +16,14 @@ export function CompanySection({
   company,
   index,
   headingLevel = "h3",
+  ctaHref,
 }: {
   company: Company;
   index: number;
   /** Use "h2" when this section isn't nested under its own section heading (e.g. the standalone /companies page). */
   headingLevel?: "h2" | "h3";
+  /** Defaults to the in-page anchor; pass the brand's own page when this section is a teaser elsewhere. */
+  ctaHref?: string;
 }) {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
@@ -147,7 +152,7 @@ export function CompanySection({
               ))}
             </ul>
             <div className="mt-10">
-              <ArrowLink href={`#${company.id}`} tone="brand">
+              <ArrowLink href={ctaHref ?? `#${company.id}`} tone="brand">
                 {company.cta}
               </ArrowLink>
             </div>

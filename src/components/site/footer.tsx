@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { COMPANIES, CONTACT } from "@/data/sttps";
 
 export function SiteFooter() {
@@ -14,26 +14,26 @@ export function SiteFooter() {
           </div>
 
           <FooterCol title="Navigate">
-            <Link to="/about" className="hover:opacity-100">
+            <Link href="/about" className="hover:opacity-100">
               About
             </Link>
-            <Link to="/companies" className="hover:opacity-100">
+            <Link href="/companies" className="hover:opacity-100">
               Companies
             </Link>
-            <Link to="/ventures" className="hover:opacity-100">
+            <Link href="/ventures" className="hover:opacity-100">
               Ventures
             </Link>
-            <Link to="/careers" className="hover:opacity-100">
+            <Link href="/careers" className="hover:opacity-100">
               Careers
             </Link>
-            <Link to="/contact" className="hover:opacity-100">
+            <Link href="/contact" className="hover:opacity-100">
               Contact
             </Link>
           </FooterCol>
 
           <FooterCol title="Companies">
             {COMPANIES.map((c) => (
-              <Link key={c.id} to="/companies" hash={c.id}>
+              <Link key={c.id} href={`/companies/${c.id}`}>
                 {c.name}
               </Link>
             ))}
@@ -46,6 +46,14 @@ export function SiteFooter() {
 
         <div className="label-xs mt-16 flex flex-col justify-between gap-3 border-t border-warm/10 pt-6 opacity-50 sm:flex-row">
           <span>© {new Date().getFullYear()} STTPS. All rights reserved.</span>
+          <div className="flex gap-6">
+            <Link href="/legal/privacy" className="hover:opacity-100">
+              Privacy
+            </Link>
+            <Link href="/legal/terms" className="hover:opacity-100">
+              Terms
+            </Link>
+          </div>
           <span>{CONTACT.location}</span>
         </div>
       </div>

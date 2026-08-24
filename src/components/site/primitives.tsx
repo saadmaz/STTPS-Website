@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, useInView, useReducedMotion, type Variants } from "motion/react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
@@ -100,6 +102,11 @@ export function Counter({
   useEffect(() => {
     if (!inView || Number.isNaN(numeric)) return;
     if (reduce) {
+      // Synchronizing with the prefers-reduced-motion media query (an
+      // external system), not deriving state from a prop — the effect as a
+      // whole exists to run the rAF count-up loop below; this is just the
+      // reduced-motion short-circuit for it.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setN(numeric);
       return;
     }

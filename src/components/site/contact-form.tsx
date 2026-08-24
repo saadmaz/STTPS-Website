@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { toast } from "sonner";
 import { Magnetic } from "./primitives";
@@ -18,7 +20,8 @@ export function ContactForm() {
       onSubmit={(e) => {
         e.preventDefault();
         // No backend exists yet — hand off to the visitor's own email client
-        // instead of pretending the message was sent somewhere.
+        // instead of pretending the message was sent somewhere. Phase 4
+        // replaces this with a real Route Handler + email provider.
         const subject = `Message from ${values.name}${values.company ? ` (${values.company})` : ""}`;
         const body = `${values.message}\n\n— ${values.name}\n${values.email}`;
         const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

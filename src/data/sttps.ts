@@ -15,8 +15,19 @@ import stopwash640 from "@/assets/stopwash-640.webp";
 import stopwash1024 from "@/assets/stopwash-1024.webp";
 import stopwash1400 from "@/assets/stopwash-1400.webp";
 
-const srcSet = (w640: string, w1024: string, w1400: string) =>
-  `${w640} 640w, ${w1024} 1024w, ${w1400} 1400w`;
+const srcSet = (w640: { src: string }, w1024: { src: string }, w1400: { src: string }) =>
+  `${w640.src} 640w, ${w1024.src} 1024w, ${w1400.src} 1400w`;
+
+/**
+ * Per-brand booking/contact method. Intentionally optional — a brand with no
+ * confirmed contact channel yet falls back to the generic /contact page
+ * rather than shipping a fabricated WhatsApp number or phone line.
+ */
+export type ContactMethod = {
+  type: "whatsapp" | "phone" | "email" | "form";
+  value: string;
+  label: string;
+};
 
 export type Company = {
   id: string;
@@ -35,6 +46,9 @@ export type Company = {
   brand: string;
   brandInk: string;
   surface: string;
+  /** Not yet confirmed for any brand — omit rather than guess. */
+  serviceArea?: string;
+  contactMethod?: ContactMethod;
 };
 
 export const COMPANIES: Company[] = [
@@ -53,7 +67,7 @@ export const COMPANIES: Company[] = [
       "Property care",
     ],
     cta: "Explore Tank Sudda",
-    image: tankSuddaImg,
+    image: tankSuddaImg.src,
     imageSrcSet: srcSet(tankSudda640, tankSudda1024, tankSudda1400),
     motion: "fluid",
     brand: "oklch(0.72 0.13 225)",
@@ -75,7 +89,7 @@ export const COMPANIES: Company[] = [
       "Operations & service quality",
     ],
     cta: "Meet Team Sudda",
-    image: teamSuddaImg,
+    image: teamSuddaImg.src,
     imageSrcSet: srcSet(teamSudda640, teamSudda1024, teamSudda1400),
     motion: "human",
     brand: "oklch(0.78 0.15 55)",
@@ -97,7 +111,7 @@ export const COMPANIES: Company[] = [
       "Interior cleaning",
     ],
     cta: "Explore Polish Station",
-    image: polishStationImg,
+    image: polishStationImg.src,
     imageSrcSet: srcSet(polishStation640, polishStation1024, polishStation1400),
     motion: "reflective",
     brand: "oklch(0.86 0.02 250)",
@@ -119,7 +133,7 @@ export const COMPANIES: Company[] = [
       "Convenient service experience",
     ],
     cta: "Explore STOPWASH",
-    image: stopwashImg,
+    image: stopwashImg.src,
     imageSrcSet: srcSet(stopwash640, stopwash1024, stopwash1400),
     motion: "velocity",
     brand: "oklch(0.88 0.21 130)",
