@@ -27,3 +27,42 @@ jobs:
 
       - name: Build
         run: bun run build
+
+  deploy:
+    needs: ci
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        run: bun run build
+
+      # cPanel manages cgi-bin/php.ini/.user.ini/.well-known itself (the
+      # last is load-bearing for AutoSSL renewal) — excluded from --delete
+      # so this job can never wipe them, only ever touch the static build.
+      - name: Deploy to sttps.co
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          SSH_HOST: ${{ secrets.DEPLOY_HOST }}
+          SSH_PORT: ${{ secrets.DEPLOY_PORT }}
+          SSH_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
+          rsync -avz --delete \
+            --exclude 'cgi-bin' \
+            --exclude 'php.ini' \
+            --exclude '.user.ini' \
+            --exclude '.well-known' \
+            -e "ssh -i ~/.ssh/deploy_key -p $SSH_PORT" \
+            out/ "$SSH_USER@$SSH_HOST:~/public_html/"
