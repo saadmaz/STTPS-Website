@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
 import { COMPANIES } from "@/data/sttps";
 
-const BASE_URL = "https://sttps.lk";
+const BASE_URL = "https://sttps.co";
+
+export const dynamic = "force-static";
 
 // Phase 3 extends this with dynamic /blog and /careers/[slug] entries once
 // Sanity is wired up.

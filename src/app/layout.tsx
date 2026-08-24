@@ -32,7 +32,7 @@ const SITE_DESC =
   "STTPS is a Sri Lankan group building and operating service brands: Tank Sudda, Team Sudda, Polish Station and STOPWASH.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sttps.lk"),
+  metadataBase: new URL("https://sttps.co"),
   title: { default: SITE_TITLE, template: "%s — STTPS" },
   description: SITE_DESC,
   authors: [{ name: "STTPS" }],

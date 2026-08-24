@@ -190,7 +190,7 @@ export const CAREER_TRACKS = [
  * but clickable contact detail is worse than none.
  */
 export const CONTACT = {
-  email: "hello@sttps.lk",
+  email: "hello@sttps.co",
   location: "Colombo, Sri Lanka",
 };
 

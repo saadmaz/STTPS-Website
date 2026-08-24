@@ -1,0 +1,46 @@
+# Mirrors the security headers that used to live in next.config.ts's
+# headers() — unsupported under `output: "export"` since there's no Next
+# server here, just this static build served by Apache. Keep CSP in sync
+# with any script/style changes in the app (see git history on
+# next.config.ts for the original rationale: 'unsafe-inline' for
+# framer-motion's inline styles, no nonce so pages can stay statically
+# generated).
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; frame-ancestors 'none'"
+  Header always set X-Frame-Options "DENY"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# Force HTTPS and the canonical (non-www) sttps.co host.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  RewriteCond %{HTTP_HOST} ^www\.sttps\.co$ [NC]
+  RewriteRule ^ https://sttps.co%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# next build (output: "export", trailingSlash: true) already emits
+# /about/index.html etc, so Apache's default DirectoryIndex resolves clean
+# URLs with no rewrite rules needed for routing.
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+# _next/static asset filenames are content-hashed by Next — safe to cache
+# forever. HTML must revalidate so deploys show up immediately.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
