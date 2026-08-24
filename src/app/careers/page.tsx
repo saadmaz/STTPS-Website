@@ -36,7 +36,12 @@ export default function CareersPage() {
       <section className="border-b border-steel/15 pb-14 pt-32 md:pb-16 md:pt-40">
         <div className="shell">
           <Label>Careers</Label>
-          <SplitLines as="h1" trigger="mount" lines={["Build With Us."]} className="display-hero mt-8" />
+          <SplitLines
+            as="h1"
+            trigger="mount"
+            lines={["Build With Us."]}
+            className="display-hero mt-8"
+          />
           <Reveal delay={0.15} trigger="mount">
             <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               We&apos;re building companies, teams and systems from the ground up. If you care about
@@ -51,11 +56,7 @@ export default function CareersPage() {
           <Label>Where you fit</Label>
           <div className="mt-12 border-t border-steel/25">
             {CAREER_TRACKS.map((t, i) => (
-              <Reveal
-                key={t.title}
-                delay={i * 0.06}
-                className="group border-b border-steel/25"
-              >
+              <Reveal key={t.title} delay={i * 0.06} className="group border-b border-steel/25">
                 <div className="flex flex-col gap-3 py-8 transition-colors duration-500 group-hover:bg-foreground/[0.03] md:flex-row md:items-baseline md:justify-between md:px-4">
                   <h2 className="display-lg text-3xl md:text-5xl">{t.title}</h2>
                   <p className="max-w-sm text-muted-foreground">{t.copy}</p>

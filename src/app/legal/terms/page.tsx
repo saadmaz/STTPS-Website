@@ -17,7 +17,12 @@ export default function TermsPage() {
       <section className="border-b border-steel/15 pb-10 pt-32 md:pb-12 md:pt-40">
         <div className="shell">
           <Label>Legal</Label>
-          <SplitLines as="h1" trigger="mount" lines={["Terms of Use"]} className="display-xl mt-8" />
+          <SplitLines
+            as="h1"
+            trigger="mount"
+            lines={["Terms of Use"]}
+            className="display-xl mt-8"
+          />
         </div>
       </section>
 

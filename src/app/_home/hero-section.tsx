@@ -25,8 +25,8 @@ export function HeroSection() {
             transition={{ delay: 0.75, duration: 0.9, ease: EASE }}
             className="max-w-xl text-lg leading-relaxed text-muted-foreground"
           >
-            We start, build, staff and operate service companies — with the same standard
-            applied across every venture.
+            We start, build, staff and operate service companies — with the same standard applied
+            across every venture.
           </motion.p>
 
           <motion.div

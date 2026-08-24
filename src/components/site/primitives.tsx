@@ -27,7 +27,10 @@ export function Reveal({
   const triggerProps =
     trigger !== "view"
       ? { animate: target }
-      : { whileInView: reduce ? {} : target, viewport: { once: true, margin: "0px 0px -80px 0px" } };
+      : {
+          whileInView: reduce ? {} : target,
+          viewport: { once: true, margin: "0px 0px -80px 0px" },
+        };
   return (
     <motion.div
       className={className}

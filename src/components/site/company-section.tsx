@@ -128,7 +128,11 @@ export function CompanySection({
           </motion.div>
 
           <div>
-            <UnitTag index={index + 1} detail={MOTION_LABEL[company.motion]} className="text-brand" />
+            <UnitTag
+              index={index + 1}
+              detail={MOTION_LABEL[company.motion]}
+              className="text-brand"
+            />
             <SplitLines
               as={headingLevel}
               lines={company.name.split(" ")}
