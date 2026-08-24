@@ -19,6 +19,13 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      # next-env.d.ts and .next/types/*.d.ts (image-import module types,
+      # typed routes) are gitignored and normally written by `next dev`/
+      # `next build` — on a fresh CI checkout neither has run yet, so a bare
+      # `tsc` can't resolve `@/assets/*.jpg` etc without generating them first.
+      - name: Generate Next.js types
+        run: bunx next typegen
+
       - name: Typecheck
         run: bunx tsc --noEmit -p tsconfig.json
 
