@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useReducedMotion, type Variants } from "motion/react";
+import { motion, useReducedMotion, type Variants } from "motion/react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -11,20 +11,21 @@ export function Reveal({
   delay = 0,
   y = 28,
   className,
-  trigger = "view",
+  trigger = "mount",
 }: {
   children: ReactNode;
   delay?: number;
   y?: number;
   className?: string;
-  /** "mount" for content already above the fold (e.g. a hero's lead
-   *  paragraph) — see SplitLines' `trigger` doc for why. */
+  /** "view" opts a specific instance back into scroll-gated reveal.
+   *  Default is "mount" — animate immediately on render, regardless of
+   *  scroll position, so nothing sits blank waiting to be scrolled to. */
   trigger?: "view" | "mount";
 }) {
   const reduce = useReducedMotion();
   const target = { opacity: 1, y: 0 };
   const triggerProps =
-    trigger === "mount"
+    trigger !== "view"
       ? { animate: target }
       : { whileInView: reduce ? {} : target, viewport: { once: true, margin: "0px 0px -80px 0px" } };
   return (
@@ -53,26 +54,22 @@ export function SplitLines({
   as = "h2",
   startDelay = 0,
   once = true,
-  trigger = "view",
+  trigger = "mount",
 }: {
   lines: string[];
   className?: string;
   as?: "h1" | "h2" | "h3" | "p";
   startDelay?: number;
   once?: boolean;
-  /**
-   * "view" reveals on scroll-into-view (for headings further down the
-   * page). "mount" animates immediately on render — use this for a page's
-   * h1, which is already above the fold and shouldn't wait on an
-   * IntersectionObserver callback that may never fire for content that's
-   * visible from the first frame.
-   */
+  /** "view" opts a specific instance back into scroll-gated reveal.
+   *  Default is "mount" — animate immediately on render, regardless of
+   *  scroll position, so nothing sits blank waiting to be scrolled to. */
   trigger?: "view" | "mount";
 }) {
   const reduce = useReducedMotion();
   const Tag = as;
   const triggerProps =
-    trigger === "mount"
+    trigger !== "view"
       ? { animate: "show" }
       : { whileInView: reduce ? "" : "show", viewport: { once, margin: "0px 0px -80px 0px" } };
   return (
@@ -112,7 +109,6 @@ export function Counter({
   duration?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "0px 0px -80px 0px" });
   const reduce = useReducedMotion();
   const numeric = parseInt(value.replace(/\D/g, ""), 10);
   const suffix = value.replace(/[\d]/g, "");
@@ -120,7 +116,7 @@ export function Counter({
   const [n, setN] = useState(0);
 
   useEffect(() => {
-    if (!inView || Number.isNaN(numeric)) return;
+    if (Number.isNaN(numeric)) return;
     if (reduce) {
       // Synchronizing with the prefers-reduced-motion media query (an
       // external system), not deriving state from a prop — the effect as a
@@ -139,7 +135,7 @@ export function Counter({
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [inView, numeric, duration, reduce]);
+  }, [numeric, duration, reduce]);
 
   if (Number.isNaN(numeric)) return <span className={className}>{value}</span>;
 

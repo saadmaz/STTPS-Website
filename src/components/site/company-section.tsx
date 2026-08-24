@@ -76,8 +76,7 @@ export function CompanySection({
         >
           <motion.div
             initial={reduce ? false : { clipPath: "inset(0 0 100% 0)" }}
-            whileInView={reduce ? {} : { clipPath: "inset(0 0 0% 0)" }}
-            viewport={{ once: true, margin: "0px 0px -80px 0px" }}
+            animate={{ clipPath: "inset(0 0 0% 0)" }}
             transition={{ duration: 1.1, ease: EASE }}
             className="group relative aspect-[4/3] overflow-hidden"
           >

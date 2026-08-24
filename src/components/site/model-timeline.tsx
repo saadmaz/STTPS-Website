@@ -28,8 +28,7 @@ export function ModelTimeline() {
           <motion.div
             key={s.no}
             initial={reduce ? false : { opacity: 0, y: 30 }}
-            whileInView={reduce ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "0px 0px -80px 0px" }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: i * 0.12, ease: EASE }}
             className="relative border-t border-steel/30 pt-6 md:border-t-0 md:pt-0"
           >
