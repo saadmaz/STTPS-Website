@@ -17,9 +17,16 @@ import path from "node:path";
 // Fonts are self-hosted via next/font/google (no external Google Fonts
 // request), so font-src/style-src-elem don't need to allow fonts.gstatic.com
 // or fonts.googleapis.com the way the previous TanStack Start setup did.
+//
+// 'unsafe-eval' is added to script-src in development only: React/Turbopack's
+// dev-mode Fast Refresh and stack-trace reconstruction call eval(), and
+// without it the browser logs a console error on every page (the page still
+// renders — eval() isn't used for anything functional, just dev diagnostics).
+// Production never gets 'unsafe-eval' — that would undo the point of the
+// script-src restriction in the first place.
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data:",
   "font-src 'self'",
