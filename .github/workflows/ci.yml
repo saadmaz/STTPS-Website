@@ -52,9 +52,12 @@ jobs:
       - name: Build
         run: bun run build
 
-      # cPanel manages cgi-bin/php.ini/.user.ini/.well-known itself (the
-      # last is load-bearing for AutoSSL renewal) — excluded from --delete
-      # so this job can never wipe them, only ever touch the static build.
+      # The cPanel account's jailshell has no rsync, so this ships the build
+      # as a tar stream over the existing SSH connection instead — tar is
+      # present on both the runner and the jail. cPanel manages
+      # cgi-bin/php.ini/.user.ini/.well-known itself (the last is
+      # load-bearing for AutoSSL renewal), so the remote-side cleanup step
+      # explicitly skips those, only ever touching the static build.
       - name: Deploy to sttps.co
         env:
           SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
@@ -66,10 +69,14 @@ jobs:
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
-          rsync -avz --delete \
-            --exclude 'cgi-bin' \
-            --exclude 'php.ini' \
-            --exclude '.user.ini' \
-            --exclude '.well-known' \
-            -e "ssh -i ~/.ssh/deploy_key -p $SSH_PORT" \
-            out/ "$SSH_USER@$SSH_HOST:~/public_html/"
+          tar czf - -C out . | ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" '
+            set -e
+            rm -rf ~/public_html_new
+            mkdir -p ~/public_html_new
+            tar xzf - -C ~/public_html_new
+            find ~/public_html -mindepth 1 -maxdepth 1 \
+              ! -name cgi-bin ! -name php.ini ! -name .user.ini ! -name .well-known \
+              -exec rm -rf {} +
+            cp -a ~/public_html_new/. ~/public_html/
+            rm -rf ~/public_html_new
+          '
