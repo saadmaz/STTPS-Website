@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { lazy, Suspense, useRef } from "react";
 import heroImg from "@/assets/hero.jpg";
 import {
   COMPANIES,
@@ -12,9 +12,12 @@ import {
 } from "@/data/sttps";
 import { ArrowLink, Counter, EASE, Label, Reveal, SplitLines } from "@/components/site/primitives";
 import { CompanySection } from "@/components/site/company-section";
-import { EcosystemDiagram } from "@/components/site/ecosystem";
 import { ModelTimeline } from "@/components/site/model-timeline";
 import { ContactForm } from "@/components/site/contact-form";
+
+const EcosystemDiagram = lazy(() =>
+  import("@/components/site/ecosystem").then((m) => ({ default: m.EcosystemDiagram })),
+);
 
 const TITLE = "STTPS — The Group Building Service Companies in Sri Lanka";
 const DESCRIPTION =
@@ -237,7 +240,9 @@ function Ecosystem() {
         <Label className="text-warm">The ecosystem</Label>
         <SplitLines lines={["One Group.", "Many Worlds."]} className="display-xl mt-8 text-warm" />
         <div className="mt-16">
-          <EcosystemDiagram />
+          <Suspense fallback={null}>
+            <EcosystemDiagram />
+          </Suspense>
         </div>
       </div>
     </section>
