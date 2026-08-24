@@ -4,7 +4,7 @@ import { LAYERS, PRINCIPLES } from "@/data/sttps";
 import { EASE, Label, Reveal, SplitLines } from "@/components/site/primitives";
 import { ModelTimeline } from "@/components/site/model-timeline";
 
-const TITLE = "About STTPS — A Group Building Service Businesses";
+const TITLE = "About STTPS — Building Service Companies in Sri Lanka";
 const DESCRIPTION =
   "STTPS builds brands, businesses and operating systems for everyday services in Sri Lanka — from identity and teams to technology and customer experience.";
 
@@ -16,7 +16,22 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/about" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "/about" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          name: TITLE,
+          description: DESCRIPTION,
+          url: "/about",
+          isPartOf: { "@type": "Organization", name: "STTPS" },
+        }),
+      },
     ],
   }),
   component: AboutPage,

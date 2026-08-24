@@ -10,7 +10,16 @@ const MOTION_LABEL: Record<Company["motion"], string> = {
   velocity: "Velocity",
 };
 
-export function CompanySection({ company, index }: { company: Company; index: number }) {
+export function CompanySection({
+  company,
+  index,
+  headingLevel = "h3",
+}: {
+  company: Company;
+  index: number;
+  /** Use "h2" when this section isn't nested under its own section heading (e.g. the standalone /companies page). */
+  headingLevel?: "h2" | "h3";
+}) {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({
@@ -120,7 +129,7 @@ export function CompanySection({ company, index }: { company: Company; index: nu
               {String(index + 1).padStart(2, "0")} — {MOTION_LABEL[company.motion]}
             </Label>
             <SplitLines
-              as="h3"
+              as={headingLevel}
               lines={company.name.split(" ")}
               className="display-xl mt-6 text-warm"
             />

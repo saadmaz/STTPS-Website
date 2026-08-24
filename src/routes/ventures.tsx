@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { MODEL_STEPS, LAYERS } from "@/data/sttps";
 import { ArrowLink, Label, Reveal, SplitLines } from "@/components/site/primitives";
 
-const TITLE = "Ventures — How STTPS Builds New Companies";
+const TITLE = "STTPS Ventures — How We Build New Service Companies";
 const DESCRIPTION =
   "STTPS builds new service ventures from scratch: identifying real problems, designing the brand and system, hiring the team and scaling what works.";
 
@@ -14,7 +14,22 @@ export const Route = createFileRoute("/ventures")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/ventures" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "/ventures" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: TITLE,
+          description: DESCRIPTION,
+          url: "/ventures",
+          isPartOf: { "@type": "Organization", name: "STTPS" },
+        }),
+      },
     ],
   }),
   component: VenturesPage,

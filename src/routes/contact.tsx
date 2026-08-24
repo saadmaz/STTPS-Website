@@ -3,7 +3,7 @@ import { CONTACT } from "@/data/sttps";
 import { Label, Reveal, SplitLines } from "@/components/site/primitives";
 import { ContactForm } from "@/components/site/contact-form";
 
-const TITLE = "Contact STTPS — Talk to the Group";
+const TITLE = "Contact STTPS — Talk to Our Team in Colombo, Sri Lanka";
 const DESCRIPTION =
   "Get in touch with STTPS in Colombo, Sri Lanka — for services, partnerships, ventures or careers across our operating companies.";
 
@@ -15,7 +15,28 @@ export const Route = createFileRoute("/contact")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/contact" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "/contact" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          name: TITLE,
+          description: DESCRIPTION,
+          url: "/contact",
+          isPartOf: { "@type": "Organization", name: "STTPS" },
+          mainEntity: {
+            "@type": "Organization",
+            name: "STTPS",
+            email: CONTACT.email,
+            address: { "@type": "PostalAddress", addressLocality: "Colombo", addressCountry: "LK" },
+          },
+        }),
+      },
     ],
   }),
   component: ContactPage,

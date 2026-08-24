@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CAREER_TRACKS, CONTACT } from "@/data/sttps";
 import { ArrowLink, Label, Reveal, SplitLines } from "@/components/site/primitives";
 
-const TITLE = "Careers at STTPS — Build Companies With Us";
+const TITLE = "Careers at STTPS — Build Service Companies With Us";
 const DESCRIPTION =
   "Join STTPS in Sri Lanka. Roles across field teams, operations, creative, technology and leadership as we build and scale service companies.";
 
@@ -14,7 +14,22 @@ export const Route = createFileRoute("/careers")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/careers" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "/careers" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: TITLE,
+          description: DESCRIPTION,
+          url: "/careers",
+          isPartOf: { "@type": "Organization", name: "STTPS" },
+        }),
+      },
     ],
   }),
   component: CareersPage,

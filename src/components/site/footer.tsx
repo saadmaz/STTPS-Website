@@ -20,6 +20,9 @@ export function SiteFooter() {
             <Link to="/companies" className="hover:opacity-100">
               Companies
             </Link>
+            <Link to="/ventures" className="hover:opacity-100">
+              Ventures
+            </Link>
             <Link to="/careers" className="hover:opacity-100">
               Careers
             </Link>

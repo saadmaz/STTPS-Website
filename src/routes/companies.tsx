@@ -3,7 +3,7 @@ import { COMPANIES } from "@/data/sttps";
 import { Label, Reveal, SplitLines } from "@/components/site/primitives";
 import { CompanySection } from "@/components/site/company-section";
 
-const TITLE = "Our Companies — Tank Sudda, Team Sudda, Polish Station, STOPWASH";
+const TITLE = "Companies — Tank Sudda, Team Sudda, Polish Station, STOPWASH";
 const DESCRIPTION =
   "The operating companies of STTPS: water tank care, service operations, automotive detailing and everyday car wash — each built as its own brand.";
 
@@ -15,7 +15,27 @@ export const Route = createFileRoute("/companies")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "/companies" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "/companies" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: TITLE,
+          description: DESCRIPTION,
+          url: "/companies",
+          isPartOf: { "@type": "Organization", name: "STTPS" },
+          hasPart: COMPANIES.map((c) => ({
+            "@type": "Organization",
+            name: c.name,
+            description: c.category,
+          })),
+        }),
+      },
     ],
   }),
   component: CompaniesPage,
@@ -49,7 +69,7 @@ function CompaniesPage() {
       </section>
 
       {COMPANIES.map((c, i) => (
-        <CompanySection key={c.id} company={c} index={i} />
+        <CompanySection key={c.id} company={c} index={i} headingLevel="h2" />
       ))}
     </main>
   );
