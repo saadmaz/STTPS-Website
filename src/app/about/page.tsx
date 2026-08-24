@@ -83,7 +83,7 @@ export default function AboutPage() {
         <div className="shell">
           <Label>Principles</Label>
           <SplitLines lines={["What Connects Us."]} className="display-xl mt-8" />
-          <div className="mt-16 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-4">
             {PRINCIPLES.map((p, i) => (
               <Reveal
                 key={p.title}
@@ -105,7 +105,7 @@ export default function AboutPage() {
         <div className="shell">
           <Label>The model</Label>
           <SplitLines lines={["From Idea", "To Operation."]} className="display-xl mt-8" />
-          <div className="mt-16">
+          <div className="mt-10">
             <ModelTimeline />
           </div>
         </div>

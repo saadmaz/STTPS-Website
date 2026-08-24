@@ -13,7 +13,7 @@ export function CompaniesTeaser() {
           <ArrowLink href="/companies">See All Companies</ArrowLink>
         </div>
 
-        <div className="mt-16 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-4">
           {COMPANIES.map((c, i) => (
             <Link
               key={c.id}

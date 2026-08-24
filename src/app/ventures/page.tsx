@@ -64,7 +64,7 @@ export default function VenturesPage() {
         <div className="shell">
           <Label>Capabilities we bring</Label>
           <SplitLines lines={["A Company", "In a Box."]} className="display-xl mt-8" />
-          <div className="mt-14 flex flex-wrap gap-x-10 gap-y-4 border-t border-steel/25 pt-8">
+          <div className="mt-10 flex flex-wrap gap-x-10 gap-y-4 border-t border-steel/25 pt-8">
             {LAYERS.map((l) => (
               <span
                 key={l}

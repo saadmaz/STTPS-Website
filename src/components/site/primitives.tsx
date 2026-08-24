@@ -26,7 +26,7 @@ export function Reveal({
   const triggerProps =
     trigger === "mount"
       ? { animate: target }
-      : { whileInView: reduce ? {} : target, viewport: { once: true, margin: "-12% 0px" } };
+      : { whileInView: reduce ? {} : target, viewport: { once: true, margin: "0px 0px -80px 0px" } };
   return (
     <motion.div
       className={className}
@@ -74,7 +74,7 @@ export function SplitLines({
   const triggerProps =
     trigger === "mount"
       ? { animate: "show" }
-      : { whileInView: reduce ? "" : "show", viewport: { once, margin: "-10% 0px" } };
+      : { whileInView: reduce ? "" : "show", viewport: { once, margin: "0px 0px -80px 0px" } };
   return (
     <Tag className={className}>
       {lines.map((line, i) => (
@@ -112,7 +112,7 @@ export function Counter({
   duration?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-20% 0px" });
+  const inView = useInView(ref, { once: true, margin: "0px 0px -80px 0px" });
   const reduce = useReducedMotion();
   const numeric = parseInt(value.replace(/\D/g, ""), 10);
   const suffix = value.replace(/[\d]/g, "");

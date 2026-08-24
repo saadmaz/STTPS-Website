@@ -66,7 +66,7 @@ function Intro() {
         <SplitLines lines={["More Than a Group."]} className="display-xl mt-8 text-graphite" />
         <SplitLines lines={["An Ecosystem", "Of Businesses."]} className="display-xl" />
 
-        <div className="mt-16 grid gap-14 border-t border-steel/25 pt-12 md:grid-cols-[1.2fr_1fr]">
+        <div className="mt-10 grid gap-14 border-t border-steel/25 pt-12 md:grid-cols-[1.2fr_1fr]">
           <Reveal>
             <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
               STTPS brings together companies focused on improving the way people care for their
@@ -99,7 +99,7 @@ function Connects() {
           lines={["Different Businesses.", "One Standard."]}
           className="display-xl mt-8"
         />
-        <div className="mt-20 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-4">
           {PRINCIPLES.map((p, i) => (
             <Reveal
               key={p.title}
@@ -125,7 +125,7 @@ function Model() {
       <div className="shell">
         <Label>The STTPS model</Label>
         <SplitLines lines={["From Idea", "To Operation."]} className="display-xl mt-8" />
-        <div className="mt-20">
+        <div className="mt-10">
           <ModelTimeline />
         </div>
         <div className="mt-14">
