@@ -78,7 +78,7 @@ function CareersPage() {
             Send us who you are and what you're good at. We hire people before we hire titles.
           </p>
           <div className="mt-10">
-            <ArrowLink href={`mailto:${CONTACT.email}`} tone="light" cursor="EMAIL">
+            <ArrowLink href={`mailto:${CONTACT.email}`} tone="light">
               {CONTACT.email}
             </ArrowLink>
           </div>

@@ -35,7 +35,7 @@ export function SiteNav() {
         )}
       >
         <div className="shell flex items-center justify-between py-5">
-          <Link to="/" className="flex items-baseline gap-3 text-warm" data-cursor="HOME">
+          <Link to="/" className="flex items-baseline gap-3 text-warm">
             <span className="font-display text-xl font-bold tracking-[-0.06em] uppercase">
               STTPS
             </span>
@@ -60,7 +60,6 @@ export function SiteNav() {
             <Magnetic className="hidden md:inline-block">
               <Link
                 to="/contact"
-                data-cursor="OPEN →"
                 className="label-xs group inline-flex items-center gap-2 rounded-full border border-warm/25 px-5 py-3 text-warm transition-colors duration-500 hover:bg-warm hover:text-ink"
               >
                 Talk to Us

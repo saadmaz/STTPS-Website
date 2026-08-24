@@ -75,7 +75,6 @@ export function CompanySection({
             viewport={{ once: true, margin: "-15% 0px" }}
             transition={{ duration: 1.1, ease: EASE }}
             className="group relative aspect-[4/3] overflow-hidden"
-            data-cursor="VIEW"
           >
             <picture className="block h-full w-full">
               <source
@@ -148,7 +147,7 @@ export function CompanySection({
               ))}
             </ul>
             <div className="mt-10">
-              <ArrowLink href={`#${company.id}`} tone="brand" cursor="EXPLORE">
+              <ArrowLink href={`#${company.id}`} tone="brand">
                 {company.cta}
               </ArrowLink>
             </div>

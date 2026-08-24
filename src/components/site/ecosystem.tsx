@@ -75,7 +75,6 @@ export function EcosystemDiagram() {
               onClick={() => {
                 document.getElementById(c.id)?.scrollIntoView({ behavior: "smooth" });
               }}
-              data-cursor="EXPLORE"
               style={{ left: `${n.x}%`, top: `${n.y}%`, "--brand": c.brand } as React.CSSProperties}
               className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-warm/15 bg-ink/60 px-4 py-3 text-center backdrop-blur-sm transition-colors duration-500 hover:border-brand md:px-6 md:py-4"
             >

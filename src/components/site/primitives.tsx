@@ -163,19 +163,16 @@ export function ArrowLink({
   href,
   className,
   tone = "dark",
-  cursor = "OPEN →",
 }: {
   children: ReactNode;
   href: string;
   className?: string;
   tone?: "dark" | "light" | "brand";
-  cursor?: string;
 }) {
   return (
     <Magnetic>
       <a
         href={href}
-        data-cursor={cursor}
         className={cn(
           "group label-xs inline-flex items-center gap-3 rounded-full border px-6 py-4 transition-colors duration-500",
           tone === "dark" && "border-foreground/20 hover:bg-foreground hover:text-background",

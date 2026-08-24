@@ -13,9 +13,6 @@ import appCss from "../styles.css?url";
 import { SiteNav } from "@/components/site/nav";
 import { SiteFooter } from "@/components/site/footer";
 
-const CustomCursor = lazy(() =>
-  import("@/components/site/cursor").then((m) => ({ default: m.CustomCursor })),
-);
 const Toaster = lazy(() => import("@/components/ui/sonner").then((m) => ({ default: m.Toaster })));
 
 function NotFoundComponent() {
@@ -152,9 +149,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Suspense fallback={null}>
-        <CustomCursor />
-      </Suspense>
       <SiteNav />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />

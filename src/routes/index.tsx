@@ -150,7 +150,7 @@ function Hero() {
             transition={{ delay: 1.5, duration: 1, ease: EASE }}
             className="flex flex-wrap gap-3"
           >
-            <ArrowLink href="#companies" tone="light" cursor="EXPLORE">
+            <ArrowLink href="#companies" tone="light">
               Explore Our Companies
             </ArrowLink>
             <ArrowLink href="#about" tone="light">
@@ -426,7 +426,7 @@ function FinalCta() {
         <SplitLines lines={["Building", "Better."]} className="display-hero text-warm" />
         <div className="label-xs mt-8 text-warm/50">STTPS — The Group</div>
         <div className="mt-12 flex justify-center">
-          <ArrowLink href="#companies" tone="light" cursor="EXPLORE">
+          <ArrowLink href="#companies" tone="light">
             Explore Our Companies
           </ArrowLink>
         </div>

@@ -184,13 +184,6 @@
     color: var(--color-background);
   }
 
-  @media (min-width: 1024px) and (pointer: fine) {
-    body.has-custom-cursor,
-    body.has-custom-cursor * {
-      cursor: none;
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;

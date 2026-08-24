@@ -58,7 +58,6 @@ export function ContactForm() {
         <Magnetic>
           <button
             type="submit"
-            data-cursor="SEND →"
             className="label-xs group inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 text-background transition-opacity hover:opacity-85"
           >
             Send Message
