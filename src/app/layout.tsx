@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Inter } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { Suspense, type ReactNode } from "react";
 import "./globals.css";
 import { SiteNav } from "@/components/site/nav";
@@ -7,13 +7,13 @@ import { SiteFooter } from "@/components/site/footer";
 import { Toaster } from "@/components/ui/sonner";
 
 /**
- * One neutral grotesque for both display and body — the International
- * Typographic Style convention (a single Helvetica-like face throughout,
- * not a display/body pairing) is what makes this read as formal rather
- * than "startup." Inter does display duty at 600/700 and body duty at
- * 400/500.
+ * A matched type family, not a generic default — IBM Plex Sans for display
+ * and body, IBM Plex Mono (below) for labels and readouts. Same foundry,
+ * designed as one corporate system, which is what makes this read as a
+ * deliberate identity rather than the Inter-everywhere look of a generated
+ * template. Plex Sans does display duty at 600/700 and body duty at 400/500.
  */
-const inter = Inter({
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-sans-family",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${plexSans.variable} ${plexMono.variable}`}>
       <body>
         <SiteNav />
         {children}
