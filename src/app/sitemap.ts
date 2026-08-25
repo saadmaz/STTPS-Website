@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { COMPANIES } from "@/data/sttps";
+import { ABOUT_SECTIONS, COMPANIES } from "@/data/sttps";
 
 const BASE_URL = "https://sttps.co";
 
@@ -27,5 +27,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
-  return [...staticRoutes, ...companyRoutes];
+  const aboutRoutes = ABOUT_SECTIONS.map((s) => ({
+    url: `${BASE_URL}/about/${s.slug}`,
+    lastModified: new Date(),
+  }));
+
+  return [...staticRoutes, ...companyRoutes, ...aboutRoutes];
 }

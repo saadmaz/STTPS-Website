@@ -176,6 +176,83 @@ export const METRICS: { value: string | null; label: string }[] = [
   { value: null, label: "Services Delivered" },
 ];
 
+/**
+ * Titles beyond "Director" (Chairman, MD, etc.) and any ordering/hierarchy
+ * aren't confirmed per-person yet — every entry uses the same generic role
+ * rather than guessing seniority or a chair.
+ */
+export const BOARD_OF_DIRECTORS = [
+  { name: "Ismail Hashim", role: "Director" },
+  { name: "Salman Zumri", role: "Director" },
+  { name: "Thalal Izzath", role: "Director" },
+  { name: "Ibrahim Ifham", role: "Director" },
+  { name: "Saad Mazhar", role: "Director" },
+  { name: "Mijwadh Ali", role: "Director" },
+];
+
+/**
+ * Drives the About header dropdown, the /about hub grid, and the sub-nav on
+ * every /about/* page — order here is the order shown everywhere. "dek" is
+ * a one-line, generically-true description of what the page covers; it must
+ * not assert unverified specifics (an award, a policy detail, a founding
+ * date) that haven't actually been supplied.
+ */
+export const ABOUT_SECTIONS = [
+  {
+    slug: "corporate-governance",
+    label: "Corporate Governance",
+    dek: "How the group is directed, structured and held accountable.",
+  },
+  {
+    slug: "board",
+    label: "Board of Directors",
+    dek: "The directors providing oversight across STTPS.",
+  },
+  {
+    slug: "management",
+    label: "Our Management",
+    dek: "The operators running each company day to day.",
+  },
+  {
+    slug: "heritage",
+    label: "Our Heritage",
+    dek: "Where the group came from and how it got here.",
+  },
+  {
+    slug: "policies",
+    label: "Company Policies",
+    dek: "The standards every company in the group works to.",
+  },
+  {
+    slug: "research-development",
+    label: "Research & Development",
+    dek: "How we test, refine and improve the way we build.",
+  },
+  {
+    slug: "what-we-do",
+    label: "What We Do",
+    dek: "Four companies. One operating standard.",
+  },
+  {
+    slug: "industries",
+    label: "Industries We Operate In",
+    dek: "The everyday-service markets we build for.",
+  },
+  {
+    slug: "awards",
+    label: "Awards & Accolades",
+    dek: "Recognition earned by the group and its companies.",
+  },
+  {
+    slug: "innovations",
+    label: "Innovations at STTPS",
+    dek: "How the group builds better ways of working.",
+  },
+] as const;
+
+/** Slugs above with a bespoke page.tsx rather than the generic /about/[slug] template. */
+export const ABOUT_CUSTOM_SLUGS = new Set(["board", "what-we-do", "industries"]);
+
 export const CAREER_TRACKS = [
   { title: "Team", copy: "Field crews and service professionals." },
   { title: "Operations", copy: "Planning, scheduling and quality control." },

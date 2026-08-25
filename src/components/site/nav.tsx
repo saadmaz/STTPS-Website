@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { NAV_LINKS } from "@/data/sttps";
 import { EASE } from "./primitives";
+import { AboutHeaderDropdown } from "./about-header-dropdown";
 import { cn } from "@/lib/utils";
 
 export function SiteNav() {
@@ -30,6 +31,7 @@ export function SiteNav() {
 
           <nav className="hidden items-center gap-9 lg:flex">
             {NAV_LINKS.filter((l) => l.to !== "/").map((l) => {
+              if (l.to === "/about") return <AboutHeaderDropdown key={l.to} />;
               const active = pathname.startsWith(l.to);
               return (
                 <Link

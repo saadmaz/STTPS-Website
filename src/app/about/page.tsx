@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { LAYERS, PRINCIPLES } from "@/data/sttps";
+import Link from "next/link";
+import { ABOUT_SECTIONS, LAYERS, PRINCIPLES } from "@/data/sttps";
 import { Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives";
 import { ModelTimeline } from "@/components/site/model-timeline";
 import { LayerStack } from "@/components/site/layer-stack";
@@ -118,6 +119,37 @@ export default function AboutPage() {
             <SplitLines lines={["Every Layer", "Of a Business."]} className="display-xl mt-8" />
           </div>
           <LayerStack layers={LAYERS} />
+        </div>
+      </section>
+
+      <section className="border-t border-steel/25 py-16 md:py-24">
+        <div className="shell">
+          <Label>Corporate profile</Label>
+          <SplitLines lines={["Governance,", "Group & Grounding."]} className="display-xl mt-8" />
+          <Reveal delay={0.15}>
+            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              The formal detail behind the brand — how STTPS is directed, who runs it and the
+              standards it works to.
+            </p>
+          </Reveal>
+          <div className="mt-10 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-5">
+            {ABOUT_SECTIONS.map((s, i) => (
+              <Link
+                key={s.slug}
+                href={`/about/${s.slug}`}
+                className="group bg-warm p-8 transition-colors duration-500 hover:bg-ink hover:text-warm"
+              >
+                <UnitTag index={i + 1} className="opacity-70 group-hover:opacity-100" />
+                <h3 className="display-lg mt-10 text-xl md:text-2xl">{s.label}</h3>
+                <p className="mt-3 text-sm text-muted-foreground group-hover:text-warm/60">
+                  {s.dek}
+                </p>
+                <p className="label-xs mt-6 text-muted-foreground/70 group-hover:text-warm/40">
+                  Explore →
+                </p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     </main>
