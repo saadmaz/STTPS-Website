@@ -43,8 +43,8 @@ export default function BlogsPage() {
           />
           <Reveal delay={0.15} trigger="mount">
             <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              We&apos;re building out this space for updates from STTPS and its companies.
-              Nothing published yet — check back soon.
+              We&apos;re building out this space for updates from STTPS and its companies. Nothing
+              published yet — check back soon.
             </p>
           </Reveal>
         </div>
