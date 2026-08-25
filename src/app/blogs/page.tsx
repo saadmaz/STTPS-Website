@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { CONTACT } from "@/data/sttps";
 import { ArrowLink, Label, Reveal, SplitLines } from "@/components/site/primitives";
 
-const TITLE = "Blogs — STTPS";
+const TITLE = "Blogs | STTPS";
 const DESCRIPTION =
-  "Notes and updates from STTPS and its operating companies — on building service businesses in Sri Lanka properly.";
+  "Notes and updates from STTPS and its operating companies about building service businesses in Sri Lanka properly.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: "/blogs" },
   openGraph: { title: TITLE, description: DESCRIPTION, url: "/blogs", type: "website" },
@@ -44,7 +44,7 @@ export default function BlogsPage() {
           <Reveal delay={0.15} trigger="mount">
             <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               We&apos;re building out this space for updates from STTPS and its companies. Nothing
-              published yet — check back soon.
+              has been published yet, so check back soon.
             </p>
           </Reveal>
         </div>

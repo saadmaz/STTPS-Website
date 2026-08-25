@@ -5,12 +5,12 @@ import { Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives
 import { ModelTimeline } from "@/components/site/model-timeline";
 import { LayerStack } from "@/components/site/layer-stack";
 
-const TITLE = "About STTPS — Building Service Companies in Sri Lanka";
+const TITLE = "About STTPS: Building Service Companies in Sri Lanka";
 const DESCRIPTION =
-  "STTPS builds brands, businesses and operating systems for everyday services in Sri Lanka — from identity and teams to technology and customer experience.";
+  "STTPS builds brands, businesses and operating systems for everyday services in Sri Lanka, from identity and teams to technology and customer experience.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: "/about" },
   openGraph: { title: TITLE, description: DESCRIPTION, url: "/about", type: "website" },
@@ -45,7 +45,7 @@ export default function AboutPage() {
           <Reveal delay={0.15} trigger="mount">
             <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               STTPS is not a holding company that collects businesses. We start them, brand them,
-              staff them and operate them — with the same standard applied across every venture.
+              staff them and operate them, all to the same standard.
             </p>
           </Reveal>
         </div>
@@ -70,7 +70,7 @@ export default function AboutPage() {
           <Reveal className="flex flex-col gap-6 self-end text-lg leading-relaxed text-muted-foreground">
             <p>
               Most everyday services are unreliable, inconsistent and hard to trust. We think that
-              is a design problem — one solved with brand, systems and trained people.
+              is a design problem, solved with brand, systems and trained people.
             </p>
             <p>
               Each STTPS company targets a specific need and is built to be repeatable: defined
@@ -128,7 +128,7 @@ export default function AboutPage() {
           <SplitLines lines={["Governance,", "Group & Grounding."]} className="display-xl mt-8" />
           <Reveal delay={0.15}>
             <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              The formal detail behind the brand — how STTPS is directed, who runs it and the
+              The formal detail behind the brand: how STTPS is directed, who runs it and the
               standards it works to.
             </p>
           </Reveal>

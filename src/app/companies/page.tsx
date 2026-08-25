@@ -3,12 +3,12 @@ import Link from "next/link";
 import { COMPANIES, MODEL_STEPS, LAYERS } from "@/data/sttps";
 import { ArrowLink, Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives";
 
-const TITLE = "Companies — Tank Sudda, Team Sudda, Polish Station, STOPWASH";
+const TITLE = "Companies: Tank Sudda, Team Sudda, Polish Station, STOPWASH";
 const DESCRIPTION =
-  "The operating companies of STTPS: water tank care, service operations, automotive detailing and everyday car wash — each built as its own brand, plus how the group builds new ones.";
+  "The operating companies of STTPS: water tank care, service operations, automotive detailing and everyday car wash, each built as its own brand, plus how the group builds new ones.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: "/companies" },
   openGraph: { title: TITLE, description: DESCRIPTION, url: "/companies", type: "website" },
@@ -47,8 +47,8 @@ export default function CompaniesPage() {
           />
           <Reveal delay={0.15} trigger="mount">
             <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              Every company in the group serves a different world — water, property, vehicles,
-              people — and shares the same operating discipline.
+              Each company in the group serves a different world: water, property, vehicles or
+              people, but all share the same operating discipline.
             </p>
           </Reveal>
         </div>

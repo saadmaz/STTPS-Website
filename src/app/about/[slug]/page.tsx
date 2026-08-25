@@ -24,9 +24,9 @@ export async function generateMetadata({
   const section = getSection(slug);
   if (!section) return {};
 
-  const title = `${section.label} — STTPS`;
+  const title = `${section.label} | STTPS`;
   return {
-    title,
+    title: { absolute: title },
     description: section.dek,
     alternates: { canonical: `/about/${section.slug}` },
     openGraph: {
@@ -53,7 +53,7 @@ export default async function AboutSectionPage({ params }: { params: Promise<{ s
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    name: `${section.label} — STTPS`,
+    name: `${section.label} | STTPS`,
     description: section.dek,
     url: `/about/${section.slug}`,
     isPartOf: { "@type": "Organization", name: "STTPS" },
@@ -96,8 +96,8 @@ export default async function AboutSectionPage({ params }: { params: Promise<{ s
           <Label>Status</Label>
           <h2 className="display-xl mt-6">In Preparation.</h2>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-            We&apos;re preparing verified detail for this page. It goes up once it&apos;s ready —
-            nothing placeholder ships in the meantime.
+            We&apos;re preparing verified detail for this page. It goes up once it&apos;s ready, and
+            nothing placeholder ships before then.
           </p>
           <div className="mt-10">
             <ArrowLink href={`mailto:${CONTACT.email}`}>Ask Us Directly</ArrowLink>
@@ -108,7 +108,7 @@ export default async function AboutSectionPage({ params }: { params: Promise<{ s
       <section className="py-16 md:py-20">
         <div className="shell">
           <Label>
-            {no} — {section.label}
+            {no} · {section.label}
           </Label>
           <p className="mt-4 max-w-md text-sm text-muted-foreground">
             Part of the STTPS corporate profile.{" "}

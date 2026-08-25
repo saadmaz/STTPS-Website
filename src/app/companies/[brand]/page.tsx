@@ -21,7 +21,7 @@ export async function generateMetadata({
   const company = await getCompany(brand);
   if (!company) return {};
 
-  const title = `${company.name} — ${company.category}`;
+  const title = `${company.name}: ${company.category}`;
   const description = `${company.positioning} ${company.description}`;
   return {
     title,
@@ -91,7 +91,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ brand:
             <p className="mt-4 max-w-md text-lg text-muted-foreground">
               {contact
                 ? `Reach ${company.name} directly via ${contact.label}.`
-                : `${company.name} doesn't have a dedicated contact channel published yet — reach the group and we'll route it.`}
+                : `${company.name} doesn't have a dedicated contact channel published yet. Reach the group and we'll route it.`}
             </p>
             <div className="mt-6">
               <ArrowLink href={contact ? contact.value : "/contact"}>

@@ -88,7 +88,7 @@ export function CompanySection({
               />
               <motion.img
                 src={company.image}
-                alt={`${company.name} — ${company.category}`}
+                alt={`${company.name}: ${company.category}`}
                 loading="lazy"
                 width={1400}
                 height={1000}

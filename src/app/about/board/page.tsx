@@ -3,11 +3,11 @@ import { BOARD_OF_DIRECTORS } from "@/data/sttps";
 import { Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives";
 import { AboutSubNav } from "@/components/site/about-sub-nav";
 
-const TITLE = "Board of Directors — STTPS";
+const TITLE = "Board of Directors | STTPS";
 const DESCRIPTION = "The directors providing oversight across STTPS and its operating companies.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: "/about/board" },
   openGraph: { title: TITLE, description: DESCRIPTION, url: "/about/board", type: "website" },

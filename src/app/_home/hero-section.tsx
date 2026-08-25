@@ -8,7 +8,7 @@ export function HeroSection() {
   return (
     <section className="flex flex-col bg-warm text-ink">
       <div className="shell py-24 md:py-32">
-        <Label>STTPS — The Group</Label>
+        <Label>STTPS · The Group</Label>
 
         <SplitLines
           as="h1"
@@ -25,8 +25,8 @@ export function HeroSection() {
             transition={{ delay: 0.75, duration: 0.9, ease: EASE }}
             className="max-w-xl text-lg leading-relaxed text-muted-foreground"
           >
-            We start, build, staff and operate service companies — with the same standard applied
-            across every venture.
+            We start, build, staff and operate service companies, holding every one to the same
+            standard.
           </motion.p>
 
           <motion.div

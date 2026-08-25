@@ -3,12 +3,12 @@ import { COMPANIES } from "@/data/sttps";
 import { ArrowLink, Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives";
 import { AboutSubNav } from "@/components/site/about-sub-nav";
 
-const TITLE = "Industries We Operate In — STTPS";
+const TITLE = "Industries We Operate In | STTPS";
 const DESCRIPTION =
-  "The everyday-service industries STTPS builds for — water and property care, facilities operations, automotive detailing and vehicle care.";
+  "The everyday-service industries STTPS builds for: water and property care, facilities operations, automotive detailing and vehicle care.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: "/about/industries" },
   openGraph: {

@@ -3,12 +3,12 @@ import { CONTACT } from "@/data/sttps";
 import { Label, Reveal, SplitLines } from "@/components/site/primitives";
 import { ContactForm } from "@/components/site/contact-form";
 
-const TITLE = "Contact STTPS — Talk to Our Team in Colombo, Sri Lanka";
+const TITLE = "Contact STTPS: Talk to Our Team in Colombo, Sri Lanka";
 const DESCRIPTION =
-  "Get in touch with STTPS in Colombo, Sri Lanka — for services, partnerships, ventures or careers across our operating companies.";
+  "Get in touch with STTPS in Colombo, Sri Lanka for services, partnerships, ventures or careers across our operating companies.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: "/contact" },
   openGraph: { title: TITLE, description: DESCRIPTION, url: "/contact", type: "website" },

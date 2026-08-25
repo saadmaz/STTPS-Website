@@ -4,12 +4,12 @@ import { COMPANIES } from "@/data/sttps";
 import { ArrowLink, Label, Reveal, SplitLines } from "@/components/site/primitives";
 import { AboutSubNav } from "@/components/site/about-sub-nav";
 
-const TITLE = "What We Do — STTPS";
+const TITLE = "What We Do | STTPS";
 const DESCRIPTION =
-  "STTPS builds, brands and operates service companies — water tank care, service operations, automotive detailing and everyday car wash.";
+  "STTPS builds, brands and operates service companies: water tank care, service operations, automotive detailing and everyday car wash.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: "/about/what-we-do" },
   openGraph: {

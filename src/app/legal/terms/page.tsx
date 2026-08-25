@@ -30,7 +30,7 @@ export default function TermsPage() {
         <div className="shell max-w-2xl text-sm leading-relaxed text-muted-foreground">
           <p className="border border-steel/30 bg-card p-4 text-foreground">
             This page is a structural placeholder. The terms of use have not yet been drafted or
-            reviewed by counsel — do not treat this page as STTPS&apos;s actual terms until that
+            reviewed by counsel. Do not treat this page as STTPS&apos;s actual terms until that
             review is complete.
           </p>
           <p className="mt-8">

@@ -58,7 +58,7 @@ export const COMPANIES: Company[] = [
     category: "Water Tank Cleaning & Maintenance",
     positioning: "Cleaner water starts with a cleaner tank.",
     description:
-      "Specialist water tank cleaning and maintenance for homes, buildings and commercial properties — delivered on schedule, documented and repeatable.",
+      "Specialist water tank cleaning and maintenance for homes, buildings and commercial properties. Every job is scheduled, documented and repeatable.",
     services: [
       "Water tank cleaning",
       "Scheduled maintenance",

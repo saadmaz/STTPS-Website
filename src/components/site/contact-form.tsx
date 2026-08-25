@@ -22,7 +22,7 @@ export function ContactForm() {
         // instead of pretending the message was sent somewhere. Phase 4
         // replaces this with a real Route Handler + email provider.
         const subject = `Message from ${values.name}${values.company ? ` (${values.company})` : ""}`;
-        const body = `${values.message}\n\n— ${values.name}\n${values.email}`;
+        const body = `${values.message}\n\n${values.name}\n${values.email}`;
         const mailto = `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailto;
         toast.success("Opening your email app…", {

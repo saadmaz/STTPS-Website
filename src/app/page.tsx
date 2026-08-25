@@ -13,12 +13,12 @@ import {
 } from "@/components/site/primitives";
 import { HomeMotionSection } from "./_home/motion-section";
 
-const TITLE = "STTPS — The Group Building Service Companies in Sri Lanka";
+const TITLE = "STTPS: The Group Building Service Companies in Sri Lanka";
 const DESCRIPTION =
-  "STTPS is a Sri Lankan group of operating companies — Tank Sudda, Team Sudda, Polish Station and STOPWASH — building brands, businesses and systems for everyday services.";
+  "STTPS is a Sri Lankan group building brands, businesses and systems for everyday services across four operating companies: Tank Sudda, Team Sudda, Polish Station and STOPWASH.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: "/" },
   openGraph: { title: TITLE, description: DESCRIPTION, url: "/", type: "website" },
@@ -191,7 +191,7 @@ function FinalCta() {
     <section className="relative overflow-hidden bg-ink py-20 text-warm md:py-28">
       <div className="shell relative text-center">
         <SplitLines lines={["Building", "Better."]} className="display-hero text-warm" />
-        <div className="label-xs mt-8 text-warm/50">STTPS — The Group</div>
+        <div className="label-xs mt-8 text-warm/50">STTPS · The Group</div>
         <div className="mt-12 flex justify-center">
           <ArrowLink href="/companies" tone="light">
             Explore Our Companies

@@ -94,7 +94,7 @@ export function SiteNav() {
                 </motion.div>
               ))}
             </nav>
-            <div className="label-xs text-muted-foreground">STTPS — The Group · Sri Lanka</div>
+            <div className="label-xs text-muted-foreground">STTPS · The Group · Sri Lanka</div>
           </motion.div>
         )}
       </AnimatePresence>

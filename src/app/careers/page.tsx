@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { CAREER_TRACKS, CONTACT } from "@/data/sttps";
 import { ArrowLink, Label, Reveal, SplitLines } from "@/components/site/primitives";
 
-const TITLE = "Careers at STTPS — Build Service Companies With Us";
+const TITLE = "Careers at STTPS: Build Service Companies With Us";
 const DESCRIPTION =
   "Join STTPS in Sri Lanka. Roles across field teams, operations, creative, technology and leadership as we build and scale service companies.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: "/careers" },
   openGraph: { title: TITLE, description: DESCRIPTION, url: "/careers", type: "website" },
