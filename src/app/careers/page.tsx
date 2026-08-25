@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { CAREER_TRACKS, CONTACT } from "@/data/sttps";
-import { ArrowLink, Label, Reveal, SplitLines } from "@/components/site/primitives";
+import { CAREER_TRACKS, CONTACT, OPEN_POSITIONS, WHY_STTPS } from "@/data/sttps";
+import { ArrowLink, Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives";
 
 const TITLE = "Careers at STTPS: Build Service Companies With Us";
 const DESCRIPTION =
@@ -22,9 +22,6 @@ const JSON_LD = {
   isPartOf: { "@type": "Organization", name: "STTPS" },
 };
 
-// No live job listings feed yet — that lands once Sanity is wired up
-// (careers system, phase 3). Until then this shows the department tracks
-// and a direct email path rather than an empty "0 open roles" page.
 export default function CareersPage() {
   return (
     <main className="bg-warm">
@@ -53,7 +50,64 @@ export default function CareersPage() {
 
       <section className="py-16 md:py-24">
         <div className="shell">
+          <Label>Why STTPS</Label>
+          <SplitLines lines={["Why People", "Build Here."]} className="display-xl mt-8" />
+          <div className="mt-12 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2">
+            {WHY_STTPS.map((w, i) => (
+              <Reveal key={w.title} delay={i * 0.08} className="bg-warm p-8 md:p-10">
+                <UnitTag index={i + 1} />
+                <h2 className="display-lg mt-8 text-2xl md:text-3xl">{w.title}</h2>
+                <p className="mt-4 leading-relaxed text-muted-foreground">{w.copy}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-steel/25 py-16 md:py-24">
+        <div className="shell">
+          <Label>Open positions</Label>
+          <SplitLines lines={["Current", "Openings."]} className="display-xl mt-8" />
+
+          {OPEN_POSITIONS.length > 0 ? (
+            <div className="mt-12 border-t border-steel/25">
+              {OPEN_POSITIONS.map((p, i) => (
+                <Reveal key={p.id} delay={i * 0.06} className="group border-b border-steel/25">
+                  <div className="flex flex-col gap-4 py-8 transition-colors duration-500 group-hover:bg-foreground/[0.03] md:flex-row md:items-center md:justify-between md:px-4">
+                    <div>
+                      <h3 className="display-lg text-2xl md:text-3xl">{p.title}</h3>
+                      <p className="label-xs mt-2 text-muted-foreground">
+                        {p.track} · {p.location} · {p.type}
+                      </p>
+                    </div>
+                    <ArrowLink
+                      href={`mailto:${CONTACT.email}?subject=${encodeURIComponent(`Application: ${p.title}`)}`}
+                    >
+                      Apply
+                    </ArrowLink>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          ) : (
+            <Reveal delay={0.15} className="mt-12 border border-steel/25 bg-charcoal p-10 md:p-14">
+              <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
+                Nothing open right now that we can point to with a straight face. Send us who you
+                are and what you&apos;re good at anyway. We hire people before we hire titles, and
+                the right person often creates their own opening.
+              </p>
+              <div className="mt-8">
+                <ArrowLink href={`mailto:${CONTACT.email}`}>{CONTACT.email}</ArrowLink>
+              </div>
+            </Reveal>
+          )}
+        </div>
+      </section>
+
+      <section className="border-t border-steel/25 py-16 md:py-24">
+        <div className="shell">
           <Label>Where you fit</Label>
+          <SplitLines lines={["Every Discipline", "We Need."]} className="display-xl mt-8" />
           <div className="mt-12 border-t border-steel/25">
             {CAREER_TRACKS.map((t, i) => (
               <Reveal key={t.title} delay={i * 0.06} className="group border-b border-steel/25">
@@ -63,18 +117,6 @@ export default function CareersPage() {
                 </div>
               </Reveal>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-charcoal py-16 md:py-24">
-        <div className="shell">
-          <SplitLines lines={["No Open Role", "That Fits?"]} className="display-xl" />
-          <p className="mt-8 max-w-xl text-lg text-muted-foreground">
-            Send us who you are and what you&apos;re good at. We hire people before we hire titles.
-          </p>
-          <div className="mt-10">
-            <ArrowLink href={`mailto:${CONTACT.email}`}>{CONTACT.email}</ArrowLink>
           </div>
         </div>
       </section>

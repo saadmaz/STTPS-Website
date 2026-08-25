@@ -261,6 +261,42 @@ export const CAREER_TRACKS = [
   { title: "Leadership", copy: "Company builders and operators." },
 ];
 
+/** What actually sets working at STTPS apart, written for what the group is today (four companies, still building) rather than borrowed language from a larger, more established employer. */
+export const WHY_STTPS = [
+  {
+    title: "Real Ownership, Early",
+    copy: "At a bigger company you wait years for real responsibility. At STTPS you get it early, because every company in the group is still being built. Join a team and you're shaping how it runs, not following a playbook someone else wrote a decade ago.",
+  },
+  {
+    title: "People Who Have Your Back",
+    copy: "We hire people, not headcount. Everyone on a team here is expected to show up for the others on it, and that runs from the field to leadership. If something isn't working for you, we'd rather hear about it directly than have it fester.",
+  },
+  {
+    title: "Move Across the Group",
+    copy: "STTPS is four companies today, and more are coming. Good people aren't locked into a single role or brand. If you're good at what you do, there's room to take that skill into a different company, a different discipline, or a leadership role as the group grows.",
+  },
+  {
+    title: "Standards Without the Bureaucracy",
+    copy: "We believe in defined processes and documented standards, not layers of approval for their own sake. Every company we build works the same way: clear expectations, real accountability and as little red tape as we can manage.",
+  },
+];
+
+export type OpenPosition = {
+  id: string;
+  title: string;
+  track: string;
+  location: string;
+  type: "Full-time" | "Part-time" | "Contract";
+};
+
+/**
+ * No confirmed openings right now. A fabricated listing (a fake title, a
+ * role nobody is actually hiring for) is worse than an honest empty state —
+ * add real positions here as they're confirmed, the page already renders
+ * them once this is non-empty.
+ */
+export const OPEN_POSITIONS: OpenPosition[] = [];
+
 /**
  * Phone number and social links are intentionally omitted until real values
  * exist. Do not add placeholder tel: numbers or "#" social hrefs — a fake
