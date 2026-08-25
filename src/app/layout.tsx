@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Azeret_Mono, IBM_Plex_Sans } from "next/font/google";
 import { Suspense, type ReactNode } from "react";
 import "./globals.css";
 import { SiteNav } from "@/components/site/nav";
@@ -7,11 +7,14 @@ import { SiteFooter } from "@/components/site/footer";
 import { Toaster } from "@/components/ui/sonner";
 
 /**
- * A matched type family, not a generic default — IBM Plex Sans for display
- * and body, IBM Plex Mono (below) for labels and readouts. Same foundry,
- * designed as one corporate system, which is what makes this read as a
- * deliberate identity rather than the Inter-everywhere look of a generated
- * template. Plex Sans does display duty at 600/700 and body duty at 400/500.
+ * IBM Plex Sans for display and body — a genuine grotesque with character,
+ * not the Inter-everywhere look of a generated template. Plex does display
+ * duty at 600/700 and body duty at 400/500.
+ *
+ * Azeret Mono, below, does the panel labeling (kickers, readouts, unit
+ * tags) — its geometric, technical letterforms suit the instrument-panel
+ * concept without reaching for IBM Plex Mono / JetBrains Mono, which have
+ * become the interchangeable default of every AI-generated dev-tool site.
  */
 const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -20,7 +23,7 @@ const plexSans = IBM_Plex_Sans({
   display: "swap",
 });
 
-const plexMono = IBM_Plex_Mono({
+const azeretMono = Azeret_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-mono-family",
@@ -49,7 +52,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${plexSans.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${plexSans.variable} ${azeretMono.variable}`}>
       <body>
         <SiteNav />
         {children}
