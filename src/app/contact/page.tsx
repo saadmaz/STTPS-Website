@@ -25,6 +25,7 @@ const JSON_LD = {
     "@type": "Organization",
     name: "STTPS",
     email: CONTACT.email,
+    telephone: CONTACT.whatsapp,
     address: { "@type": "PostalAddress", addressLocality: "Colombo", addressCountry: "LK" },
   },
 };
@@ -53,6 +54,7 @@ export default function ContactPage() {
         <div className="shell grid gap-16 lg:grid-cols-[1fr_1.4fr]">
           <Reveal className="flex flex-col gap-8 text-sm">
             <Detail label="Email" value={CONTACT.email} href={`mailto:${CONTACT.email}`} />
+            <Detail label="WhatsApp" value={CONTACT.whatsapp} href={CONTACT.whatsappHref} />
             <Detail label="Location" value={CONTACT.location} />
           </Reveal>
           <ContactForm />

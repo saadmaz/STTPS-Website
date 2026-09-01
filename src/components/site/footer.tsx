@@ -18,6 +18,9 @@ export function SiteFooter() {
             <Link href="/companies" className="hover:opacity-100">
               Companies
             </Link>
+            <Link href="/sustainability" className="hover:opacity-100">
+              Sustainability
+            </Link>
             <Link href="/blogs" className="hover:opacity-100">
               Blogs
             </Link>

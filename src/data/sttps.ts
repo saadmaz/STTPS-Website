@@ -46,7 +46,7 @@ export type Company = {
   brand: string;
   brandInk: string;
   surface: string;
-  /** Not yet confirmed for any brand — omit rather than guess. */
+  /** Still optional — omit rather than guess for a brand this hasn't been confirmed for. */
   serviceArea?: string;
   contactMethod?: ContactMethod;
   /**
@@ -54,6 +54,16 @@ export type Company = {
    * or composite one. Renders nothing on the company page until populated.
    */
   testimonials?: { quote: string; author: string; context?: string }[];
+};
+
+// Shared WhatsApp/phone line, verified via Tank Sudda's public LinkedIn
+// listing. Tank Sudda and Team Sudda are confirmed reachable on it; Polish
+// Station and STOPWASH route through it only until each has its own
+// dedicated number — swap the value the day one exists.
+const GROUP_WHATSAPP: ContactMethod = {
+  type: "whatsapp",
+  value: "https://wa.me/94741004296",
+  label: "WhatsApp +94 74 100 4296",
 };
 
 export const COMPANIES: Company[] = [
@@ -78,6 +88,8 @@ export const COMPANIES: Company[] = [
     brand: "oklch(0.72 0.13 225)",
     brandInk: "oklch(0.14 0.03 240)",
     surface: "oklch(0.17 0.035 240)",
+    serviceArea: "Colombo and Greater Colombo, with select surrounding areas on request.",
+    contactMethod: GROUP_WHATSAPP,
   },
   {
     id: "team-sudda",
@@ -100,6 +112,9 @@ export const COMPANIES: Company[] = [
     brand: "oklch(0.78 0.15 55)",
     brandInk: "oklch(0.15 0.02 60)",
     surface: "oklch(0.18 0.02 60)",
+    serviceArea:
+      "Colombo and Greater Colombo, plus select locations across Sri Lanka for larger commercial projects.",
+    contactMethod: GROUP_WHATSAPP,
   },
   {
     id: "polish-station",
@@ -122,6 +137,8 @@ export const COMPANIES: Company[] = [
     brand: "oklch(0.86 0.02 250)",
     brandInk: "oklch(0.12 0.004 250)",
     surface: "oklch(0.16 0.006 250)",
+    serviceArea: "Colombo and Greater Colombo.",
+    contactMethod: GROUP_WHATSAPP,
   },
   {
     id: "stopwash",
@@ -144,6 +161,8 @@ export const COMPANIES: Company[] = [
     brand: "oklch(0.88 0.21 130)",
     brandInk: "oklch(0.18 0.08 255)",
     surface: "oklch(0.19 0.07 255)",
+    serviceArea: "Colombo and Greater Colombo.",
+    contactMethod: GROUP_WHATSAPP,
   },
 ];
 
@@ -195,12 +214,12 @@ export type BoardMember = {
  * copy exists; the board page already renders it when present.
  */
 export const BOARD_OF_DIRECTORS: BoardMember[] = [
-  { name: "Ismail Hashim", role: "Director" },
-  { name: "Salman Zumri", role: "Director" },
+  { name: "Ismail Hashim Rifhan", role: "Director" },
   { name: "Thalal Izzath", role: "Director" },
-  { name: "Ibrahim Ifham", role: "Director" },
+  { name: "Salman Zumry", role: "Director" },
   { name: "Saad Mazhar", role: "Director" },
   { name: "Mijwadh Ali", role: "Director" },
+  { name: "Ibrahim Ifham", role: "Director" },
 ];
 
 export type Milestone = {
@@ -223,9 +242,17 @@ export const MILESTONES: Milestone[] = [];
  * every /about/* page — order here is the order shown everywhere. "dek" is
  * a one-line, generically-true description of what the page covers; it must
  * not assert unverified specifics (an award, a policy detail, a founding
- * date) that haven't actually been supplied.
+ * date) that haven't actually been supplied. `body` is optional longer-form
+ * copy for the generic /about/[slug] template — when present it replaces
+ * the "in preparation" placeholder for that section; omit it entirely
+ * rather than filling it with unverified detail.
  */
-export const ABOUT_SECTIONS = [
+export const ABOUT_SECTIONS: {
+  slug: string;
+  label: string;
+  dek: string;
+  body?: string[];
+}[] = [
   {
     slug: "corporate-governance",
     label: "Corporate Governance",
@@ -245,6 +272,11 @@ export const ABOUT_SECTIONS = [
     slug: "heritage",
     label: "Our Heritage",
     dek: "Where the group came from and how it got here.",
+    body: [
+      "STTPS began with a simple observation: some of the most important services in everyday life were also the most overlooked. From the water stored in the tanks above our homes, to the spaces we live and work in, to the vehicles we depend on, quality cleaning and maintenance was fragmented, inconsistent and hard to book with any confidence.",
+      "That observation became Tank Sudda in 2023, launching properly in May 2024 with a focused water tank and sump cleaning service for homes, apartments and hospitality properties around Colombo. What started as one company solving one problem grew into a broader vision: a group of specialised service brands, each built for a specific everyday need, all held to the same operating standard.",
+      "Today STTPS brings together companies across water hygiene, facility operations and automotive care. The belief underneath all of them hasn't changed since 2023 — when the essentials are cared for properly, people can live and work better.",
+    ],
   },
   {
     slug: "policies",
@@ -276,7 +308,7 @@ export const ABOUT_SECTIONS = [
     label: "Innovations at STTPS",
     dek: "How the group builds better ways of working.",
   },
-] as const;
+];
 
 /** Slugs above with a bespoke page.tsx rather than the generic /about/[slug] template. */
 export const ABOUT_CUSTOM_SLUGS = new Set(["board", "what-we-do", "industries"]);
@@ -326,19 +358,41 @@ export type OpenPosition = {
 export const OPEN_POSITIONS: OpenPosition[] = [];
 
 /**
- * Phone number and social links are intentionally omitted until real values
- * exist. Do not add placeholder tel: numbers or "#" social hrefs — a fake
- * but clickable contact detail is worse than none.
+ * Social links are intentionally omitted until real accounts exist. Do not
+ * add "#" social hrefs — a fake but clickable link is worse than none.
  */
 export const CONTACT = {
   email: "hello@sttps.co",
   location: "Colombo, Sri Lanka",
+  /** Shared group line — verified via Tank Sudda's public LinkedIn listing. */
+  whatsapp: "+94 74 100 4296",
+  whatsappHref: "https://wa.me/94741004296",
+};
+
+export type CsrCommitment = {
+  name: string;
+  statement: string;
+  pillars: string[];
+};
+
+/**
+ * The one, real community commitment the group has actually named — not a
+ * scattered list of CSR ideas. Sustainability only appears in the main nav
+ * because this exists; if it's ever retired, pull the nav link too rather
+ * than leaving an empty promise live.
+ */
+export const CSR: CsrCommitment = {
+  name: "Empower Foundation",
+  statement:
+    "STTPS is committed to supporting communities through the Empower Foundation — creating meaningful opportunities and supporting initiatives that improve lives through education, skills development, community wellbeing and empowerment. As STTPS grows, our impact is meant to extend beyond business: time, resources and opportunity invested back into the communities around us.",
+  pillars: ["Education", "Skills Development", "Community Wellbeing", "Empowerment"],
 };
 
 export const NAV_LINKS = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
   { label: "Companies", to: "/companies" },
+  { label: "Sustainability", to: "/sustainability" },
   { label: "Blogs", to: "/blogs" },
   { label: "Careers", to: "/careers" },
   { label: "Contact", to: "/contact" },

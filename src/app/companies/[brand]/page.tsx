@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { COMPANIES } from "@/data/sttps";
+import { COMPANIES, CONTACT } from "@/data/sttps";
 import { CompanySection } from "@/components/site/company-section";
 import { ArrowLink, Label, SplitLines } from "@/components/site/primitives";
 
@@ -36,6 +36,8 @@ export default async function CompanyPage({ params }: { params: Promise<{ brand:
   const company = await getCompany(brand);
   if (!company) notFound();
 
+  const contact = company.contactMethod;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -43,9 +45,10 @@ export default async function CompanyPage({ params }: { params: Promise<{ brand:
     description: company.description,
     parentOrganization: { "@type": "Organization", name: "STTPS" },
     ...(company.serviceArea ? { areaServed: company.serviceArea } : {}),
+    ...(contact?.type === "whatsapp" || contact?.type === "phone"
+      ? { telephone: CONTACT.whatsapp }
+      : {}),
   };
-
-  const contact = company.contactMethod;
 
   return (
     <main>

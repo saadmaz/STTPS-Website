@@ -85,25 +85,37 @@ export default async function AboutSectionPage({ params }: { params: Promise<{ s
 
       <AboutSubNav current={slug} />
 
-      <section className="relative overflow-hidden border-b border-steel/25 py-20 md:py-28">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-[4vw] -top-[6vw] select-none font-display text-[38vw] font-bold leading-none tracking-[-0.06em] text-foreground/[0.035]"
-        >
-          {no}
-        </div>
-        <div className="shell relative max-w-xl">
-          <Label>Status</Label>
-          <h2 className="display-xl mt-6">In Preparation.</h2>
-          <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-            We&apos;re preparing verified detail for this page. It goes up once it&apos;s ready, and
-            nothing placeholder ships before then.
-          </p>
-          <div className="mt-10">
-            <ArrowLink href={`mailto:${CONTACT.email}`}>Ask Us Directly</ArrowLink>
+      {section.body ? (
+        <section className="border-b border-steel/25 py-16 md:py-24">
+          <div className="shell max-w-2xl">
+            <Reveal className="flex flex-col gap-6 text-lg leading-relaxed text-muted-foreground">
+              {section.body.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </Reveal>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section className="relative overflow-hidden border-b border-steel/25 py-20 md:py-28">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-[4vw] -top-[6vw] select-none font-display text-[38vw] font-bold leading-none tracking-[-0.06em] text-foreground/[0.035]"
+          >
+            {no}
+          </div>
+          <div className="shell relative max-w-xl">
+            <Label>Status</Label>
+            <h2 className="display-xl mt-6">In Preparation.</h2>
+            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+              We&apos;re preparing verified detail for this page. It goes up once it&apos;s ready,
+              and nothing placeholder ships before then.
+            </p>
+            <div className="mt-10">
+              <ArrowLink href={`mailto:${CONTACT.email}`}>Ask Us Directly</ArrowLink>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="py-16 md:py-20">
         <div className="shell">
