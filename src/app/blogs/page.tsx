@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { CONTACT } from "@/data/sttps";
-import { ArrowLink, Label, Reveal, SplitLines } from "@/components/site/primitives";
+import { CONTACT, MILESTONES } from "@/data/sttps";
+import { ArrowLink, Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives";
 
 const TITLE = "Blogs | STTPS";
 const DESCRIPTION =
@@ -22,9 +22,14 @@ const JSON_LD = {
   isPartOf: { "@type": "Organization", name: "STTPS" },
 };
 
-// No published posts yet — that lands once Sanity is wired up (phase 3).
-// Until then this states that plainly rather than faking an empty feed.
+// Full long-form posts land once Sanity is wired up (phase 3). Until then,
+// real dated milestones (MILESTONES in @/data/sttps) render here directly —
+// no CMS required to say something happened. Zero milestones falls back to
+// an honest empty state rather than faking an empty feed.
 export default function BlogsPage() {
+  const hasMilestones = MILESTONES.length > 0;
+  const sorted = [...MILESTONES].sort((a, b) => (a.date < b.date ? 1 : -1));
+
   return (
     <main className="bg-warm">
       <script
@@ -43,12 +48,33 @@ export default function BlogsPage() {
           />
           <Reveal delay={0.15} trigger="mount">
             <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              We&apos;re building out this space for updates from STTPS and its companies. Nothing
-              has been published yet, so check back soon.
+              {hasMilestones
+                ? "Updates and milestones from STTPS and its operating companies. Longer-form posts are on the way."
+                : "We're building out this space for updates from STTPS and its companies. Nothing has been published yet, so check back soon."}
             </p>
           </Reveal>
         </div>
       </section>
+
+      {hasMilestones && (
+        <section className="py-16 md:py-24">
+          <div className="shell flex flex-col gap-px border-t border-steel/25">
+            {sorted.map((m, i) => (
+              <Reveal
+                key={m.date + m.title}
+                delay={i * 0.06}
+                className="grid gap-3 border-b border-steel/25 py-8 sm:grid-cols-[8rem_1fr] sm:gap-8"
+              >
+                <UnitTag detail={m.date} />
+                <div>
+                  <h2 className="display-md">{m.title}</h2>
+                  <p className="mt-3 max-w-2xl text-muted-foreground">{m.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="bg-charcoal py-16 md:py-24">
         <div className="shell">

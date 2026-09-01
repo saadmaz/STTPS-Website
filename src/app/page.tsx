@@ -70,7 +70,8 @@ function Intro() {
           <Reveal>
             <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
               STTPS brings together companies focused on improving the way people care for their
-              homes, vehicles, properties and everyday environments.
+              homes, vehicles, properties and everyday environments. Other groups treat services as
+              one division among many. We treat it as the entire company.
             </p>
           </Reveal>
           <Reveal delay={0.1} className="flex items-end gap-6">

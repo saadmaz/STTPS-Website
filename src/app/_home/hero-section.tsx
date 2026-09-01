@@ -25,7 +25,8 @@ export function HeroSection() {
             transition={{ delay: 0.75, duration: 0.9, ease: EASE }}
             className="max-w-xl text-lg leading-relaxed text-muted-foreground"
           >
-            We start, build, staff and operate service companies, holding every one to the same
+            We don&apos;t run services as one division of something bigger. We build, staff and
+            operate service companies as the whole business — and hold every one of them to the same
             standard.
           </motion.p>
 

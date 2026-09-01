@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { CONTACT } from "@/data/sttps";
-import { Label, Reveal, SplitLines } from "@/components/site/primitives";
+import { CONTACT, COMPANIES } from "@/data/sttps";
+import { ArrowLink, Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives";
 import { ContactForm } from "@/components/site/contact-form";
 
 const TITLE = "Contact STTPS: Talk to Our Team in Colombo, Sri Lanka";
@@ -56,6 +56,30 @@ export default function ContactPage() {
             <Detail label="Location" value={CONTACT.location} />
           </Reveal>
           <ContactForm />
+        </div>
+      </section>
+
+      <section className="border-t border-steel/25 bg-charcoal py-16 md:py-24">
+        <div className="shell">
+          <Label>Booking a service directly</Label>
+          <SplitLines lines={["Go Straight", "To the Company."]} className="display-xl mt-8" />
+          <p className="mt-8 max-w-xl text-lg text-muted-foreground">
+            Need a job done rather than a general enquiry? Reach the operating company directly.
+          </p>
+          <div className="mt-10 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-4">
+            {COMPANIES.map((c, i) => (
+              <div key={c.id} className="bg-warm p-8 md:p-10">
+                <UnitTag index={i + 1} />
+                <h2 className="display-lg mt-8 text-xl md:text-2xl">{c.name}</h2>
+                <p className="mt-3 text-sm text-muted-foreground">{c.category}</p>
+                <div className="mt-6">
+                  <ArrowLink href={c.contactMethod ? c.contactMethod.value : `/companies/${c.id}`}>
+                    {c.contactMethod ? c.contactMethod.label : "View Company"}
+                  </ArrowLink>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </main>

@@ -49,6 +49,11 @@ export type Company = {
   /** Not yet confirmed for any brand — omit rather than guess. */
   serviceArea?: string;
   contactMethod?: ContactMethod;
+  /**
+   * Real, named customer quotes only — omit rather than write a placeholder
+   * or composite one. Renders nothing on the company page until populated.
+   */
+  testimonials?: { quote: string; author: string; context?: string }[];
 };
 
 export const COMPANIES: Company[] = [
@@ -176,12 +181,20 @@ export const METRICS: { value: string | null; label: string }[] = [
   { value: null, label: "Services Delivered" },
 ];
 
+export type BoardMember = {
+  name: string;
+  role: string;
+  /** One-line bio — real and specific, or omitted. Not filled with generic bio boilerplate. */
+  bio?: string;
+};
+
 /**
  * Titles beyond "Director" (Chairman, MD, etc.) and any ordering/hierarchy
  * aren't confirmed per-person yet — every entry uses the same generic role
- * rather than guessing seniority or a chair.
+ * rather than guessing seniority or a chair. Add `bio` per person once real
+ * copy exists; the board page already renders it when present.
  */
-export const BOARD_OF_DIRECTORS = [
+export const BOARD_OF_DIRECTORS: BoardMember[] = [
   { name: "Ismail Hashim", role: "Director" },
   { name: "Salman Zumri", role: "Director" },
   { name: "Thalal Izzath", role: "Director" },
@@ -189,6 +202,21 @@ export const BOARD_OF_DIRECTORS = [
   { name: "Saad Mazhar", role: "Director" },
   { name: "Mijwadh Ali", role: "Director" },
 ];
+
+export type Milestone = {
+  /** ISO date string, e.g. "2026-09-01" */
+  date: string;
+  title: string;
+  body: string;
+};
+
+/**
+ * Real, dated group updates — a new contract, a certification, a hire, a
+ * launch. This is what /blogs renders as soon as one entry exists; no need
+ * to wait on a CMS to say something happened. Do not add a placeholder
+ * entry — the page's empty state already handles zero milestones honestly.
+ */
+export const MILESTONES: Milestone[] = [];
 
 /**
  * Drives the About header dropdown, the /about hub grid, and the sub-nav on

@@ -102,6 +102,25 @@ export default async function CompanyPage({ params }: { params: Promise<{ brand:
         </div>
       </section>
 
+      {company.testimonials && company.testimonials.length > 0 && (
+        <section className="border-t border-steel/25 bg-charcoal py-16 md:py-24">
+          <div className="shell">
+            <Label>What customers say</Label>
+            <div className="mt-10 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-3">
+              {company.testimonials.map((t, i) => (
+                <div key={t.author + i} className="bg-warm p-8 md:p-10">
+                  <p className="text-lg leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
+                  <p className="label-xs mt-6 text-muted-foreground">
+                    {t.author}
+                    {t.context ? ` · ${t.context}` : ""}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Brand blog feed lands here once Sanity is wired up (Phase 3) — no
           empty-looking placeholder block until there's real content to show. */}
     </main>

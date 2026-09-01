@@ -48,7 +48,8 @@ export default function IndustriesPage() {
           <Reveal delay={0.15} trigger="mount">
             <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Each STTPS company is built around a specific, everyday-service market rather than a
-              general one.
+              general one. Where a diversified conglomerate spreads one team thin across many
+              sectors, we put a dedicated company behind each market instead.
             </p>
           </Reveal>
         </div>

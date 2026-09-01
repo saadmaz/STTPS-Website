@@ -71,6 +71,9 @@ export default function BoardOfDirectorsPage() {
               </div>
               <h2 className="display-lg mt-6 text-2xl md:text-3xl">{d.name}</h2>
               <p className="label-xs mt-3 text-muted-foreground">{d.role}</p>
+              {d.bio && (
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{d.bio}</p>
+              )}
             </Reveal>
           ))}
         </div>
