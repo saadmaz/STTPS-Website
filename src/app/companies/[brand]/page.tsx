@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { COMPANIES, CONTACT } from "@/data/sttps";
+import { COMPANIES } from "@/data/sttps";
 import { CompanySection } from "@/components/site/company-section";
 import { ArrowLink, Label, SplitLines } from "@/components/site/primitives";
 
@@ -10,6 +10,21 @@ export function generateStaticParams() {
 
 async function getCompany(brand: string) {
   return COMPANIES.find((c) => c.id === brand);
+}
+
+// Pulls a dialable number back out of a tel:/wa.me contact value, so the
+// LocalBusiness telephone field always matches the number the page actually
+// links to rather than a hardcoded one.
+function phoneFromContact(contact?: { type: string; value: string }) {
+  if (!contact) return undefined;
+  if (contact.type === "phone" && contact.value.startsWith("tel:")) {
+    return contact.value.replace("tel:", "");
+  }
+  if (contact.type === "whatsapp") {
+    const digits = contact.value.replace(/^https:\/\/wa\.me\//, "");
+    return digits ? `+${digits}` : undefined;
+  }
+  return undefined;
 }
 
 export async function generateMetadata({
@@ -37,6 +52,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ brand:
   if (!company) notFound();
 
   const contact = company.contactMethod;
+  const telephone = phoneFromContact(contact);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -45,9 +61,8 @@ export default async function CompanyPage({ params }: { params: Promise<{ brand:
     description: company.description,
     parentOrganization: { "@type": "Organization", name: "STTPS" },
     ...(company.serviceArea ? { areaServed: company.serviceArea } : {}),
-    ...(contact?.type === "whatsapp" || contact?.type === "phone"
-      ? { telephone: CONTACT.whatsapp }
-      : {}),
+    ...(telephone ? { telephone } : {}),
+    ...(company.website ? { sameAs: [company.website] } : {}),
   };
 
   return (
@@ -96,10 +111,13 @@ export default async function CompanyPage({ params }: { params: Promise<{ brand:
                 ? `Reach ${company.name} directly via ${contact.label}.`
                 : `${company.name} doesn't have a dedicated contact channel published yet. Reach the group and we'll route it.`}
             </p>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-wrap gap-3">
               <ArrowLink href={contact ? contact.value : "/contact"}>
                 {contact ? contact.label : "Contact STTPS"}
               </ArrowLink>
+              {company.website && (
+                <ArrowLink href={company.website}>Visit {company.name}&apos;s Site</ArrowLink>
+              )}
             </div>
           </div>
         </div>

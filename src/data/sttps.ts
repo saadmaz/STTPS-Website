@@ -49,6 +49,8 @@ export type Company = {
   /** Still optional — omit rather than guess for a brand this hasn't been confirmed for. */
   serviceArea?: string;
   contactMethod?: ContactMethod;
+  /** The brand's own live site, where it has one independent of sttps.co. */
+  website?: string;
   /**
    * Real, named customer quotes only — omit rather than write a placeholder
    * or composite one. Renders nothing on the company page until populated.
@@ -56,10 +58,12 @@ export type Company = {
   testimonials?: { quote: string; author: string; context?: string }[];
 };
 
-// Shared WhatsApp/phone line, verified via Tank Sudda's public LinkedIn
-// listing. Tank Sudda and Team Sudda are confirmed reachable on it; Polish
-// Station and STOPWASH route through it only until each has its own
-// dedicated number — swap the value the day one exists.
+// Shared line for brands without their own confirmed number yet — verified
+// via Tank Sudda's public LinkedIn listing, which Tank Sudda and Team Sudda
+// are both confirmed reachable on. STOPWASH has its own independently
+// verified number below and does NOT use this. Polish Station has no
+// independent presence found publicly, so it routes through this
+// temporarily — swap it the day a dedicated line exists.
 const GROUP_WHATSAPP: ContactMethod = {
   type: "whatsapp",
   value: "https://wa.me/94741004296",
@@ -161,8 +165,16 @@ export const COMPANIES: Company[] = [
     brand: "oklch(0.88 0.21 130)",
     brandInk: "oklch(0.18 0.08 255)",
     surface: "oklch(0.19 0.07 255)",
-    serviceArea: "Colombo and Greater Colombo.",
-    contactMethod: GROUP_WHATSAPP,
+    serviceArea: "Greater Colombo, with its first outlet in Katubedda.",
+    // STOPWASH runs as its own established brand — stopwash.lk, its own PVT
+    // LTD registration, own social presence — verified independently, not
+    // shared with the rest of the group like the other three brands.
+    contactMethod: {
+      type: "phone",
+      value: "tel:+94706225252",
+      label: "Call +94 70 622 5252",
+    },
+    website: "https://stopwash.lk",
   },
 ];
 

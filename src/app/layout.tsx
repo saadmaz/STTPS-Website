@@ -48,6 +48,12 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image" },
   referrer: "strict-origin-when-cross-origin",
+  // Set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION at build time once a Search
+  // Console property exists — the meta tag only renders when it's set, so
+  // there's no placeholder verification code shipping in the meantime.
+  ...(process.env["NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION"]
+    ? { verification: { google: process.env["NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION"] } }
+    : {}),
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
