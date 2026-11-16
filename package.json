@@ -1,6 +1,22 @@
 {
   "name": "sttps-website",
+  "version": "1.0.0",
+  "description": "Corporate website of STTPS, the Sri Lankan group building and operating Tank Sudda, Team Sudda, Polish Station and STOPWASH.",
+  "homepage": "https://sttps.co",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saadmaz/STTPS-Website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/saadmaz/STTPS-Website/issues"
+  },
+  "author": "Saad Mazhar (https://github.com/saadmaz)",
+  "license": "UNLICENSED",
   "private": true,
+  "packageManager": "bun@1.4.4",
+  "engines": {
+    "node": ">=20.9"
+  },
   "sideEffects": false,
   "type": "module",
   "scripts": {
@@ -8,7 +24,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "typecheck": "next typegen && tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "clsx": "^2.1.1",
