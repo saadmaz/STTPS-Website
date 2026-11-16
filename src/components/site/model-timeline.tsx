@@ -34,7 +34,7 @@ export function ModelTimeline() {
           >
             <div className="readout text-4xl font-medium text-steel md:text-5xl">{s.no}</div>
             <h3 className="display-lg mt-5 text-2xl md:text-3xl">{s.title}</h3>
-            <p className="mt-3 max-w-[24ch] text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-3 max-w-[32ch] text-sm leading-relaxed text-muted-foreground">
               {s.copy}
             </p>
           </motion.div>

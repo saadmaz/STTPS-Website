@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CSR } from "@/data/sttps";
 import { ArrowLink, Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives";
 
-const TITLE = "Sustainability & CSR | STTPS";
+const TITLE = "Sustainability: Performance With Responsibility | STTPS";
 const DESCRIPTION =
   "STTPS supports communities through the Empower Foundation, investing in education, skills development, community wellbeing and empowerment.";
 
@@ -36,12 +36,16 @@ export default function SustainabilityPage() {
           <SplitLines
             as="h1"
             trigger="mount"
-            lines={["Beyond the", "Business."]}
+            lines={["Performance With", "Responsibility."]}
             className="display-hero mt-8"
           />
-          <Reveal delay={0.15} trigger="mount">
-            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              One real commitment, not a scattered list of good intentions.
+          <Reveal delay={0.15} trigger="mount" className="mt-10 flex flex-col gap-5">
+            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              STTPS believes strong businesses should create value beyond the transaction.
+            </p>
+            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              Our sustainability agenda is built around people, opportunity, community wellbeing and
+              the responsible operation of the companies we build.
             </p>
           </Reveal>
         </div>
@@ -53,25 +57,32 @@ export default function SustainabilityPage() {
             <Label>Our commitment</Label>
             <SplitLines lines={[CSR.name]} className="display-xl mt-8" />
           </div>
-          <Reveal className="self-end text-lg leading-relaxed text-muted-foreground">
+          <Reveal className="flex flex-col gap-5 self-end text-lg leading-relaxed text-muted-foreground">
             <p>{CSR.statement}</p>
+            <p>
+              As STTPS grows, our ambition is to invest more time, more resources and more
+              opportunity into the communities around us.
+            </p>
           </Reveal>
         </div>
       </section>
 
       <section className="border-t border-steel/25 py-16 md:py-24">
         <div className="shell">
-          <Label>Where we focus</Label>
+          <Label>Our focus</Label>
           <SplitLines lines={["Four Pillars."]} className="display-xl mt-8" />
-          <div className="mt-10 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-4">
             {CSR.pillars.map((p, i) => (
               <Reveal
-                key={p}
+                key={p.title}
                 delay={i * 0.08}
-                className="bg-warm p-8 transition-colors duration-500 hover:bg-ink hover:text-warm md:p-10"
+                className="group bg-warm p-8 transition-colors duration-500 hover:bg-ink hover:text-warm md:p-10"
               >
                 <UnitTag index={i + 1} />
-                <h2 className="display-lg mt-10 text-xl md:text-2xl">{p}</h2>
+                <h2 className="display-lg mt-10 text-xl md:text-2xl">{p.title}</h2>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground group-hover:text-warm/60">
+                  {p.copy}
+                </p>
               </Reveal>
             ))}
           </div>
@@ -81,11 +92,11 @@ export default function SustainabilityPage() {
       <section className="border-t border-steel/25 bg-ink py-20 text-warm md:py-28">
         <div className="shell">
           <SplitLines
-            lines={["Cleaner Spaces,", "Stronger Communities."]}
+            lines={["Cleaner Spaces. Stronger People.", "Better Opportunities."]}
             className="display-xl text-warm"
           />
           <p className="mt-8 max-w-xl text-lg text-warm/60">
-            Building cleaner spaces, stronger communities and better opportunities for the future.
+            Building stronger businesses. Creating stronger communities.
           </p>
           <div className="mt-10">
             <ArrowLink href="/contact" tone="light">

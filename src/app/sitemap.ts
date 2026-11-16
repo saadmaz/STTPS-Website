@@ -5,15 +5,20 @@ const BASE_URL = "https://sttps.co";
 
 export const dynamic = "force-static";
 
-// Phase 3 extends this with dynamic /blogs/[slug] and /careers/[slug] entries
+// Phase 3 extends this with dynamic /news/[slug] and /careers/[slug] entries
 // once Sanity is wired up.
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/about",
     "/companies",
+    "/companies/in-operation",
+    "/companies/in-development",
+    "/how-we-build",
+    "/capabilities",
     "/sustainability",
-    "/blogs",
+    "/governance",
+    "/news",
     "/careers",
     "/contact",
     "/legal/privacy",

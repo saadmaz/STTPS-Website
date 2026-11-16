@@ -34,6 +34,12 @@
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   RewriteCond %{HTTP_HOST} ^www\.sttps\.co$ [NC]
   RewriteRule ^ https://sttps.co%{REQUEST_URI} [L,R=301]
+
+  # Routes retired in the operating-ecosystem restructure. Keep these as long
+  # as the old URLs may still be linked or indexed — the static export has no
+  # page at either path any more, so without them both 404.
+  RewriteRule ^blogs/?$ /news/ [L,R=301]
+  RewriteRule ^about/corporate-governance/?$ /governance/ [L,R=301]
 </IfModule>
 
 # next build (output: "export", trailingSlash: true) already emits

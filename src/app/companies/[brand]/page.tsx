@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { COMPANIES } from "@/data/sttps";
 import { CompanySection } from "@/components/site/company-section";
-import { ArrowLink, Label, SplitLines } from "@/components/site/primitives";
+import { ArrowLink, Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives";
 
 export function generateStaticParams() {
   return COMPANIES.map((c) => ({ brand: c.id }));
@@ -37,7 +37,7 @@ export async function generateMetadata({
   if (!company) return {};
 
   const title = `${company.name}: ${company.category}`;
-  const description = `${company.positioning} ${company.description}`;
+  const description = `${company.headline} ${company.description}`;
   return {
     title,
     description,
@@ -91,10 +91,99 @@ export default async function CompanyPage({ params }: { params: Promise<{ brand:
             lines={company.name.split(" ")}
             className="display-hero mt-8 text-warm"
           />
+          {/* Headline only — the positioning line is the lead of the
+              CompanySection immediately below, so repeating it here reads as
+              a stutter. */}
+          <Reveal delay={0.15} trigger="mount">
+            <p className="mt-8 max-w-2xl font-display text-2xl leading-tight tracking-[-0.02em] text-warm md:text-3xl">
+              {company.headline}
+            </p>
+          </Reveal>
         </div>
       </section>
 
       <CompanySection company={company} index={0} headingLevel="h2" ctaHref="/contact" />
+
+      {company.narrative.length > 0 && (
+        <section className="border-t border-steel/25 bg-warm py-14 md:py-20">
+          <div className="shell grid gap-14 lg:grid-cols-[1fr_1.3fr]">
+            <div>
+              <Label>The company</Label>
+              <SplitLines lines={["In the Group."]} className="display-lg mt-6" />
+            </div>
+            <Reveal className="flex flex-col gap-5 self-center text-lg leading-relaxed text-muted-foreground">
+              {company.narrative.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </Reveal>
+          </div>
+        </section>
+      )}
+
+      {company.opportunity && (
+        <section className="border-t border-steel/25 bg-charcoal py-14 md:py-20">
+          <div className="shell grid gap-14 lg:grid-cols-[1fr_1.3fr]">
+            <div>
+              <Label>The opportunity</Label>
+              <SplitLines lines={["Why This", "Category."]} className="display-lg mt-6" />
+            </div>
+            <Reveal className="flex flex-col gap-5 self-center text-lg leading-relaxed text-muted-foreground">
+              {company.opportunity.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </Reveal>
+          </div>
+        </section>
+      )}
+
+      {company.standard && company.standard.length > 0 && (
+        <section className="border-t border-steel/25 bg-warm py-14 md:py-20">
+          <div className="shell">
+            <Label>{company.standardLabel ?? "The standard"}</Label>
+            <SplitLines lines={["What It Is", "Built On."]} className="display-xl mt-8" />
+            <div className="mt-12 grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-3">
+              {company.standard.map((s, i) => (
+                <Reveal key={s} delay={i * 0.05} className="bg-warm p-8">
+                  <UnitTag index={i + 1} />
+                  <p className="display-md mt-8">{s}</p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {company.ambition && (
+        <section
+          className="border-t border-steel/25 py-16 md:py-24"
+          style={
+            {
+              "--brand": company.brand,
+              "--brand-ink": company.brandInk,
+              backgroundColor: company.surface,
+              color: "var(--color-warm)",
+            } as React.CSSProperties
+          }
+        >
+          <div className="shell">
+            <Label className="text-brand">The ambition</Label>
+            <Reveal className="mt-8 flex flex-col gap-6">
+              {company.ambition.map((p, i) => (
+                <p
+                  key={i}
+                  className={
+                    i === 0
+                      ? "display-xl max-w-4xl text-warm"
+                      : "max-w-2xl text-lg leading-relaxed text-warm/60"
+                  }
+                >
+                  {p}
+                </p>
+              ))}
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       <section className="border-t border-steel/25 bg-warm py-14 md:py-20">
         <div className="shell grid gap-14 lg:grid-cols-[1fr_1fr]">
@@ -142,7 +231,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ brand:
         </section>
       )}
 
-      {/* Brand blog feed lands here once Sanity is wired up (Phase 3) — no
+      {/* Brand news feed lands here once Sanity is wired up (Phase 3) — no
           empty-looking placeholder block until there's real content to show. */}
     </main>
   );

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { COMPANIES } from "@/data/sttps";
+import { COMPANIES_BY_CATEGORY } from "@/data/sttps";
 import { ArrowLink, Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives";
 import { AboutSubNav } from "@/components/site/about-sub-nav";
 
 const TITLE = "Industries We Operate In | STTPS";
 const DESCRIPTION =
-  "The everyday-service industries STTPS builds for: water and property care, facilities operations, automotive detailing and vehicle care.";
+  "The everyday-service industries STTPS builds for: water and hygiene, property and operations, and vehicle care.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -58,13 +58,22 @@ export default function IndustriesPage() {
       <AboutSubNav current="industries" />
 
       <section className="py-16 md:py-24">
-        <div className="shell grid gap-px border border-steel/25 bg-steel/25 sm:grid-cols-2 lg:grid-cols-4">
-          {COMPANIES.map((c, i) => (
-            <Reveal key={c.id} delay={i * 0.08} className="bg-warm p-8 md:p-10">
+        <div className="shell grid gap-px border border-steel/25 bg-steel/25 lg:grid-cols-3">
+          {COMPANIES_BY_CATEGORY.map(({ group, companies }, i) => (
+            <Reveal key={group} delay={i * 0.08} className="bg-warm p-8 md:p-10">
               <UnitTag index={i + 1} />
-              <h2 className="display-lg mt-10 text-2xl md:text-3xl">{c.category}</h2>
-              <p className="mt-4 text-sm text-muted-foreground">{c.positioning}</p>
-              <p className="label-xs mt-6 text-muted-foreground/70">{c.name}</p>
+              <h2 className="display-lg mt-10 text-2xl md:text-3xl">{group}</h2>
+              <ul className="mt-8 border-t border-steel/25">
+                {companies.map((c) => (
+                  <li key={c.id} className="border-b border-steel/20 py-4">
+                    <div className="font-display text-lg tracking-[-0.02em]">{c.name}</div>
+                    <p className="panel-tag mt-2 text-muted-foreground">{c.category}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      {c.positioning}
+                    </p>
+                  </li>
+                ))}
+              </ul>
             </Reveal>
           ))}
         </div>

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { CAREER_TRACKS, CONTACT, OPEN_POSITIONS, WHY_STTPS } from "@/data/sttps";
 import { ArrowLink, Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives";
 
-const TITLE = "Careers at STTPS: Build Service Companies With Us";
+const TITLE = "Careers at STTPS: Build What Comes Next";
 const DESCRIPTION =
-  "Join STTPS in Sri Lanka. Roles across field teams, operations, creative, technology and leadership as we build and scale service companies.";
+  "STTPS is building operating companies, not filling positions inside a finished organization. Roles across field teams, operations, brand, technology and leadership in Sri Lanka.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -36,19 +36,53 @@ export default function CareersPage() {
           <SplitLines
             as="h1"
             trigger="mount"
-            lines={["Build With Us."]}
+            lines={["Build What", "Comes Next."]}
             className="display-hero mt-8"
           />
-          <Reveal delay={0.15} trigger="mount">
-            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              We&apos;re building companies, teams and systems from the ground up. If you care about
-              doing work properly, there is room here.
+          <Reveal delay={0.15} trigger="mount" className="mt-10 flex flex-col gap-5">
+            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              STTPS is building operating companies, not filling positions inside a finished
+              organization.
+            </p>
+            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              The opportunity is to take ownership early, work close to the operation and help
+              define how the company performs as it grows.
+            </p>
+          </Reveal>
+          <div className="mt-10">
+            <ArrowLink href="#openings">View Opportunities</ArrowLink>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24">
+        <div className="shell grid gap-16 lg:grid-cols-2">
+          <div>
+            <Label>The work</Label>
+            <SplitLines
+              lines={["Build the Companies", "That People Depend On."]}
+              className="display-xl mt-8"
+            />
+          </div>
+          <Reveal className="flex flex-col gap-5 self-end text-lg leading-relaxed text-muted-foreground">
+            <p>
+              STTPS is for people who want responsibility, standards and the opportunity to build
+              something that lasts.
+            </p>
+            <p>
+              Our businesses are operational. The work is visible. The expectations are clear. You
+              will work close to the customer, close to the operation and close to the decisions
+              that shape the business.
+            </p>
+            <p className="text-ink">
+              There is no room here for passive participation. There is significant room for people
+              who want to build, lead and improve.
             </p>
           </Reveal>
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="border-t border-steel/25 py-16 md:py-24">
         <div className="shell">
           <Label>Why STTPS</Label>
           <SplitLines lines={["Why People", "Build Here."]} className="display-xl mt-8" />
@@ -64,7 +98,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <section className="border-t border-steel/25 py-16 md:py-24">
+      <section id="openings" className="border-t border-steel/25 py-16 md:py-24">
         <div className="shell">
           <Label>Open positions</Label>
           <SplitLines lines={["Current", "Openings."]} className="display-xl mt-8" />
@@ -106,7 +140,7 @@ export default function CareersPage() {
 
       <section className="border-t border-steel/25 py-16 md:py-24">
         <div className="shell">
-          <Label>Where you fit</Label>
+          <Label>We are looking for</Label>
           <SplitLines lines={["Every Discipline", "We Need."]} className="display-xl mt-8" />
           <div className="mt-12 border-t border-steel/25">
             {CAREER_TRACKS.map((t, i) => (

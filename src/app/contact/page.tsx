@@ -3,9 +3,9 @@ import { CONTACT, COMPANIES } from "@/data/sttps";
 import { ArrowLink, Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives";
 import { ContactForm } from "@/components/site/contact-form";
 
-const TITLE = "Contact STTPS: Talk to Our Team in Colombo, Sri Lanka";
+const TITLE = "Contact STTPS: Build the Next Standard";
 const DESCRIPTION =
-  "Get in touch with STTPS in Colombo, Sri Lanka for services, partnerships, ventures or careers across our operating companies.";
+  "Speak with STTPS in Colombo, Sri Lanka about an idea, a partnership opportunity, a service requirement or a category that deserves to be built properly.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -44,9 +44,16 @@ export default function ContactPage() {
           <SplitLines
             as="h1"
             trigger="mount"
-            lines={["Have an Idea?", "Let's Talk."]}
+            lines={["Build the", "Next Standard."]}
             className="display-hero mt-8"
           />
+          <Reveal delay={0.15} trigger="mount" className="mt-10 flex flex-col gap-5">
+            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              Have an idea, a partnership opportunity, a service requirement or a category that
+              deserves to be built properly?
+            </p>
+            <p className="max-w-2xl text-lg leading-relaxed text-ink">Speak with STTPS.</p>
+          </Reveal>
         </div>
       </section>
 
@@ -63,7 +70,7 @@ export default function ContactPage() {
 
       <section className="border-t border-steel/25 bg-charcoal py-16 md:py-24">
         <div className="shell">
-          <Label>Booking a service directly</Label>
+          <Label>For operating-company enquiries</Label>
           <SplitLines lines={["Go Straight", "To the Company."]} className="display-xl mt-8" />
           <p className="mt-8 max-w-xl text-lg text-muted-foreground">
             Need a job done rather than a general enquiry? Reach the operating company directly.

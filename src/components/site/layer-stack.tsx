@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import { EASE, UnitTag } from "./primitives";
 
-/** Animated stack used to present the LAYERS list (Brand, People, Operations, ...). */
+/** Animated stack used to present the group capability list (People, Operations, Technology, ...). */
 export function LayerStack({ layers }: { layers: string[] }) {
   return (
     <div>

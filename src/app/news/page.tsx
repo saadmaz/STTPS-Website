@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import { CONTACT, MILESTONES } from "@/data/sttps";
 import { ArrowLink, Label, Reveal, SplitLines, UnitTag } from "@/components/site/primitives";
 
-const TITLE = "Blogs | STTPS";
+const TITLE = "News & Insights | STTPS";
 const DESCRIPTION =
-  "Notes and updates from STTPS and its operating companies about building service businesses in Sri Lanka properly.";
+  "New launches, operating milestones, people, partnerships and category insights from STTPS and the companies it is building.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESCRIPTION,
-  alternates: { canonical: "/blogs" },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: "/blogs", type: "website" },
+  alternates: { canonical: "/news" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: "/news", type: "website" },
 };
 
 const JSON_LD = {
@@ -18,15 +18,15 @@ const JSON_LD = {
   "@type": "WebPage",
   name: TITLE,
   description: DESCRIPTION,
-  url: "/blogs",
+  url: "/news",
   isPartOf: { "@type": "Organization", name: "STTPS" },
 };
 
 // Full long-form posts land once Sanity is wired up (phase 3). Until then,
 // real dated milestones (MILESTONES in @/data/sttps) render here directly —
 // no CMS required to say something happened. Zero milestones falls back to
-// an honest empty state rather than faking an empty feed.
-export default function BlogsPage() {
+// an honest empty state rather than faking a feed.
+export default function NewsPage() {
   const hasMilestones = MILESTONES.length > 0;
   const sorted = [...MILESTONES].sort((a, b) => (a.date < b.date ? 1 : -1));
 
@@ -39,24 +39,30 @@ export default function BlogsPage() {
 
       <section className="border-b border-steel/15 pb-14 pt-32 md:pb-16 md:pt-40">
         <div className="shell">
-          <Label>Blogs</Label>
+          <Label>News &amp; insights</Label>
           <SplitLines
             as="h1"
             trigger="mount"
-            lines={["Notes From", "The Group."]}
+            lines={["Building in Public,", "With Substance."]}
             className="display-hero mt-8"
           />
-          <Reveal delay={0.15} trigger="mount">
-            <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-              {hasMilestones
-                ? "Updates and milestones from STTPS and its operating companies. Longer-form posts are on the way."
-                : "We're building out this space for updates from STTPS and its companies. Nothing has been published yet, so check back soon."}
+          <Reveal delay={0.15} trigger="mount" className="mt-10 flex flex-col gap-5">
+            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              This is where STTPS shares the work behind the companies: new launches, operating
+              milestones, people, partnerships, category insights and the decisions shaping the
+              group.
+            </p>
+            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              No noise. No empty announcements.{" "}
+              <span className="text-ink">
+                Only meaningful progress from the companies we are building.
+              </span>
             </p>
           </Reveal>
         </div>
       </section>
 
-      {hasMilestones && (
+      {hasMilestones ? (
         <section className="py-16 md:py-24">
           <div className="shell flex flex-col gap-px border-t border-steel/25">
             {sorted.map((m, i) => (
@@ -74,13 +80,26 @@ export default function BlogsPage() {
             ))}
           </div>
         </section>
+      ) : (
+        <section className="py-16 md:py-24">
+          <Reveal className="shell">
+            <div className="border border-steel/25 bg-charcoal p-10 md:p-14">
+              <Label>Status</Label>
+              <h2 className="display-xl mt-6">Nothing Published Yet.</h2>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                The first entries go up when there is real progress to report, not before. Reach out
+                and we&apos;ll let you know when they do.
+              </p>
+            </div>
+          </Reveal>
+        </section>
       )}
 
-      <section className="bg-charcoal py-16 md:py-24">
+      <section className="border-t border-steel/25 bg-charcoal py-16 md:py-24">
         <div className="shell">
           <SplitLines lines={["Want to Hear", "When We Post?"]} className="display-xl" />
           <p className="mt-8 max-w-xl text-lg text-muted-foreground">
-            Reach out and we&apos;ll let you know once the first posts are live.
+            Reach out and we&apos;ll keep you posted on what the group is building.
           </p>
           <div className="mt-10">
             <ArrowLink href={`mailto:${CONTACT.email}`}>{CONTACT.email}</ArrowLink>

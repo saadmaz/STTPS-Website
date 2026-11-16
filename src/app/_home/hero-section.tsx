@@ -13,22 +13,32 @@ export function HeroSection() {
         <SplitLines
           as="h1"
           trigger="mount"
-          lines={["A Group of Companies,", "Built on Discipline."]}
+          lines={["We Build the Companies", "That Raise the Standard", "of Everyday Life."]}
           className="display-hero mt-8"
           startDelay={0.6}
         />
 
-        <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
-          <motion.p
+        <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+          <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.75, duration: 0.9, ease: EASE }}
-            className="max-w-xl text-lg leading-relaxed text-muted-foreground"
+            className="flex max-w-2xl flex-col gap-5 text-lg leading-relaxed text-muted-foreground"
           >
-            We don&apos;t run services as one division of something bigger. We build, staff and
-            operate service companies as the whole business — and hold every one of them to the same
-            standard.
-          </motion.p>
+            <p className="text-ink">
+              STTPS is an operating group building category-defining service companies across Sri
+              Lanka.
+            </p>
+            <p>
+              We identify important everyday needs, build disciplined businesses around them and
+              create the systems, teams and standards required to lead their markets.
+            </p>
+            <p>
+              From water-tank care to property services. From vehicle washing to automotive
+              detailing. We are redefining how essential services are delivered, experienced and
+              trusted.
+            </p>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -36,9 +46,9 @@ export function HeroSection() {
             transition={{ delay: 0.85, duration: 0.9, ease: EASE }}
             className="flex flex-wrap gap-3"
           >
-            <ArrowLink href="/companies">Our Companies</ArrowLink>
-            <ArrowLink href="/about" className="border-transparent">
-              About STTPS
+            <ArrowLink href="/about">Discover STTPS</ArrowLink>
+            <ArrowLink href="/companies" className="border-transparent">
+              Explore Our Companies
             </ArrowLink>
           </motion.div>
         </div>

@@ -1,35 +1,24 @@
 import Link from "next/link";
-import { COMPANIES, CONTACT } from "@/data/sttps";
+import { COMPANIES, CONTACT, NAV_LINKS, SECONDARY_NAV } from "@/data/sttps";
 
 export function SiteFooter() {
   return (
     <footer className="bg-ink text-warm">
       <div className="shell py-16 md:py-24">
-        <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
           <div>
             <div className="display-lg">STTPS</div>
-            <div className="label-xs mt-3 opacity-50">The Group</div>
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-warm/60">
+              The operating group building the companies that raise the standard of everyday life.
+            </p>
           </div>
 
           <FooterCol title="Navigate">
-            <Link href="/about" className="hover:opacity-100">
-              About
-            </Link>
-            <Link href="/companies" className="hover:opacity-100">
-              Companies
-            </Link>
-            <Link href="/sustainability" className="hover:opacity-100">
-              Sustainability
-            </Link>
-            <Link href="/blogs" className="hover:opacity-100">
-              Blogs
-            </Link>
-            <Link href="/careers" className="hover:opacity-100">
-              Careers
-            </Link>
-            <Link href="/contact" className="hover:opacity-100">
-              Contact
-            </Link>
+            {NAV_LINKS.map((l) => (
+              <Link key={l.to} href={l.to}>
+                {l.label}
+              </Link>
+            ))}
           </FooterCol>
 
           <FooterCol title="Companies">
@@ -40,12 +29,25 @@ export function SiteFooter() {
             ))}
           </FooterCol>
 
+          <FooterCol title="More">
+            {SECONDARY_NAV.map((l) => (
+              <Link key={l.to} href={l.to}>
+                {l.label}
+              </Link>
+            ))}
+          </FooterCol>
+
           <FooterCol title="Connect">
             <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+            <a href={CONTACT.whatsappHref}>{CONTACT.whatsapp}</a>
           </FooterCol>
         </div>
 
-        <div className="label-xs mt-16 flex flex-col justify-between gap-3 border-t border-steel/25 pt-6 opacity-50 sm:flex-row">
+        <div className="label-xs mt-16 border-t border-steel/25 pt-6 text-warm/70">
+          Everyday services. Built properly. Built to lead.
+        </div>
+
+        <div className="label-xs mt-6 flex flex-col justify-between gap-3 opacity-50 sm:flex-row">
           <span>© {new Date().getFullYear()} STTPS. All rights reserved.</span>
           <div className="flex gap-6">
             <Link href="/legal/privacy" className="hover:opacity-100">
