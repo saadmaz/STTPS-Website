@@ -12,8 +12,8 @@ service-focused brands: Tank Sudda, Team Sudda, Polish Station and STOPWASH.
 - [Motion](https://motion.dev) for animation, [Sonner](https://sonner.emilkowal.ski) for toasts
 
 The site builds to fully static HTML — no Node server at runtime — and is
-hosted on [Cloudflare Pages](https://pages.cloudflare.com), with security
-headers in `public/_headers` and redirects in `public/_redirects`.
+hosted on Cloudflare as an assets-only Worker, with security headers in
+`public/_headers` and redirects in `public/_redirects`.
 
 ## Getting started
 
@@ -51,22 +51,31 @@ public/         Static files served as-is (favicon, robots.txt, _headers, _redir
 
 ## Deployment
 
-Cloudflare Pages builds and publishes from the connected Git repository, so
-there is no deploy step in this repo and no deploy secrets. Pushes to `main`
-go live once Pages finishes building; pull requests get a preview
-deployment.
+Cloudflare builds and publishes from the connected Git repository, so there
+are no deploy secrets in this repo. Pushes to `main` go live once the build
+finishes.
 
-Pages project settings:
+Cloudflare build settings:
 
-| Setting                | Value           |
-| ---------------------- | --------------- |
-| Build command          | `bun run build` |
-| Build output directory | `out`           |
+| Setting        | Value                 |
+| -------------- | --------------------- |
+| Build command  | `bun run build`       |
+| Deploy command | `npx wrangler deploy` |
+
+Everything else comes from [wrangler.jsonc](wrangler.jsonc), which ships
+`out/` as an **assets-only Worker** — no `main`, so no Worker code runs on a
+request. That file is also what stops `wrangler deploy` from running its
+framework auto-detection: left to guess, it treats any Next.js repo as a
+server-rendered app and runs the `@opennextjs/cloudflare` migration, which
+rewrites `next.config.ts` and `package.json` and then fails, because
+`output: "export"` never produces the standalone server build OpenNext
+expects. Do not remove `wrangler.jsonc`, and ignore any dashboard "output
+directory" setting — the config file wins.
 
 `public/_headers` and `public/_redirects` are copied into `out/` by the build
-and read by Pages from there. Host-level rules are not in this repo: HTTPS
-enforcement and the canonical non-www redirect for `www.sttps.co` are
-configured in the Cloudflare dashboard.
+and read from the root of the deployed assets. Host-level rules are not in
+this repo: HTTPS enforcement and the canonical non-www redirect for
+`www.sttps.co` are configured in the Cloudflare dashboard.
 
 GitHub Actions runs typecheck, lint and build on every push and pull request
 as a branch gate only — see

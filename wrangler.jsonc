@@ -1,0 +1,35 @@
+{
+  // Cloudflare Workers config for the static export.
+  //
+  // This file's main job is to exist. Without a wrangler config in the repo,
+  // `wrangler deploy` runs its framework auto-detection, sees Next.js,
+  // assumes a server-rendered app and runs the `@opennextjs/cloudflare`
+  // migration — which rewrites next.config.ts, package.json and _headers,
+  // then fails looking for `.next/standalone/.next/server/pages-manifest.json`
+  // because this app is `output: "export"` and never produces a standalone
+  // server build. With this config present, auto-detection is skipped.
+  //
+  // There is no `main` entry: this is an assets-only Worker. Every route is a
+  // prebuilt file in ./out, so no Worker code runs on a request and the app
+  // needs nothing from OpenNext.
+  "name": "sttps-website",
+  "compatibility_date": "2026-11-16",
+  "assets": {
+    // `bun run build` writes the static export here (next.config.ts sets
+    // `output: "export"`). _headers and _redirects are copied in from
+    // public/ by the build and are read from the root of this directory.
+    "directory": "./out",
+
+    // next.config.ts sets `trailingSlash: true`, so each route is a
+    // directory index (out/about/index.html). "auto-trailing-slash" serves
+    // /about/ from it and redirects /about to the canonical slashed form.
+    "html_handling": "auto-trailing-slash",
+
+    // Serve the exported out/404.html for unmatched paths rather than a bare
+    // Cloudflare error page.
+    "not_found_handling": "404-page"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

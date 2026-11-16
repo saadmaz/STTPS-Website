@@ -1,13 +1,14 @@
-# Cloudflare Pages redirects. Routes retired in the operating-ecosystem
-# restructure — the static export has no page at either path any more, so
-# without these both 404. Keep them as long as the old URLs may still be
-# linked or indexed.
+# Redirects for the static export, read by Cloudflare from the root of the
+# assets directory (see wrangler.jsonc). These are routes retired in the
+# operating-ecosystem restructure — the export has no page at either path any
+# more, so without these both 404. Keep them as long as the old URLs may
+# still be linked or indexed.
 #
-# Pages matches the path as written, so each one is listed with and without
+# Matching is on the path as written, so each one is listed with and without
 # the trailing slash. HTTPS and the canonical non-www host are NOT handled
 # here: host-level rules belong in the Cloudflare dashboard (SSL/TLS >
-# "Always Use HTTPS", plus a redirect rule for www.sttps.co), because
-# _redirects is path-only.
+# "Always Use HTTPS", plus a redirect rule for www.sttps.co), because this
+# file is path-only.
 
 /blogs                          /news/        301
 /blogs/                         /news/        301
