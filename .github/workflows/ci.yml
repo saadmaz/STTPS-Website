@@ -6,6 +6,10 @@ on:
   push:
     branches: [main]
 
+# Deployment is not done here. The site is hosted on Cloudflare Pages, which
+# builds and publishes from the connected Git repository itself — there is no
+# SSH deploy job, no DEPLOY_* secrets and no server to push a tarball to.
+# This workflow only gates the branch: typecheck, lint and build.
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -34,49 +38,3 @@ jobs:
 
       - name: Build
         run: bun run build
-
-  deploy:
-    needs: ci
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Build
-        run: bun run build
-
-      # The cPanel account's jailshell has no rsync, so this ships the build
-      # as a tar stream over the existing SSH connection instead — tar is
-      # present on both the runner and the jail. cPanel manages
-      # cgi-bin/php.ini/.user.ini/.well-known itself (the last is
-      # load-bearing for AutoSSL renewal), so the remote-side cleanup step
-      # explicitly skips those, only ever touching the static build.
-      - name: Deploy to sttps.co
-        env:
-          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-          SSH_HOST: ${{ secrets.DEPLOY_HOST }}
-          SSH_PORT: ${{ secrets.DEPLOY_PORT }}
-          SSH_USER: ${{ secrets.DEPLOY_USER }}
-        run: |
-          mkdir -p ~/.ssh
-          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
-          tar czf - -C out . | ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" '
-            set -e
-            rm -rf ~/public_html_new
-            mkdir -p ~/public_html_new
-            tar xzf - -C ~/public_html_new
-            find ~/public_html -mindepth 1 -maxdepth 1 \
-              ! -name cgi-bin ! -name php.ini ! -name .user.ini ! -name .well-known \
-              -exec rm -rf {} +
-            cp -a ~/public_html_new/. ~/public_html/
-            rm -rf ~/public_html_new
-          '

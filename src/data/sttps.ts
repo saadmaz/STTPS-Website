@@ -432,7 +432,7 @@ export const MILESTONES: Milestone[] = [];
  *
  * Corporate governance is deliberately NOT in this list — it has its own
  * top-level /governance page in the primary navigation. /about/corporate-governance
- * is 301'd there in public/.htaccess.
+ * is 301'd there in public/_redirects.
  */
 export const ABOUT_SECTIONS: {
   slug: string;
