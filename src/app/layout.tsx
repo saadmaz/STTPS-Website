@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Azeret_Mono, IBM_Plex_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import { Suspense, type ReactNode } from "react";
 import "./globals.css";
 import { SiteNav } from "@/components/site/nav";
@@ -15,17 +15,28 @@ import { Toaster } from "@/components/ui/sonner";
  * tags) — its geometric, technical letterforms suit the instrument-panel
  * concept without reaching for IBM Plex Mono / JetBrains Mono, which have
  * become the interchangeable default of every AI-generated dev-tool site.
+ *
+ * Both are loaded from committed woff2 files via next/font/local, NOT from
+ * next/font/google. The Google loader fetches font files from gstatic during
+ * the build, which put an external network call on the deploy's critical
+ * path and broke CI with a Turbopack font-resolution error. See
+ * src/assets/fonts/README.md for the provenance of these files and why they
+ * live in the repo. Each file is a variable face covering the whole weight
+ * range below, so one file per family replaces the four/three static weights
+ * the Google loader used to request.
  */
-const plexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+const plexSans = localFont({
+  src: "../assets/fonts/ibm-plex-sans-latin-variable.woff2",
+  weight: "400 700",
+  style: "normal",
   variable: "--font-sans-family",
   display: "swap",
 });
 
-const azeretMono = Azeret_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+const azeretMono = localFont({
+  src: "../assets/fonts/azeret-mono-latin-variable.woff2",
+  weight: "400 600",
+  style: "normal",
   variable: "--font-mono-family",
   display: "swap",
 });

@@ -17,9 +17,10 @@
   --radius-lg: calc(var(--radius) + 2px);
   --radius-xl: calc(var(--radius) + 6px);
 
-  /* --font-sans-family / --font-mono-family come from next/font/google in
-     app/layout.tsx (self-hosted, no external Google Fonts request at
-     runtime). One grotesque does both display and body duty. */
+  /* --font-sans-family / --font-mono-family come from next/font/local in
+     app/layout.tsx, loading committed woff2 files from src/assets/fonts —
+     no Google Fonts request at runtime OR at build time. One grotesque
+     does both display and body duty. */
   --font-display: var(--font-sans-family), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-sans-family), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono-family), ui-monospace, "SFMono-Regular", monospace;
