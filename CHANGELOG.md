@@ -21,8 +21,9 @@ First versioned release of [sttps.co](https://sttps.co).
 - Per-brand contact methods, falling back to the contact page when none is confirmed.
 - Responsive WebP image variants and an image optimisation script.
 - Strict Content Security Policy, security headers and immutable caching for hashed assets.
-- Continuous integration: type check, lint, formatting and production build on every push and pull request.
+- Continuous integration on every push and pull request: type check, lint, formatting and production build.
 - Project governance: proprietary licence, security policy, contribution guidelines, code of conduct, issue forms, pull request template, CODEOWNERS and Dependabot.
+- Standard documentation layout shared by every STTPS repository: architecture, configuration, deployment, decision records (ADRs) and release and rollback runbooks, indexed in `docs/README.md`.
 
 ### Changed
 

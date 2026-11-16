@@ -4,13 +4,14 @@
 
 **We build the companies that raise the standard of everyday life.**
 
-The corporate website of STTPS, a Sri Lankan group building and operating service brands: Tank Sudda, Team Sudda, Polish Station and STOPWASH.
+The corporate website of STTPS, the Sri Lankan group building and operating Tank Sudda, Team Sudda, Polish Station and STOPWASH.
 
-[![Website](https://img.shields.io/badge/website-sttps.co-111111?style=flat-square&labelColor=000000)](https://sttps.co)
+[![Website](https://img.shields.io/badge/website-sttps.co-374151?style=flat-square&labelColor=111827)](https://sttps.co)
 [![CI](https://github.com/saadmaz/STTPS-Website/actions/workflows/ci.yml/badge.svg)](https://github.com/saadmaz/STTPS-Website/actions/workflows/ci.yml)
-![License](https://img.shields.io/badge/license-proprietary-000000?style=flat-square)
+[![Version](https://img.shields.io/badge/version-v1.0.0-374151?style=flat-square&labelColor=111827)](https://github.com/saadmaz/STTPS-Website/releases)
+![License](https://img.shields.io/badge/license-proprietary-374151?style=flat-square&labelColor=111827)
 
-[**sttps.co**](https://sttps.co) · [Report a bug](https://github.com/saadmaz/STTPS-Website/issues/new?template=bug_report.yml) · [Request a change](https://github.com/saadmaz/STTPS-Website/issues/new?template=feature_request.yml)
+[**sttps.co**](https://sttps.co) · [Documentation](docs/README.md) · [Report a bug](https://github.com/saadmaz/STTPS-Website/issues/new?template=bug_report.yml) · [Request a change](https://github.com/saadmaz/STTPS-Website/issues/new?template=feature_request.yml)
 
 </div>
 
@@ -20,12 +21,14 @@ The corporate website of STTPS, a Sri Lankan group building and operating servic
 
 - [About](#about)
 - [Features](#features)
+- [Architecture](#architecture)
 - [Tech stack](#tech-stack)
 - [Getting started](#getting-started)
+- [Configuration](#configuration)
 - [Project structure](#project-structure)
-- [Content management](#content-management)
 - [Quality checks](#quality-checks)
 - [Deployment](#deployment)
+- [Documentation](#documentation)
 - [Releases and versioning](#releases-and-versioning)
 - [Contributing](#contributing)
 - [Security](#security)
@@ -38,19 +41,10 @@ STTPS builds and operates everyday-care companies across three areas: water and 
 |                  |                                           |
 | ---------------- | ----------------------------------------- |
 | **Organisation** | STTPS (Pvt) Ltd                           |
+| **Status**       | Live                                      |
 | **Website**      | [sttps.co](https://sttps.co)              |
 | **Contact**      | [hello@sttps.co](mailto:hello@sttps.co)   |
 | **Maintainer**   | [Saad Mazhar](https://github.com/saadmaz) |
-
-### Group companies
-
-| Company        | Focus                        | Repository                                                                                                                                       |
-| -------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Tank Sudda     | Water tank and sump cleaning | [Tank-Sudda-Website-TypeScript](https://github.com/saadmaz/Tank-Sudda-Website-TypeScript)                                                        |
-| Team Sudda     | Home and office cleaning     | [Team-Sudda](https://github.com/saadmaz/Team-Sudda)                                                                                              |
-| Polish Station | Automotive detailing         | [Polish-Station-Website](https://github.com/saadmaz/Polish-Station-Website), [Polish-Station-POS](https://github.com/saadmaz/Polish-Station-POS) |
-| STOPWASH       | Vehicle-care network         | [Stopwash-Website](https://github.com/saadmaz/Stopwash-Website), [Stopwash-POS](https://github.com/saadmaz/Stopwash-POS)                         |
-| STTPS ERP      | Group operations platform    | [STTPS-ERP](https://github.com/saadmaz/STTPS-ERP)                                                                                                |
 
 ## Features
 
@@ -61,6 +55,12 @@ STTPS builds and operates everyday-care companies across three areas: water and 
 - **Hardened delivery:** A strict Content Security Policy, security headers and immutable caching for hashed assets.
 - **Responsive imagery:** Source photos are optimised into 640, 1024 and 1400 pixel WebP variants with `srcset`.
 - **SEO:** Per-page metadata, a generated sitemap and `robots.txt`.
+
+## Architecture
+
+A fully static Next.js export served from Cloudflare as an assets-only Worker: every route is prebuilt HTML and no application code runs on a request. Security headers, the Content Security Policy and redirects ship with the assets.
+
+The full picture, with diagrams, is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Significant decisions are recorded as [ADRs](docs/adr/README.md).
 
 ## Tech stack
 
@@ -103,6 +103,12 @@ The dev server runs at **http://localhost:3000**.
 | `bun run format` / `format:check`     | Format with Prettier, or check without writing                 |
 | `bun run scripts/optimize-images.mjs` | Regenerate responsive WebP variants for images in `src/assets` |
 
+## Configuration
+
+The site needs no environment variables or secrets. Build, routing, headers and redirects are controlled by `next.config.ts`, `wrangler.jsonc`, `public/_headers` and `public/_redirects`. All group and brand content lives in `src/data/sttps.ts`.
+
+Every variable, where it is set and which are secret: [docs/CONFIGURATION.md](docs/CONFIGURATION.md). How to update content is in [docs/CONTENT.md](docs/CONTENT.md).
+
 ## Project structure
 
 ```
@@ -122,45 +128,38 @@ The dev server runs at **http://localhost:3000**.
 └── wrangler.jsonc        # Cloudflare assets-only Worker configuration
 ```
 
-## Content management
-
-Group and brand content lives in [`src/data/sttps.ts`](src/data/sttps.ts).
-
-| Task                                                           | Where                                                                                                       |
-| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Edit a brand's description, status, category or contact method | The brand entry in `src/data/sttps.ts`                                                                      |
-| Edit the board                                                 | The directors list in `src/data/sttps.ts`                                                                   |
-| Replace a brand photo                                          | Add the source image to `src/assets/`, then run `bun run scripts/optimize-images.mjs`                       |
-| Add a page                                                     | Create a folder in `src/app/` with a `page.tsx` that exports `metadata`, and add it to `src/app/sitemap.ts` |
-| Change security headers or the CSP                             | `public/_headers` (keep it in sync with any new script, style or image source)                              |
-| Add a redirect                                                 | `public/_redirects`                                                                                         |
-
-A brand without a confirmed contact channel falls back to the generic `/contact` page rather than showing an unverified number.
-
 ## Quality checks
 
 Every push and pull request to `main` runs the [CI workflow](.github/workflows/ci.yml): type check, lint, formatting and a production build. Run the same checks locally before opening a pull request:
 
 ```sh
-bun run typecheck && bun run lint && bun run format:check && bun run build
+bun run lint && bun run format:check && bun run typecheck && bun run build
 ```
 
 ## Deployment
 
-Cloudflare builds and publishes from the connected repository, so there are no deploy secrets in this repository. Every push to `main` goes live once the build finishes.
+Cloudflare builds and publishes from this repository on every push to `main`. There are no deploy secrets in the repository.
 
-| Setting        | Value                 |
-| -------------- | --------------------- |
-| Build command  | `bun run build`       |
-| Deploy command | `npx wrangler deploy` |
+Setup, secrets and post-deployment checks are in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). To release or roll back, follow the [runbooks](docs/runbooks/README.md).
 
-[`wrangler.jsonc`](wrangler.jsonc) ships `out/` as an **assets-only Worker**: there is no `main` entry, so no Worker code runs on a request. The file also stops `wrangler deploy` from running its framework auto-detection, which would otherwise treat the project as a server-rendered Next.js app, run the OpenNext migration and fail, because `output: "export"` never produces a standalone server build. **Do not remove `wrangler.jsonc`**, and ignore any dashboard "output directory" setting: the config file wins.
+## Documentation
 
-`public/_headers` and `public/_redirects` are copied into `out/` by the build and read from the root of the deployed assets. Host-level rules live in the Cloudflare dashboard: HTTPS enforcement and the canonical redirect from `www.sttps.co` to `sttps.co`.
+All documentation lives in [`docs/`](docs/README.md), using the same layout in every STTPS repository.
+
+| Document                                  | Covers                                              |
+| ----------------------------------------- | --------------------------------------------------- |
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md)   | How the system is built and how data flows          |
+| [CONFIGURATION.md](docs/CONFIGURATION.md) | Environment variables and configuration files       |
+| [DEPLOYMENT.md](docs/DEPLOYMENT.md)       | Hosting, the delivery pipeline and first-time setup |
+| [CONTENT.md](docs/CONTENT.md)             | Updating copy, business data, imagery and articles  |
+| [adr/](docs/adr/README.md)                | Architecture decision records                       |
+| [runbooks/](docs/runbooks/README.md)      | Release and rollback procedures                     |
+
+Product and reference documents for this project are listed in the [documentation index](docs/README.md).
 
 ## Releases and versioning
 
-The project follows [Semantic Versioning](https://semver.org). Each release is tagged `vX.Y.Z` and published on the [Releases](https://github.com/saadmaz/STTPS-Website/releases) page. Notable changes are recorded in [CHANGELOG.md](CHANGELOG.md).
+The project follows [Semantic Versioning](https://semver.org). Each release is tagged `vX.Y.Z` and published on the [Releases](https://github.com/saadmaz/STTPS-Website/releases) page. Notable changes are recorded in [CHANGELOG.md](CHANGELOG.md), and the release procedure is in [docs/runbooks/release.md](docs/runbooks/release.md).
 
 ## Contributing
 

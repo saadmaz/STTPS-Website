@@ -1,7 +1,7 @@
 {
   "name": "sttps-website",
   "version": "1.0.0",
-  "description": "Corporate website of STTPS, the Sri Lankan group building and operating Tank Sudda, Team Sudda, Polish Station and STOPWASH.",
+  "description": "Corporate website for STTPS, the Sri Lankan group behind Tank Sudda, Team Sudda, Polish Station and STOPWASH.",
   "homepage": "https://sttps.co",
   "repository": {
     "type": "git",
@@ -17,8 +17,8 @@
   "engines": {
     "node": ">=20.9"
   },
-  "sideEffects": false,
   "type": "module",
+  "sideEffects": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",

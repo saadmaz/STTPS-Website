@@ -1,12 +1,11 @@
+# Continuous integration: the merge gate for every pull request into main.
+# Production deployment is handled separately (see docs/DEPLOYMENT.md).
 name: CI
 
-# Deployment is handled by Cloudflare, which builds and publishes from the
-# connected repository. This workflow is the merge gate only.
-
 on:
-  pull_request:
-    branches: [main]
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
   workflow_dispatch:
 
@@ -19,7 +18,7 @@ permissions:
 
 jobs:
   verify:
-    name: Type check, lint and build
+    name: Verify
     runs-on: ubuntu-24.04
     timeout-minutes: 15
 
@@ -35,15 +34,14 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      # Generates next-env.d.ts and route/image types before tsc runs on a fresh checkout.
-      - name: Type check
-        run: bun run typecheck
-
       - name: Lint
         run: bun run lint
 
       - name: Check formatting
         run: bun run format:check
+
+      - name: Type check
+        run: bun run typecheck
 
       - name: Build
         run: bun run build
