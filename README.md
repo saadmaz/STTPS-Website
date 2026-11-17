@@ -4,7 +4,7 @@
 
 <img src=".github/assets/banner.svg" alt="STTPS: We build the companies that raise the standard of everyday life." width="100%">
 
-<br/><br/>
+<br/>
 
 <p><strong>The corporate website of STTPS, the Sri Lankan group building and operating Tank Sudda, Team Sudda, Polish Station and STOPWASH.</strong></p>
 
@@ -14,14 +14,14 @@
 <a href="https://github.com/saadmaz/STTPS-Website/commits/develop"><img alt="Last commit" src="https://img.shields.io/github/last-commit/saadmaz/STTPS-Website/develop?style=flat-square&labelColor=111827&color=374151"></a>
 <img alt="License" src="https://img.shields.io/badge/license-proprietary-374151?style=flat-square&labelColor=111827">
 
-<br/><br/>
+<br/>
 
 <a href="https://sttps.co"><img alt="Visit sttps.co" src="https://img.shields.io/badge/Visit%20sttps.co-111827?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
 <a href="docs/README.md"><img alt="Documentation" src="https://img.shields.io/badge/Documentation-111827?style=for-the-badge&logo=readthedocs&logoColor=white"></a>
 <a href="https://github.com/saadmaz/STTPS-Website/issues/new?template=bug_report.yml"><img alt="Report a bug" src="https://img.shields.io/badge/Report%20a%20bug-111827?style=for-the-badge&logo=github&logoColor=white"></a>
 <a href="https://github.com/saadmaz/STTPS-Website/issues/new?template=feature_request.yml"><img alt="Request a change" src="https://img.shields.io/badge/Request%20a%20change-111827?style=for-the-badge&logo=github&logoColor=white"></a>
 
-<br/><br/>
+<br/>
 
 <a href="#about">About</a> ·
 <a href="#features">Features</a> ·
@@ -59,7 +59,7 @@
 
 STTPS builds and operates everyday-care companies across three areas: water and hygiene, property and operations, and vehicle care. This repository powers [sttps.co](https://sttps.co), the group's home for investors, partners, candidates and press.
 
-|                  |                                           |
+| At a glance      |                                           |
 | ---------------- | ----------------------------------------- |
 | **Organisation** | STTPS (Pvt) Ltd                           |
 | **Status**       | Live                                      |

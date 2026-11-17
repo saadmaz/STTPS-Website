@@ -1,5 +1,9 @@
 # Content
 
+<!-- nav -->
+
+<sub><a href="../README.md">Project README</a> · <a href="README.md">Documentation index</a></sub>
+
 > How to update copy, brands and imagery on sttps.co. Part of the [project documentation](README.md).
 
 Group and brand content lives in [`src/data/sttps.ts`](../src/data/sttps.ts).
