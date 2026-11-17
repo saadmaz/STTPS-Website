@@ -1,5 +1,9 @@
 # ADR-0001: Static export served as an assets-only Cloudflare Worker
 
+<!-- nav -->
+
+<sub><a href="../../README.md">Project README</a> · <a href="../README.md">Documentation index</a></sub>
+
 | Status   | Date       |
 | -------- | ---------- |
 | Accepted | 2026-11-16 |
