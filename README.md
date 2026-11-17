@@ -292,7 +292,7 @@ The full guide is in [CONTRIBUTING.md](CONTRIBUTING.md). Everyone taking part fo
 
 Copyright © 2026 STTPS (Pvt) Ltd. All rights reserved.
 
-This is proprietary software. The source is publicly visible, but no permission is granted to use, copy, modify or distribute it without prior written consent. See [LICENSE](LICENSE).
+This is proprietary software. The source is publicly visible, but no permission is granted to use, copy, modify or distribute it without prior written consent. See [LICENSE](LICENSE.md).
 
 <div align="center">
 <br/>
