@@ -1,40 +1,49 @@
+# Continuous integration: the merge gate for every pull request into main.
+# Production deployment is handled separately (see docs/DEPLOYMENT.md).
 name: CI
 
 on:
-  pull_request:
-    branches: [main]
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
-# Deployment is not done here. The site is hosted on Cloudflare Pages, which
-# builds and publishes from the connected Git repository itself — there is no
-# SSH deploy job, no DEPLOY_* secrets and no server to push a tarball to.
-# This workflow only gates the branch: typecheck, lint and build.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
-  ci:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
+  verify:
+    name: Verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      TZ: Asia/Colombo
 
-      - uses: oven-sh/setup-bun@v2
+    steps:
+      - name: Check out
+        uses: actions/checkout@v5
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: 1.4.4
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      # next-env.d.ts and .next/types/*.d.ts (image-import module types,
-      # typed routes) are gitignored and normally written by `next dev`/
-      # `next build` — on a fresh CI checkout neither has run yet, so a bare
-      # `tsc` can't resolve `@/assets/*.jpg` etc without generating them first.
-      - name: Generate Next.js types
-        run: bunx next typegen
-
-      - name: Typecheck
-        run: bunx tsc --noEmit -p tsconfig.json
-
       - name: Lint
         run: bun run lint
+
+      - name: Check formatting
+        run: bun run format:check
+
+      - name: Type check
+        run: bun run typecheck
 
       - name: Build
         run: bun run build
