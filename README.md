@@ -138,9 +138,14 @@ bun run lint && bun run format:check && bun run typecheck && bun run build
 
 ## Deployment
 
-Cloudflare builds and publishes from this repository on every push to `main`. There are no deploy secrets in the repository.
+| Environment | Branch    | URL                                  |
+| ----------- | --------- | ------------------------------------ |
+| Development | `develop` | [dev.sttps.co](https://dev.sttps.co) |
+| Production  | `main`    | [sttps.co](https://sttps.co)         |
 
-Setup, secrets and post-deployment checks are in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). To release or roll back, follow the [runbooks](docs/runbooks/README.md).
+Cloudflare Workers Builds builds and serves each branch; the Deploy workflow verifies the build and the live URL. Work merges into `develop` and deploys to development; a release pull request from `develop` into `main` deploys to production.
+
+Environments, setup, secrets and post-deployment checks are in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). To release or roll back, follow the [runbooks](docs/runbooks/README.md).
 
 ## Documentation
 
