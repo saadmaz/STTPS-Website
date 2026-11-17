@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-17
+
+### Added
+
+- Development and production environments: `develop` deploys to development and `main` to production, through one Deploy workflow and GitHub Environments with per-environment settings.
+
 ## [1.0.0] - 2026-11-16
 
 First versioned release of [sttps.co](https://sttps.co).
@@ -31,5 +37,6 @@ First versioned release of [sttps.co](https://sttps.co).
 - Hosting moved from cPanel to Cloudflare as an assets-only Worker.
 - Typography updated to IBM Plex Sans and Azeret Mono.
 
-[Unreleased]: https://github.com/saadmaz/STTPS-Website/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/saadmaz/STTPS-Website/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/saadmaz/STTPS-Website/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/saadmaz/STTPS-Website/releases/tag/v1.0.0
