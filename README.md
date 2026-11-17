@@ -224,10 +224,10 @@ bun run lint && bun run format:check && bun run typecheck && bun run build
 
 ## Deployment
 
-| Environment | Branch    | URL                                  | Status                                                                                                                                                          |
-| ----------- | --------- | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Development | `develop` | [dev.sttps.co](https://dev.sttps.co) | <img alt="development" src="https://img.shields.io/github/deployments/saadmaz/STTPS-Website/development?style=flat-square&label=development&labelColor=111827"> |
-| Production  | `main`    | [sttps.co](https://sttps.co)         | <img alt="production" src="https://img.shields.io/github/deployments/saadmaz/STTPS-Website/production?style=flat-square&label=production&labelColor=111827">    |
+| Environment | Branch    | URL                                  | Status                                                                                                                                                         |
+| ----------- | --------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Development | `develop` | [dev.sttps.co](https://dev.sttps.co) | <img alt="development: awaiting host setup" src="https://img.shields.io/badge/development-awaiting%20host%20setup-6b7280?style=flat-square&labelColor=111827"> |
+| Production  | `main`    | [sttps.co](https://sttps.co)         | <img alt="production" src="https://img.shields.io/github/deployments/saadmaz/STTPS-Website/production?style=flat-square&label=production&labelColor=111827">   |
 
 ```mermaid
 flowchart LR
