@@ -31,6 +31,12 @@
 
 ## [Unreleased]
 
+## [1.1.4] - 2026-11-18
+
+### Changed
+
+- CI updated to actions/checkout v7.
+
 ## [1.1.3] - 2026-11-17
 
 ### Changed
@@ -84,7 +90,8 @@ First versioned release of [sttps.co](https://sttps.co).
 - Hosting moved from cPanel to Cloudflare as an assets-only Worker.
 - Typography updated to IBM Plex Sans and Azeret Mono.
 
-[Unreleased]: https://github.com/saadmaz/STTPS-Website/compare/v1.1.3...HEAD
+[Unreleased]: https://github.com/saadmaz/STTPS-Website/compare/v1.1.4...HEAD
+[1.1.4]: https://github.com/saadmaz/STTPS-Website/compare/v1.1.3...v1.1.4
 [1.1.3]: https://github.com/saadmaz/STTPS-Website/compare/v1.1.2...v1.1.3
 [1.1.2]: https://github.com/saadmaz/STTPS-Website/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/saadmaz/STTPS-Website/compare/v1.1.0...v1.1.1
